@@ -6,6 +6,13 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Hobby.associate = function(models) {
     // associations can be defined here
+    const columnMapping = {
+      through: 'UserHobbies',
+      foreignKey: 'hobbyId',
+      otherKey: 'wheelhouseId',
+    }
+
+    Hobby.belongsToMany(models.Wheelhouse, columnMapping)
   };
   return Hobby;
 };
