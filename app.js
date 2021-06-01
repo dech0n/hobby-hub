@@ -10,7 +10,8 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 // import created session secret from index.js config file
 const { sessionSecret } = require('./config/index');
-//jordyn's comment
+//jordyn's comment number 2
+//making all the changes!
 const app = express();
 
 // view engine setup
