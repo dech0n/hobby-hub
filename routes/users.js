@@ -8,11 +8,11 @@ const { check, validationResult } = require('express-validator');
 const router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+// router.get('/', function(req, res, next) {
+//   res.send('respond with a resource');
+// });
 
-const loginValidators = [
+const registerValidators = [
   check('firstName')
     .exists({ checkFalsy: true })
     .withMessage('Please enter your first name')
@@ -50,9 +50,35 @@ const loginValidators = [
     }),
 ];
 
-router.post('/login', loginValidators, csrfProtection, asyncHandler(async (req, res) => {
-  const user = db.User.build();
-  res.render('login', { title: 'Login', csrfToken: req.csrfToken(), user });
+router.get('/register', csrfProtection, asyncHandler(async(req,res,next) => {
+
+  res.render('register', { title: 'Register', csrfToken: req.csrfToken(), user });
+}))
+
+router.post('/register', registerValidators, csrfProtection, asyncHandler(async (req, res) => {
+  const { firstName, lastName, password, username, email } = req.body;
+
+  const user = db.User.build(firstName, lastName, username, email);
+
+  const validatorErrors = validationResult(req);
+
+  if(validatorErrors.isEmpty()) {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    user.hashedPassword = hashedPassword;
+    await user.save();
+    loginUser(req,res,user)
+    res.redirect('/hobbies');
+  } else {
+    const errors = validationErrors.array().map(error => error.msg);
+    res.render('register', { 
+      title: 'Register', 
+      user, 
+      errors, 
+      csrfToken: req.csrfToken() 
+    })
+  }
+
+
   
 }));
 
