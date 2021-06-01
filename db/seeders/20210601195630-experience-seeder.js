@@ -14,8 +14,8 @@ module.exports = {
           userId: 0,
           title: '',
           message: '',
-          createdAt: ,
-          updatedAt: ,
+          // createdAt: ,
+          // updatedAt: ,
       }
     ], {});
   },
