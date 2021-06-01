@@ -10,11 +10,13 @@ module.exports = {
       },
       wheelhouseId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: { model: 'Wheelhouses' }
       },
       hobbyId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: { model: 'Hobbies' }
       },
       createdAt: {
         allowNull: false,
