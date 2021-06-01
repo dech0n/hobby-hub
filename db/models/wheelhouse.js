@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const Wheelhouse = sequelize.define('Wheelhouse', {
     status: {
       allowNull: false,
-      type: DataTypes.STRING
+      type: DataTypes.STRING(50)
     },
     userId: {
       allowNull: false,
