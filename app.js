@@ -8,6 +8,8 @@ const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const { restoreUser } = require('./auth.js')
+
 // import created session secret from index.js config file
 const { sessionSecret } = require('./config/index');
 
@@ -28,6 +30,8 @@ app.use(session({
   saveUninitialized: false
 }))
 
+app.use(restoreUser);
+
 // set up session middleware
 const store = new SequelizeStore({ db: sequelize });
 
@@ -39,6 +43,8 @@ app.use(
     resave: false,
   })
 );
+
+app.use('/users', '/users')
 
 // create Session table if it doesn't already exist
 store.sync();
