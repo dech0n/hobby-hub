@@ -17,10 +17,12 @@ module.exports = {
         type: Sequelize.STRING(50)
       },
       username: {
+        unique: true,
         allowNull: false,
         type: Sequelize.STRING(50)
       },
       email: {
+        unique: true,
         allowNull: false,
         type: Sequelize.STRING(50)
       },
