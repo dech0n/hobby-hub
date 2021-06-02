@@ -12,7 +12,6 @@ const router = express.Router();
 //   res.send('respond with a resource');
 // });
 
-//TODO: add username validation
 const registerValidators = [
   check('firstName')
     .exists({ checkFalsy: true })
@@ -31,9 +30,19 @@ const registerValidators = [
     .withMessage('Please enter a valid email address.')
     .isLength({ max: 50 })
     .withMessage('Email address cannot be more than 50 characters long.')
-    .custom((emailAddress) => {
-      return db.User.findOne({ where: { emailAddress } }).then((user) => {
+    .custom((email) => {
+      return db.User.findOne({ where: { email } }).then((user) => {
         if (user) return Promise.reject("Email address already in use.");
+      });
+    }),
+  check('username')
+    .exists({checkFalsy: true})
+    .withMessage('Please provide a username.')
+    .isLength({max: 50})
+    .withMessage('Username cannot be more than 50 characters long.')
+    .custom((username) => {
+      return db.User.findOne({ where: { username } }).then((user) => {
+        if (user) return Promise.reject("Username unavailable, please try something different.");
       });
     }),
   check('password')
@@ -81,19 +90,10 @@ router.post('/register', registerValidators, csrfProtection, asyncHandler(async 
   }
 }));
 
-router.get('/login', csrfProtection, asyncHandler(async (req, res, next) => {
-  const user = await db.User.create({
-    firstName: "",
-    lastName: "",
-    username: "",
-    email: "",
-    hashedPassword: "",
-  });
-
+router.get('/login', csrfProtection, asyncHandler(async (req, res) => {
   res.render('login', {
     title: 'Login',
     csrfToken: req.csrfToken(),
-    user
   });
 }))
 
@@ -106,7 +106,7 @@ const loginValidators = [
     .withMessage('Please provide your password.')
 ];
 
-router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, res, next) => {
+router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, res) => {
   const { username, password } = req.body;
 
   let errors = [];
@@ -114,11 +114,11 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
 
   if (validatorErrors.isEmpty()) {
     const user = await db.User.findOne({
-      where: { username: req.body.username }
+      where: { username }
     })
 
-    if(user !== null) {
-      const isPassword = await bcrypt.compare(req.body.hashedPassword, user.hashedPassword.toString())
+    if (user !== null) {
+      const isPassword = await bcrypt.compare(password, user.hashedPassword.toString())
 
       if (isPassword) {
         loginUser(req, res, user)
