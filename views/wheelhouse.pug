@@ -1,8 +1,19 @@
 extends layout.pug
 
+append head
+  //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/wheelhouse.css")
+  //- add page specific js
+  script(src="/javascripts/wheelhouses.js" defer)
+
 block content
-    div
+    div(class='wheelhouses')
+      div(class='wheelhouse')
+        a(class='wheelhouseLink' title='All') All
       each wheelhouse in wheelhouses
         div(class='wheelhouse')
-          p #{wheelhouse.status}
+          a(class='wheelhouseLink' title=wheelhouse.status)= wheelhouse.status
+    div(class='hobbies')
+      p hobbies will go here
+    
         

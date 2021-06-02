@@ -157,11 +157,7 @@ router.get('/:id/wheelhouse', asyncHandler(async (req, res) => {
       userId
     },
   })
-
-  const wheelhouseIdArr = wheelhouses.map(wheelhouse => wheelhouse.id)
-  const [ id1, id2, id3 ] = wheelhouseIdArr;
   
-  console.log('!!!!!!!!!!!!!!!!!', wheelhouseIdArr)
   res.render('wheelhouse', {wheelhouses})
 }))
 
