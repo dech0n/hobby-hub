@@ -150,4 +150,13 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
   });
 }))
 
+// router.get('/:id/wheelhouse', asyncHandler(async (req, res) => {
+//   const { id } = req.params
+//   const wheelhouses = db.Wheelhouse.findByPk(id);
+//   console.log(wheelhouses)
+//   res.render('wheelhouse')
+// }))
+
+
+
 module.exports = router;
