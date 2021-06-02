@@ -1,5 +1,5 @@
-extends layout.pug
-include utils.pug
+//- extends layout.pug
+//- include utils.pug
 
 div
     h1.main-header Pick Your Hobbies!
@@ -8,4 +8,5 @@ div
             .hobbies__hobby-image
                 img(src=hobby.img, alt="illustration of the hobby")
             .hobbies__hobby
-                p= hobby
+                p= hobby.title
+                p= hobby.description

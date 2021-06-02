@@ -16,12 +16,18 @@ router.get(
   })
 );
 
-router.get("/:hobbyId(\\d+)", asyncHandler(async(req, res) => {
+router.get(
+  "/:hobbyId(\\d+)",
+  asyncHandler(async (req, res) => {
     const hobbyId = parseInt(req.params.hobbyId, 10);
     const hobby = await db.Hobby.findByPk(hobbyId, { include: db.Experience });
-    console.log(hobby);
+    const experiences = await db.Experience.findAll({
+      where: { hobbyId: hobby.id },
+      include: db.User,
+    });
 
-    res.render('hobby', { title: `Hobby: ${hobby.title}`, hobby });
-}));
+    res.render("hobby", { title: `Hobby: ${hobby.title}`, hobby, experiences });
+  })
+);
 
 module.exports = router;

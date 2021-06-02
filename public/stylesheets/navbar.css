@@ -4,6 +4,7 @@
     grid-template-rows: auto;
     padding: 20px;
     justify-content: space-between;
+    background-color: rgba(173,213,189,255);
 }
 
 #hobby-hub-logo {
@@ -16,6 +17,7 @@
     grid-row: 1/ span 1;
     display: flex;
     list-style-type: none;
+    color: white;
 }
 
 #user-buttons {
