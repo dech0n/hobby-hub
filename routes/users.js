@@ -62,15 +62,13 @@ const registerValidators = [
 
 
 router.get('/register', csrfProtection, asyncHandler(async (req, res, next) => {
-
-  res.render('register', { title: 'Register', csrfToken: req.csrfToken(), user });
-}))
+  res.render('register', { title: 'Register', csrfToken: req.csrfToken() });
+}));
 
 router.post('/register', registerValidators, csrfProtection, asyncHandler(async (req, res) => {
   const { firstName, lastName, password, username, email } = req.body;
-
-  const user = db.User.build(firstName, lastName, username, email);
-
+  const user = db.User.build({ firstName, lastName, username, email });
+  console.log(user)
   const validatorErrors = validationResult(req);
 
   if (validatorErrors.isEmpty()) {
@@ -80,7 +78,7 @@ router.post('/register', registerValidators, csrfProtection, asyncHandler(async 
     loginUser(req, res, user)
     res.redirect('/hobbies');
   } else {
-    const errors = validationErrors.array().map(error => error.msg);
+    const errors = validatorErrors.array().map(error => error.msg);
     res.render('register', {
       title: 'Register',
       user,
