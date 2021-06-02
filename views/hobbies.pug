@@ -2,10 +2,10 @@ extends layout.pug
 include utils.pug
 
 div
-    h1.slogan Pick Your Hobbies!
-    div
+    h1.main-header Pick Your Hobbies!
+    div.hobbies
         each hobby in hobbies
-            .hobby-image
-                #{hobby.img}
-            div
-                #{hobby}
+            .hobbies__hobby-image
+                img(src=hobby.img, alt="illustration of the hobby")
+            .hobbies__hobby
+                p= hobby
