@@ -5,15 +5,19 @@ html
         title= title
         link(rel='stylesheet' href='/stylesheets/reset.css')
         link(rel='stylesheet' href='/stylesheets/navbar.css')
+        script(src="/javascripts/navbar.js" role="module")
   body
     div(class="navbar")
       nav(class="navbar__nav")
         img(href="" class="" id="hobby-hub-logo" alt="Hobby Hub logo")
         ul(class="" id="navigation-links")
-          li: a(href="" class="navbar__nav") Home
+          li: a(href="/" class="navbar__nav") Home
           //- My Wheelhouse redirects to /login when user not logged in
-          li: a(href="" class="navbar__nav") My Wheelhouse
-          li: a(href="" class="navbar__nav") Hobbies
+          if user
+            li: a(href=`/users/${user.userId}/wheelhouse` class="navbar__nav") My Wheelhouse
+          else
+            li: a(href="/users/login" class="navbar__nav") My Wheelhouse
+          li: a(href="/hobbies" class="navbar__nav") Hobbies
         div(class="" id="user-buttons")
           //- if the user is logged in
           if user
