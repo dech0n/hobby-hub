@@ -5,7 +5,8 @@ mixin validationErrorSummary(errors)
       p Please correct the following errors:
       ul
         each error in errors
-          li= error
+          ul
+            li= error
 
 mixin field(labelText, fieldName, fieldValue, fieldType = 'text', placeholder = null)
   div
