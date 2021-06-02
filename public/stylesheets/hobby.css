@@ -1,0 +1,24 @@
+.experience-title::before {
+    /* content: url('../hobby-images/anon-user-image.png'); */
+}
+
+#hobby-page {
+    margin: auto;
+    width: 30%;
+    padding: 10px;
+}
+
+#experiences-container {
+    border: 1px solid black;
+    text-align: center;
+}
+
+.experiences-container__experience {
+    border: 1px solid black;
+}
+
+.experience-header {
+    display: flex;
+    border-bottom: 1px solid grey;
+    justify-content: center;
+}

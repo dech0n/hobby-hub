@@ -3,14 +3,15 @@ h1 {
     flex-grow: 1;
     font-size: 120px;
     width: 700px;
-    margin-left: 100px;
+    margin: 50px;
+    padding-left: 200px;
     overflow-wrap: break-word;
 }
 
 #splash-image {
     height: 650px;
     width: 900px;
-    background-image: url(../hobby-images/largeHobbiesBackground.jpg);
+    background-image: url('../hobby-images/largeHobbiesBackground.jpg');
     background-position: center;
     margin: 50px;
     background-repeat: no-repeat;
