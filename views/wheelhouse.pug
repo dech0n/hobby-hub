@@ -1,0 +1,8 @@
+extends layout.pug
+
+block content
+    div
+      each wheelhouse in wheelhouses
+        div(class='wheelhouse')
+          p #{wheelhouse.status}
+        
