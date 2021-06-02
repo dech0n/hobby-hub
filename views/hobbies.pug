@@ -1,13 +1,13 @@
-//- extends layout.pug
+extends layout
 //- include utils.pug
 
-div
-    h1.main-header Pick Your Hobbies!
-    div.hobbies
-        each hobby in hobbies
-            .hobbies__hobby-image
-                img(src=hobby.img, alt="illustration of the hobby")
-            .hobbies__hobby-content
-                p.title= hobby.title
-                p.descrption= hobby.description
- 
+block content
+    div
+        h1.main-header Pick Your Hobbies!
+        div.hobbies
+            each hobby in hobbies
+                .hobbies__hobby-image
+                    img(src=hobby.img, alt="illustration of the hobby")
+                .hobbies__hobby-content
+                    p.title= hobby.title
+                    p.descrption= hobby.description

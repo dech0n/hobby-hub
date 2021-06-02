@@ -1,3 +1,6 @@
 .hobbies {
     display: grid;
+    grid-area: auto;
+    grid-auto-columns: auto;
+    grid-auto-columns: auto;
 }
