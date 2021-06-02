@@ -14,8 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     // }
 
     // Hobby.belongsToMany(models.Wheelhouse, columnMapping)
-    Hobby.hasMany(models.UserHobby, { foreignKey: 'wheelhouseId' })
-
+    Hobby.hasMany(models.UserHobby, { foreignKey: 'wheelhouseId' });
+    Hobby.hasMany(models.Experience, { foreignKey: 'hobbyId' });
   };
   return Hobby;
 };
