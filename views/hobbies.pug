@@ -6,7 +6,8 @@ block content
         h1.main-header Pick Your Hobbies!
         div.hobbies
             each hobby in hobbies
-                .hobbies__content
-                    img(src=hobby.img, alt="illustration of the hobby" class='hobby_image')
-                    p.hobby_title= hobby.title
-                    p.hobby_description= hobby.description
+                a(href=`/hobbies/${hobby.id}` class=hobby_links)
+                    div.hobbies__content
+                        img(src=hobby.img, alt="illustration of the hobby" class='hobby_image')
+                        p.hobby_title= hobby.title
+                        p.hobby_description= hobby.description
