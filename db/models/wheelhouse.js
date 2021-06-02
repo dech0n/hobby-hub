@@ -12,13 +12,15 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Wheelhouse.associate = function(models) {
     // associations can be defined here
-    const columnMapping = {
-      through: 'UserHobbies',
-      foreignKey: 'wheelhouseId',
-      otherKey: 'hobbyId',
-    }
+    // const columnMapping = {
+    //   through: 'UserHobbies',
+    //   foreignKey: 'wheelhouseId',
+    //   otherKey: 'hobbyId',
+    // }
 
-    Wheelhouse.belongsToMany(models.Hobby, columnMapping)
+    // Wheelhouse.belongsToMany(models.Hobby, columnMapping)
+    Wheelhouse.hasMany(models.UserHobby, { foreignKey: 'wheelhouseId' })
+
   };
   return Wheelhouse;
 };
