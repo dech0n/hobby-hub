@@ -16,6 +16,7 @@
     flex-wrap: wrap;
     flex-direction: column;
     border: solid 2px black;
+    border-radius: 2%;
     box-sizing: border-box;
     margin: 15px 15px;
     height: 256px;
