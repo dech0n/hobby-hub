@@ -1,18 +1,13 @@
-//- extends layout.pug
+extends layout.pug
 include utils.pug
 
-if errors
-    each error in errors
-        .errorDiv
-            ul
-                li= error
+block content
 
+    +validationErrorSummary(errors)
 
-.formDiv
-    form(action="/users/login" method="post")
-    input(type="hidden", name="_csrf", value=csrfToken)
-        .fieldDiv
+    .formDiv
+        form(action="/users/login" method="post")
+            input(type="hidden", name="_csrf", value=csrfToken)
             +field('Username', 'username', username)
-        .fieldDiv
-            +field('Password', 'password', password, 'password')
-    button(type='submit') Submit
+            +field('Password', 'password', null, 'password')
+            button(type='submit') Submit

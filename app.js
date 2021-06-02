@@ -24,7 +24,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(sessionSecret));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(restoreUser);
 
 // set up session middleware
 const store = new SequelizeStore({ db: sequelize });
@@ -36,6 +35,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }))
+app.use(restoreUser);
 // app.use(
 //   session({
 //     secret: 'superSecret',
