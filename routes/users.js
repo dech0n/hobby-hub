@@ -62,13 +62,19 @@ const registerValidators = [
 
 
 router.get('/register', csrfProtection, asyncHandler(async (req, res, next) => {
-  res.render('register', { title: 'Register', csrfToken: req.csrfToken() });
+  const user = db.User.build({
+    firstName: null,
+    lastName: null,
+    email: null,
+    username: null,
+    password: null,
+  });
+  res.render('register', { title: 'Register', csrfToken: req.csrfToken(), user });
 }));
 
 router.post('/register', registerValidators, csrfProtection, asyncHandler(async (req, res) => {
   const { firstName, lastName, password, username, email } = req.body;
   const user = db.User.build({ firstName, lastName, username, email });
-  console.log(user)
   const validatorErrors = validationResult(req);
 
   if (validatorErrors.isEmpty()) {
@@ -89,9 +95,17 @@ router.post('/register', registerValidators, csrfProtection, asyncHandler(async 
 }));
 
 router.get('/login', csrfProtection, asyncHandler(async (req, res) => {
+  const user = db.User.build({
+    firstName: null,
+    lastName: null,
+    email: null,
+    username: null,
+    password: null,
+  });
   res.render('login', {
     title: 'Login',
     csrfToken: req.csrfToken(),
+    user
   });
 }))
 

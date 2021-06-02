@@ -5,4 +5,19 @@ html
         title="Express Starter App"
         link(rel='stylesheet' href='/stylesheets/reset.css')
   body
+    div(class="navbar")
+      nav(class="navbar__nav")
+        img(href="" class="" id="hobby-hub-logo" alt="Hobby Hub logo")
+        ul(class="")
+          li: a(href="" class="navbar__nav") Home
+          //- My Wheelhouse redirects to /login when user not logged in
+          li: a(href="" class="navbar__nav") My Wheelhouse
+          li: a(href="" class="navbar__nav") Hobbies
+        //- if the user is logged in
+        if user.id
+          button(class="") Logout
+        else
+          button(class="") Login
+          button(class="") Sign Up
+          button(class="") Demo User
     block content
