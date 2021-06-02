@@ -1,9 +1,11 @@
-//- extends layout.pug //- having issues with the conditional in layout.pug
+extends layout.pug
 include utils.pug
 
 div
     h1.slogan Pick Your Hobbies!
     div
         each hobby in hobbies
+            .hobby-image
+                #{hobby.img}
             div
-                hobby
+                #{hobby}
