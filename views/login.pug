@@ -8,7 +8,7 @@ include utils.pug
     form(action="/users/login" method="post")
     input(type="hidden", name="_csrf", value=csrfToken)
         .fieldDiv
-            +field('Username', 'username', user.username)
+            +field('Username', 'username', username)
         .fieldDiv
-            +field('Password', 'password', user.password, 'password')
+            +field('Password', 'password', password, 'password')
     button(type='submit') Submit

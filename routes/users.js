@@ -4,7 +4,6 @@ const { loginUser, logoutUser } = require('../auth.js');
 const db = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils.js');
 const { check, validationResult } = require('express-validator');
-const {User} = require('../db/models');
 
 const router = express.Router();
 
@@ -13,6 +12,7 @@ const router = express.Router();
 //   res.send('respond with a resource');
 // });
 
+//TODO: add username validation
 const registerValidators = [
   check('firstName')
     .exists({ checkFalsy: true })
@@ -51,7 +51,8 @@ const registerValidators = [
     }),
 ];
 
-router.get('/register', csrfProtection, asyncHandler(async(req,res,next) => {
+
+router.get('/register', csrfProtection, asyncHandler(async (req, res, next) => {
 
   res.render('register', { title: 'Register', csrfToken: req.csrfToken(), user });
 }))
@@ -63,11 +64,11 @@ router.post('/register', registerValidators, csrfProtection, asyncHandler(async 
 
   const validatorErrors = validationResult(req);
 
-  if(validatorErrors.isEmpty()) {
+  if (validatorErrors.isEmpty()) {
     const hashedPassword = await bcrypt.hash(password, 10);
     user.hashedPassword = hashedPassword;
     await user.save();
-    loginUser(req,res,user)
+    loginUser(req, res, user)
     res.redirect('/hobbies');
   } else {
     const errors = validationErrors.array().map(error => error.msg);
@@ -81,18 +82,60 @@ router.post('/register', registerValidators, csrfProtection, asyncHandler(async 
 }));
 
 router.get('/login', csrfProtection, asyncHandler(async (req, res, next) => {
-  const user = await User.create({
+  const user = await db.User.create({
     firstName: "",
     lastName: "",
     username: "",
     email: "",
     hashedPassword: "",
-  })
+  });
+
   res.render('login', {
     title: 'Login',
     csrfToken: req.csrfToken(),
     user
-  })
+  });
+}))
+
+const loginValidators = [
+  check('username')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide your username.'),
+  check('password')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide your password.')
+];
+
+router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, res, next) => {
+  const { username, password } = req.body;
+
+  let errors = [];
+  const validatorErrors = validationResult(req);
+
+  if (validatorErrors.isEmpty()) {
+    const user = await db.User.findOne({
+      where: { username: req.body.username }
+    })
+
+    if(user !== null) {
+      const isPassword = await bcrypt.compare(req.body.hashedPassword, user.hashedPassword.toString())
+
+      if (isPassword) {
+        loginUser(req, res, user)
+        return res.redirect('/hobbies')
+      }
+    }
+    errors.push('Invalid username or password.')
+  } else {
+    errors = validatorErrors.array().map((error) => error.msg);
+  }
+
+  res.render('login', {
+    title: 'Login',
+    username,
+    errors,
+    csrfToken: req.csrfToken()
+  });
 }))
 
 module.exports = router;
