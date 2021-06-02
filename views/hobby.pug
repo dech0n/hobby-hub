@@ -1,5 +1,16 @@
 extends layout.pug
 
+append head
+  link(rel="stylesheet" href="../stylesheets/hobby.css")
 block content
-  h1= hobby.title
-  p= hobby.description
+  div(id="hobby-page")
+    img(href=hobby.img)
+    h1= hobby.title
+    p= hobby.description
+    div(id="experiences-container")
+      each experience in experiences
+        div(class="experiences-container__experience")
+          div(class="experience-header")
+            p(class="experience-user")= experience.User.username
+            p(class="experience-title")= experience.title
+          p(class="experience-message")= experience.message
