@@ -1,21 +1,26 @@
 h1 {
     color: #555555;
-    align-self: center;
-    font-size: 50px;
-    margin: 20px;
+    flex-grow: 1;
+    font-size: 120px;
+    width: 700px;
+    margin-left: 100px;
+    overflow-wrap: break-word;
 }
 
 #splash-image {
-    height: 600px;
+    height: 650px;
     width: 900px;
-    background-image: url("../hobby-images/largeHobbiesBackground.jpg");
+    background-image: url(../hobby-images/largeHobbiesBackground.jpg);
     background-position: center;
+    margin: 50px;
     background-repeat: no-repeat;
+    flex-grow: 1.5;
     background-size: cover;
 }
 
 #splash-page-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
 }
