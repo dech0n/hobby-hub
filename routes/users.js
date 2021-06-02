@@ -151,14 +151,17 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
 }))
 
 router.get('/:id/wheelhouse', asyncHandler(async (req, res) => {
-  const id = parseInt(req.params.id, 10)
-  const user = await db.User.findByPk(id, {
-    include: db.Wheelhouse
-  });
+  const userId = parseInt(req.params.id, 10)
+  const wheelhouses = await db.Wheelhouse.findAll({
+    where: {
+      userId
+    },
+  })
 
-  const wheelhouses = user.Wheelhouses
-
-  console.log('!!!!!!!!!!!!!!!!!', user.Wheelhouses)
+  const wheelhouseIdArr = wheelhouses.map(wheelhouse => wheelhouse.id)
+  const [ id1, id2, id3 ] = wheelhouseIdArr;
+  
+  console.log('!!!!!!!!!!!!!!!!!', wheelhouseIdArr)
   res.render('wheelhouse', {wheelhouses})
 }))
 
