@@ -1,16 +1,16 @@
 extends layout.pug
+include utils.pug
 
 block content
-include error.pug
-
-    .formDiv
-      form(action="/users/register" method='post')
-        input(type="hidden" name="_csrf" value=csrfToken)
-        +field("First Name", "firstName", user.firstName)
-        +field("Last Name", "lastName", user.lastName)
-        +field("Email Address", "email", user.email, "email", "example@example.com")
-        +field("Username", "username", user.username)
-        +field("Password", "password", user.password, "password")
-        +field("Confirm Password", "confirmPassword", null, "password")
-        div
-          button(type="submit" class="") Submit
+  +validationErrorSummary(errors)
+  .formDiv
+    form(action="/users/register" method='post')
+      input(type="hidden" name="_csrf" value=csrfToken)
+      +field("First Name", "firstName", user.firstName)
+      +field("Last Name", "lastName", user.lastName)
+      +field("Email Address", "email", user.email, "email", "example@example.com")
+      +field("Username", "username", user.username)
+      +field("Password", "password", user.password, "password")
+      +field("Confirm Password", "confirmPassword", null, "password")
+      div
+        button(type="submit" class="") Submit

@@ -2,25 +2,25 @@
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     firstName: {
-      allowNull: false,
+      // allowNull: false,
       type: DataTypes.STRING(50)
     },
     lastName: {
-      allowNull: false,
+      // allowNull: false,
       type: DataTypes.STRING(50)
     },
     username: {
-      allowNull: false,
+      // allowNull: false,
       unique: true,
       type: DataTypes.STRING(50)
     },
     email: {
-      allowNull: false,
+      // allowNull: false,
       unique: true,
       type: DataTypes.STRING(50)
     },
     hashedPassword: {
-      allowNull: false,
+      // allowNull: false,
       type: DataTypes.STRING.BINARY
     }
   }, {});
@@ -32,3 +32,4 @@ module.exports = (sequelize, DataTypes) => {
   };
   return User;
 };
+
