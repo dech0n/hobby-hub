@@ -4,6 +4,7 @@ const { loginUser, logoutUser } = require('../auth.js');
 const db = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils.js');
 const { check, validationResult } = require('express-validator');
+const {User} = require('../db/models');
 
 const router = express.Router();
 
@@ -70,18 +71,28 @@ router.post('/register', registerValidators, csrfProtection, asyncHandler(async 
     res.redirect('/hobbies');
   } else {
     const errors = validationErrors.array().map(error => error.msg);
-    res.render('register', { 
-      title: 'Register', 
-      user, 
-      errors, 
-      csrfToken: req.csrfToken() 
+    res.render('register', {
+      title: 'Register',
+      user,
+      errors,
+      csrfToken: req.csrfToken()
     })
   }
-
-
-  
 }));
 
-
+router.get('/login', csrfProtection, asyncHandler(async (req, res, next) => {
+  const user = await User.create({
+    firstName: "",
+    lastName: "",
+    username: "",
+    email: "",
+    hashedPassword: "",
+  })
+  res.render('login', {
+    title: 'Login',
+    csrfToken: req.csrfToken(),
+    user
+  })
+}))
 
 module.exports = router;
