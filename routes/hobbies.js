@@ -19,6 +19,16 @@ router.get(
 router.get(
   "/:hobbyId(\\d+)",
   asyncHandler(async (req, res) => {
+    const user = req.session.auth;
+    // const user = await db.User.findbyPk(userId, {
+    //   include: db.Wheelhouse,
+    // });
+    if (user) {
+      user.wheelhouses = await db.Wheelhouse.findAll({
+        where: { userId: user.userId },
+      });
+    }
+
     const hobbyId = parseInt(req.params.hobbyId, 10);
     const hobby = await db.Hobby.findByPk(hobbyId, { include: db.Experience });
     const experiences = await db.Experience.findAll({
@@ -26,7 +36,13 @@ router.get(
       include: db.User,
     });
 
-    res.render("hobby", { title: `Hobby: ${hobby.title}`, hobby, experiences });
+    res.render("hobby", {
+      title: `Hobby: ${hobby.title}`,
+      user,
+      // wheelhouses,
+      hobby,
+      experiences,
+    });
   })
 );
 
