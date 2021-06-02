@@ -1,3 +1,21 @@
 h1 {
     color: #555555;
+    align-self: center;
+    font-size: 50px;
+    margin: 20px;
+}
+
+#splash-image {
+    height: 600px;
+    width: 900px;
+    background-image: url("../hobby-images/largeHobbiesBackground.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#splash-page-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
