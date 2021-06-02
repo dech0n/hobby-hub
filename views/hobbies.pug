@@ -7,6 +7,7 @@ div
         each hobby in hobbies
             .hobbies__hobby-image
                 img(src=hobby.img, alt="illustration of the hobby")
-            .hobbies__hobby
-                p= hobby.title
-                p= hobby.description
+            .hobbies__hobby-content
+                p.title= hobby.title
+                p.descrption= hobby.description
+ 
