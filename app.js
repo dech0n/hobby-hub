@@ -44,7 +44,6 @@ app.use(restoreUser);
 //   })
 // );
 
-app.use('/users', usersRouter)
 
 // create Session table if it doesn't already exist
 store.sync();
