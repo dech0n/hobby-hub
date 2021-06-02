@@ -15,8 +15,8 @@ html
           li: a(href="" class="navbar__nav") My Wheelhouse
           li: a(href="" class="navbar__nav") Hobbies
         div(class="" id="user-buttons")
-          //- if the user is logged in...
-          if user.id
+          //- if the user is logged in
+          if user
             button(class="navbar__button") Logout
           else
             button(class="navbar__button") Login
