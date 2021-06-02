@@ -2,22 +2,24 @@ doctype html
 html
   head
       block head
-        title="Express Starter App"
+        title="Hobby Hub"
         link(rel='stylesheet' href='/stylesheets/reset.css')
+        link(rel='stylesheet' href='/stylesheets/navbar.css')
   body
     div(class="navbar")
       nav(class="navbar__nav")
         img(href="" class="" id="hobby-hub-logo" alt="Hobby Hub logo")
-        ul(class="")
+        ul(class="" id="navigation-links")
           li: a(href="" class="navbar__nav") Home
           //- My Wheelhouse redirects to /login when user not logged in
           li: a(href="" class="navbar__nav") My Wheelhouse
           li: a(href="" class="navbar__nav") Hobbies
-        //- if the user is logged in
-        if user.id
-          button(class="") Logout
-        else
-          button(class="") Login
-          button(class="") Sign Up
-          button(class="") Demo User
+        div(class="" id="user-buttons")
+          //- if the user is logged in
+          if user.id
+            button(class="navbar__button") Logout
+          else
+            button(class="navbar__button") Login
+            button(class="navbar__button") Sign Up
+            button(class="navbar__button") Demo User
     block content

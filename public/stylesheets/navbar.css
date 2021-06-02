@@ -1,0 +1,32 @@
+.navbar__nav {
+    display: grid;
+    grid-template-columns: 1fr, 3fr, 1fr;
+    grid-template-rows: auto;
+    padding: 20px;
+    justify-content: space-between;
+}
+
+#hobby-hub-logo {
+    grid-column: 1/ span 1;
+    grid-row: 1/ span 1;
+}
+
+#navigation-links {
+    grid-column: 2/ span 1;
+    grid-row: 1/ span 1;
+    display: flex;
+    list-style-type: none;
+}
+
+#user-buttons {
+    grid-column: 3/ span 1;
+    grid-row: 1/ span 1;
+}
+
+.navbar__nav {
+    text-decoration: none;
+}
+
+.navbar__button {
+    margin: 5px;
+}
