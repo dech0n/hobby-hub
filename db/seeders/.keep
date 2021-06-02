@@ -1,0 +1,25 @@
+Users:
+
+{firstName: 'Demo', lastName: 'User', username: 'Demo', email: 'demo@user.com', hashedPassword: '$2a$10$VrnuQDHjCdjw9/c3SRPL/.DIJIpLglyX3ZX.OhgNDQYGKlXKGC8mO', createdAt: new Date(), updatedAt: new Date() },
+{firstName: 'Bradley', lastName: 'Cooper', username: 'ChrisKyle', email: 'bcoop@snipes.com', hashedPassword: '$2a$10$VrnuQDHjCdjw9/c3SRPL/.DIJIpLglyX3ZX.OhgNDQYGKlXKGC8mO', createdAt: new Date(), updatedAt: new Date() },
+{firstName: 'Jennifer', lastName: 'Lopez', username: 'JennyFromThaBlock', email: 'jenny@popstar.com', hashedPassword: '$2a$10$VrnuQDHjCdjw9/c3SRPL/.DIJIpLglyX3ZX.OhgNDQYGKlXKGC8mO', createdAt: new Date(), updatedAt: new Date() },
+{firstName: 'Johnny', lastName: 'Depp', username: 'CaptainJackSparrow', email: 'black@pearl.com', hashedPassword: '$2a$10$VrnuQDHjCdjw9/c3SRPL/.DIJIpLglyX3ZX.OhgNDQYGKlXKGC8mO', createdAt: new Date(), updatedAt: new Date() },
+{firstName: 'Robert', lastName: 'Pattinson', username: 'Sparkles', email: 'psychoboyfriend@vegetarian.com', hashedPassword: '$2a$10$VrnuQDHjCdjw9/c3SRPL/.DIJIpLglyX3ZX.OhgNDQYGKlXKGC8mO', createdAt: new Date(), updatedAt: new Date() },
+
+Wheelhouses: 
+
+{status: 'Want to Learn', userId: 1, createdAt: new Date(), updatedAt: new Date() },
+{status: 'Currently Learning', userId: 1, createdAt: new Date(), updatedAt: new Date() },
+{status: 'Accomplished', userId: 1, createdAt: new Date(), updatedAt: new Date() },
+{status: 'Want to Learn', userId: 2, createdAt: new Date(), updatedAt: new Date() },
+{status: 'Currently Learning', userId: 2, createdAt: new Date(), updatedAt: new Date() },
+{status: 'Accomplished', userId: 2, createdAt: new Date(), updatedAt: new Date() },
+{status: 'Want to Learn', userId: 3, createdAt: new Date(), updatedAt: new Date() },
+{status: 'Currently Learning', userId: 3, createdAt: new Date(), updatedAt: new Date() },
+{status: 'Accomplished', userId: 3, createdAt: new Date(), updatedAt: new Date() },
+{status: 'Want to Learn', userId: 4, createdAt: new Date(), updatedAt: new Date() },
+{status: 'Currently Learning', userId: 4, createdAt: new Date(), updatedAt: new Date() },
+{status: 'Accomplished', userId: 4, createdAt: new Date(), updatedAt: new Date() },
+{status: 'Want to Learn', userId: 5, createdAt: new Date(), updatedAt: new Date() },
+{status: 'Currently Learning', userId: 5, createdAt: new Date(), updatedAt: new Date() },
+{status: 'Accomplished', userId: 5, createdAt: new Date(), updatedAt: new Date() },
