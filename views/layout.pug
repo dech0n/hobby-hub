@@ -15,7 +15,7 @@ html
           li: a(href="" class="navbar__nav") My Wheelhouse
           li: a(href="" class="navbar__nav") Hobbies
         div(class="" id="user-buttons")
-          //- if the user is logged in... maybe use req.session.user ?
+          //- if the user is logged in... maybe use req.session.user vs user.id ?
           if user.id
             button(class="navbar__button") Logout
           else

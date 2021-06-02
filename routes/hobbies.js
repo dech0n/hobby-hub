@@ -1,11 +1,20 @@
 const express = require('express');
 const db = require('../db/models');
-const { csrfProtection, asyncHandler } = require('./utils.js');
+const { asyncHandler } = require('./utils.js');
 const { check, validationResult } = require('express-validator');
 
 const router = express.Router();
 
-router.get('/')
+router.get('/', asyncHandler(async (req, res) => {
+    const user = db.User.findOne({
+        where: {}
+    })
+    const hobbies = await db.Hobby.findAll();
+    res.render('hobbies', {
+        title: 'Hobbies',
+        hobbies,
+    })
+}))
 
 
 module.exports = router;
