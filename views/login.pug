@@ -1,8 +1,12 @@
 //- extends layout.pug
 include utils.pug
 
-//- block content
-//- include error.pug
+if errors
+    each error in errors
+        .errorDiv
+            ul
+                li= error
+
 
 .formDiv
     form(action="/users/login" method="post")
