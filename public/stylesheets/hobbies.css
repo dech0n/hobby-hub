@@ -54,7 +54,7 @@
     overflow: auto;
 }
 
-a:link {
+a.hobbies_links:link {
     text-decoration: none;
 }
 

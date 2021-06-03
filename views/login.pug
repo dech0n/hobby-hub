@@ -10,4 +10,7 @@ block content
             input(type="hidden", name="_csrf", value=csrfToken)
             +field('Username', 'username', username)
             +field('Password', 'password', null, 'password')
-            button(type='submit' class="form__button form__submit_button") Submit
+            .buttonDiv
+                button(type='submit' class="form__button form__submit_button") Submit
+            div.redirect_link
+                a(href="/users/register") Don't have an account? Register here!
