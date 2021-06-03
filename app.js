@@ -10,7 +10,7 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const hobbiesRouter = require('./routes/hobbies')
-const apiRouter = require('./routes/api')
+const apiWheelhouseRouter = require('./routes/api-wheelhouse')
 const { restoreUser } = require("./auth.js");
 
 
@@ -61,7 +61,7 @@ store.sync();
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use('/hobbies', hobbiesRouter);
-app.use('/api', apiRouter);
+app.use('/api/wheelhouse', apiWheelhouseRouter);
 
 
 // catch 404 and forward to error handler
