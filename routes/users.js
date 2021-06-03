@@ -99,6 +99,19 @@ router.post(
       user.hashedPassword = hashedPassword;
       await user.save();
       loginUser(req, res, user);
+      const userId = req.session.auth.userId;
+      await db.Wheelhouse.create ({
+        status: 'Want to Learn',
+        userId
+      })
+      await db.Wheelhouse.create ({
+        status: 'Currently Learning',
+        userId
+      })
+      await db.Wheelhouse.create ({
+        status: 'Accomplished',
+        userId
+      })
       res.redirect("/hobbies");
     } else {
       const errors = validatorErrors.array().map((error) => error.msg);
