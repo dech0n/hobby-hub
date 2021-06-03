@@ -2,12 +2,12 @@ extends layout.pug
 include utils.pug
 
 block content
-    h1= title
-    +validationErrorSummary(errors)
+    h1.login_header.header= title
+    +validationErrorSummary(errors).error_messages
 
     .formDiv
-        form(action="/users/login" method="post")
+        form(action="/users/login" method="post" class="login_form")
             input(type="hidden", name="_csrf", value=csrfToken)
-            +field('Username', 'username', username)
-            +field('Password', 'password', null, 'password')
-            button(type='submit') Submit
+            +field('Username', 'username', username).form__input_field
+            +field('Password', 'password', null, 'password').form__input_field
+            button(type='submit' class="form__button form__submit_button") Submit
