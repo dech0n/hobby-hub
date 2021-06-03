@@ -6,6 +6,11 @@
     padding: 5px;
 }
 
+.formDiv {
+    display: flex;
+    justify-content: center;
+}
+
 .errorsDiv {
     display: flex;
     flex-wrap: wrap;
@@ -14,12 +19,13 @@
     border: solid 1px black;
     border-radius: 2%;
     box-sizing: border-box;
-    flex-flow:
+    justify-content: center;
 }
 
 ul {
     margin-left: 2rem;
 }
+
 .error_message {
     color: red;
     align-self: center;
