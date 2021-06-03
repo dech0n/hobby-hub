@@ -15,16 +15,18 @@ window.addEventListener('load', async () => {
         hobbiesDiv.innerHTML = ''
 
         hobbies.forEach(hobby => {
-            const hobbyDiv = document.createElement('div')
-            hobbyDiv.setAttribute('class', 'hobbies__content');
-            hobbyDiv.setAttribute('href', `/hobbies/${hobby.id}`)
-            hobbiesDiv.appendChild(hobbyDiv);
 
             const link = document.createElement('a')
             link.setAttribute('href', `/hobbies/${hobby.id}`)
             link.setAttribute('class', 'hobby_links')
-            link.innerHTML = `${hobby.title}`
-            hobbyDiv.appendChild(link);
+            // link.innerHTML = `${hobby.title}`
+            hobbiesDiv.appendChild(link);
+
+            const hobbyDiv = document.createElement('div')
+            hobbyDiv.setAttribute('class', 'hobbies__content');
+            hobbyDiv.setAttribute('href', `/hobbies/${hobby.id}`)
+            link.appendChild(hobbyDiv);
+
 
             const img = document.createElement('img')
             img.setAttribute('src', `${hobby.img}`)

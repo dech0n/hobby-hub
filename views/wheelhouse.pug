@@ -7,11 +7,12 @@ append head
   script(src="/javascripts/wheelhouses.js" defer)
 
 block content
-    div(class='wheelhouses')
+  h1 My Wheelhouse
+  div(class='wheelhouses')
+    div(class='wheelhouse')
+      button(id='all' class='wheelhouseLink') All
+    each wheelhouse in wheelhouses
       div(class='wheelhouse')
-        button(id='all' class='wheelhouseLink') All
-      each wheelhouse in wheelhouses
-        div(class='wheelhouse')
-          button(id=`${wheelhouse.status}` class='wheelhouseLink') #{wheelhouse.status}
-    div(class='hobbies')
+        button(id=`${wheelhouse.status}` class='wheelhouseLink') #{wheelhouse.status}
+  div(class='hobbies')
         

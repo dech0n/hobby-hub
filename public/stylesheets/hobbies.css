@@ -16,7 +16,7 @@
 .hobbies__content {
     /* figure out how to center these elements within their individual grid squares */
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     flex-direction: column;
     border: solid 2px black;
     border-radius: 2%;
@@ -51,7 +51,7 @@
     padding: 0px 10px;
     margin-top: 0px;
     text-align: center;
-    overflow: auto;
+    overflow: scroll;
 }
 
 a:link {
