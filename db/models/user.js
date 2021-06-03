@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     User.hasMany(models.Experience, { foreignKey: 'userId' })
     User.hasMany(models.Wheelhouse, { foreignKey: 'userId' })
-
+    User.hasMany(models.Resource, { foreignKey: 'userId' })
   };
   return User;
 };

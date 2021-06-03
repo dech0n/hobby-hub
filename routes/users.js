@@ -187,6 +187,21 @@ router.get('/:userId/wheelhouse/:status/user-hobby/:hobbyId', asyncHandler(async
   const userId = parseInt(req.params.userId, 10)
   const hobbyId = parseInt(req.params.hobbyId, 10)
   const wheelhouseStatus = req.params.wheelhouseStatus
+
+  const user = await db.User.findByPk(userId);
+
+  const experiences = await db.Experience.findAll({
+    where: {
+      userId: user.id,
+      hobbyId
+    }
+  });
+
+  const resources = db.Resource.findAll({
+    where: {
+      userHobbyId
+    }
+  })
   // get user's hobbies
   // const userHobbies = await db.Wheelhouse.findOne({
   //   where: {userId, wheelhouseStatus},

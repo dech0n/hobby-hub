@@ -21,6 +21,11 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: 'UserHobbies' }
       },
+      userId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: 'Users' }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
