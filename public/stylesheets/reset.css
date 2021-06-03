@@ -9,6 +9,7 @@ a {
 
 * {
   box-sizing: border-box;
+  font-family: 'montserrat', serif;
 }
 
 h1, h2, h3, h4, h5, h6, a, ol, li, ul, div, span,
@@ -19,9 +20,10 @@ body, header, nav {
   margin: 0;
   padding: 0;
   outline: 0;
-  font-weight: normal;
+  font-weight: 400;
 }
 
 h1 {
   font-size: 2rem;
+  font-weight: 800;
 }

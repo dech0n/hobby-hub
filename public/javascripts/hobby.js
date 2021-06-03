@@ -12,3 +12,19 @@ addToWheelhouseBtn.addEventListener("click", async () => {
     addToWheelhouseBtn.innerText = 'Added!'
   }
 });
+
+const addExperienceButton = document.getElementById('add-experience-button');
+const editExperienceButton = document.getElementById('edit-experience-button')
+const deleteExperienceButton = document.getElementById('delete-experience-button')
+
+addExperienceButton.addEventListener('click', () => {});
+
+editExperienceButton.addEventListener('click', () => {
+  const res = await.fetch()
+
+  if (res.ok) {
+    
+  }
+});
+
+deleteExperienceButton.addEventListener('click', () => {});
