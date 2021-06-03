@@ -43,7 +43,7 @@ window.addEventListener('load', async () => {
             hobbyDiv.appendChild(description);
         })
     } catch (e) {
-        console.log(e)
+        console.log('Error on load!', e.message)
     }
 
 })
