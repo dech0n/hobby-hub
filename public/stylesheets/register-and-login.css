@@ -1,25 +1,45 @@
 .header {
     text-align: center;
+    padding: 20px 0px;
 }
 
 .labelDiv {
-    padding: 5px;
+    padding: 10px;
+}
+
+input {
+    width: 500px;
+}
+
+.formDiv, .main_errorDiv, .buttonDiv, .redirect_link {
+    display: flex;
+    justify-content: center;
+}
+
+.redirect_link {
+    padding-top: 20px;
 }
 
 .errorsDiv {
     display: flex;
     flex-wrap: wrap;
-    max-width: 500px;
-    min-width: 500px;
+    width: 500px;
     border: solid 1px black;
     border-radius: 2%;
     box-sizing: border-box;
-    flex-flow:
+    justify-content: center;
 }
 
 ul {
     margin-left: 2rem;
+    list-style-type: circle;
 }
+
+li {
+    padding: 3px 0px;
+    margin: 5px 0px;
+}
+
 .error_message {
     color: red;
     align-self: center;

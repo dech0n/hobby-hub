@@ -13,5 +13,7 @@ block content
       +field("Username", "username", user.username)
       +field("Password", "password", user.password, "password")
       +field("Confirm Password", "confirmPassword", null, "password")
-      div
+      div.buttonDiv
         button(type="submit" class="form__button form__submit_button") Submit
+      div.redirect_link
+        a(href="/users/login") Already have an account? Log in here!
