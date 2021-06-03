@@ -107,12 +107,21 @@ router.post('/:wheelhouseId/hobby/:hobbyId', asyncHandler(async (req, res) => {
     const wheelhouseId = req.params.wheelhouseId;
     const hobbyId = req.params.hobbyId;
 
-    const userHobby = await db.UserHobby.create({
-        wheelhouseId,
-        hobbyId,
+    const userHobby = await db.UserHobby.findOne({
+        where: {
+            wheelhouseId,
+            hobbyId
+        }
     });
 
-    res.json({ userHobby });
+    if (!userHobby) {
+        const newHobby = await db.UserHobby.create({
+            wheelhouseId,
+            hobbyId,
+        });
+        res.json({ newHobby });
+    }
+    res.end();
 }));
 
 module.exports = router

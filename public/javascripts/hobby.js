@@ -9,5 +9,6 @@ addToWheelhouseBtn.addEventListener("click", async () => {
 
   if (res.ok) {
     addToWheelhouseBtn.classList.add('checked');
+    addToWheelhouseBtn.innerText = 'Added!'
   }
 });
