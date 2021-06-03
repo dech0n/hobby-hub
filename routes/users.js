@@ -199,7 +199,8 @@ router.get('/:userId/wheelhouse/:status/user-hobby/:hobbyId', asyncHandler(async
 
   const resources = db.Resource.findAll({
     where: {
-      userHobbyId
+      userId: user.id,
+      // needs userHobbyId?
     }
   })
   // get user's hobbies
