@@ -10,7 +10,7 @@ window.addEventListener('load', async () => {
     try {
         const res = await fetch('/api/wheelhouse/all');
         hobbies = await res.json();
-        
+
         const hobbiesDiv = document.querySelector('.hobbies')
         hobbiesDiv.innerHTML = ''
 
@@ -38,7 +38,7 @@ window.addEventListener('load', async () => {
             title.setAttribute('class', 'hobby_title');
             title.innerHTML = `${hobby.title}`;
             hobbyDiv.appendChild(title);
-            
+
             const description = document.createElement('p')
             description.setAttribute('class', 'hobby_description');
             description.innerHTML = `${hobby.description}`;
@@ -53,7 +53,7 @@ window.addEventListener('load', async () => {
 const allBtn = document.getElementById('all');
 
 allBtn.addEventListener('click', async () => {
-    
+
     wheelhouseBtns.forEach(btn => {
         btn.className = 'wheelhouseLink'
     })
@@ -62,7 +62,7 @@ allBtn.addEventListener('click', async () => {
     try {
         const res = await fetch('/api/wheelhouse/all');
         hobbies = await res.json();
-        
+
         const hobbiesDiv = document.querySelector('.hobbies')
         hobbiesDiv.innerHTML = ''
 
@@ -88,7 +88,7 @@ allBtn.addEventListener('click', async () => {
             title.setAttribute('class', 'hobby_title');
             title.innerHTML = `${hobby.title}`;
             hobbyDiv.appendChild(title);
-            
+
             const description = document.createElement('p')
             description.setAttribute('class', 'hobby_description');
             description.innerHTML = `${hobby.description}`;
@@ -97,7 +97,7 @@ allBtn.addEventListener('click', async () => {
     } catch (e) {
         console.log('Error -- all btn', e.message)
     }
-    
+
 })
 
 const wantToLearnBtn = document.getElementById('Want to Learn');
@@ -112,7 +112,7 @@ wantToLearnBtn.addEventListener('click', async () => {
     try {
         const res = await fetch('/api/wheelhouse/wantToLearn');
         hobbies = await res.json();
-        
+
         const hobbiesDiv = document.querySelector('.hobbies')
         hobbiesDiv.innerHTML = ''
 
@@ -138,7 +138,7 @@ wantToLearnBtn.addEventListener('click', async () => {
             title.setAttribute('class', 'hobby_title');
             title.innerHTML = `${hobby.title}`;
             hobbyDiv.appendChild(title);
-            
+
             const description = document.createElement('p')
             description.setAttribute('class', 'hobby_description');
             description.innerHTML = `${hobby.description}`;
@@ -147,7 +147,7 @@ wantToLearnBtn.addEventListener('click', async () => {
 
     } catch (e) {
         console.log('Error -- want to learn btn', e.message)
-    }      
+    }
 })
 
 const currentlyLearningBtn = document.getElementById('Currently Learning');
@@ -162,7 +162,7 @@ currentlyLearningBtn.addEventListener('click', async () => {
     try {
         const res = await fetch('/api/wheelhouse/currentlyLearning');
         hobbies = await res.json();
-        
+
         const hobbiesDiv = document.querySelector('.hobbies')
         hobbiesDiv.innerHTML = ''
 
@@ -188,7 +188,7 @@ currentlyLearningBtn.addEventListener('click', async () => {
             title.setAttribute('class', 'hobby_title');
             title.innerHTML = `${hobby.title}`;
             hobbyDiv.appendChild(title);
-            
+
             const description = document.createElement('p')
             description.setAttribute('class', 'hobby_description');
             description.innerHTML = `${hobby.description}`;
@@ -197,7 +197,7 @@ currentlyLearningBtn.addEventListener('click', async () => {
 
     } catch (e) {
         console.log('Error -- currently learning btn', e.message)
-    } 
+    }
 })
 
 const accomplishedBtn = document.getElementById('Accomplished');
@@ -212,7 +212,7 @@ accomplishedBtn.addEventListener('click', async () => {
     try {
         const res = await fetch('/api/wheelhouse/accomplished');
         hobbies = await res.json();
-        
+
         const hobbiesDiv = document.querySelector('.hobbies')
         hobbiesDiv.innerHTML = ''
 
@@ -238,7 +238,7 @@ accomplishedBtn.addEventListener('click', async () => {
             title.setAttribute('class', 'hobby_title');
             title.innerHTML = `${hobby.title}`;
             hobbyDiv.appendChild(title);
-            
+
             const description = document.createElement('p')
             description.setAttribute('class', 'hobby_description');
             description.innerHTML = `${hobby.description}`;
@@ -247,9 +247,5 @@ accomplishedBtn.addEventListener('click', async () => {
 
     } catch (e) {
         console.log('Error -- accomplished btn', e.message)
-    } 
+    }
 })
-
-
-
-

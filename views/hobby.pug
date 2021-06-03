@@ -8,7 +8,7 @@ block content
     a(href="/hobbies" class="back-link") ← Back to hobbies
     div(class="hobby-header-container")
       img(src=hobby.img alt="illustration of the hobby")
-      div(id="title-description")
+      div(id=hobby.id class="title-description")
         h1= hobby.title
         p= hobby.description
     div(class="status-dropdown")
@@ -20,6 +20,7 @@ block content
             option(value=wheelhouse.id)= wheelhouse.status
         button(class="button status-button" id="add-to-wheelhouse-button") Add to Wheelhouse
     div(id="experiences-container")
+      button(class="button" id="add-experience-button") Add Your Experience
       each experience in experiences
         div(class="experiences-container__experience")
           //- div(class="experience-header")
@@ -27,5 +28,6 @@ block content
           p(class="experience-title")= experience.title
           p(class="experience-message")= experience.message
           if req.session.auth
-            button(class="button" id="edit-experience-button") Edit
-            button(class="button" id="delete-experience-button") Delete
+            if req.session.auth.userId === experience.userId
+              button(class="button" id="edit-experience-button") Edit
+              button(class="button" id="delete-experience-button") Delete

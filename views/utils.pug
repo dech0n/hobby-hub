@@ -1,11 +1,12 @@
 
 mixin validationErrorSummary(errors)
   if errors
-    div(role='alert').errorsDiv
-      p.error_message Please correct the following errors:
-        ul
-          each error in errors
-            li.error_message= error
+    .main_errorDiv
+      div(role='alert').errorsDiv
+        p.error_message Please correct the following errors:
+          ul
+            each error in errors
+              li.error_message= error
 
 mixin field(labelText, fieldName, fieldValue, fieldType = 'text', placeholder = null)
   div.labelDiv
@@ -14,6 +15,6 @@ mixin field(labelText, fieldName, fieldValue, fieldType = 'text', placeholder = 
       div.text_areaDiv
         textarea(id=fieldName name=fieldName class='' rows='5')= fieldValue
     else
-      div.form__input_field
+      div.inputDiv
         input(type=fieldType id=fieldName name=fieldName value=fieldValue placeholder=placeholder class='')
 //- don't forget to add classes!

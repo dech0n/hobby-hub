@@ -1,41 +1,10 @@
 const express = require('express');
 const db = require('../db/models')
-const { asyncHandler } = require('./utils.js');
+const { asyncHandler, getSingleWheelhouse, getAllWheelhouses } = require('./utils.js');
 
 const router = express.Router();
 
 //Wheelhouse Api Routes::
-
-const getAllWheelhouses = async (id) => {
-    const wheelhouses = await db.Wheelhouse.findAll({ 
-        where: {
-            userId: id
-        },
-        include: [{
-            model: db.UserHobby,
-            include: [{
-                model: db.Hobby
-            }]
-        }]
-    })
-    return wheelhouses
-}
-
-const getSingleWheelhouse = async (id, status) => {
-    const wheelhouse = await db.Wheelhouse.findOne({
-        where: {
-            userId: id,
-            status: status
-        },
-        include: [{
-            model: db.UserHobby,
-            include: [{
-                model: db.Hobby
-            }]
-        }]
-    })
-    return wheelhouse;
-}
 
 router.get('/all', asyncHandler(async(req, res) => {
     try {
@@ -101,6 +70,27 @@ router.get('/accomplished', asyncHandler(async(req, res) => {
     }
 }))
 
+router.post('/:wheelhouseId/hobby/:hobbyId', asyncHandler(async (req, res) => {
+    // create user hobby
+    const userId = req.session.auth.userId;
+    const wheelhouseId = req.params.wheelhouseId;
+    const hobbyId = req.params.hobbyId;
 
+    const userHobby = await db.UserHobby.findOne({
+        where: {
+            wheelhouseId,
+            hobbyId
+        }
+    });
+
+    if (!userHobby) {
+        const newHobby = await db.UserHobby.create({
+            wheelhouseId,
+            hobbyId,
+        });
+        res.json({ newHobby });
+    }
+    res.end();
+}));
 
 module.exports = router
