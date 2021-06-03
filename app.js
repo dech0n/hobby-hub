@@ -1,4 +1,3 @@
-
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
@@ -9,10 +8,12 @@ const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
-const hobbiesRouter = require('./routes/hobbies')
-const apiWheelhouseRouter = require('./routes/api-wheelhouse')
+const hobbiesRouter = require("./routes/hobbies");
+const apiWheelhouseRouter = require("./routes/api-wheelhouse");
+const apiUsersRouter = require("./routes/api-users");
+const apiExperiencesRouter = require("./routes/api-experiences");
+const apiResourcesRouter = require("./routes/api-resources");
 const { restoreUser } = require("./auth.js");
-
 
 // import created session secret from index.js config file
 const { sessionSecret } = require("./config/index");
@@ -38,13 +39,13 @@ app.use(
     resave: false,
     saveUninitialized: false,
   })
-  );
-  app.use(restoreUser);
-  //debug middleware
-  // app.use((req, res, next) => {
-  //   debugger;
-  //   next();
-  // });
+);
+app.use(restoreUser);
+//debug middleware
+// app.use((req, res, next) => {
+//   debugger;
+//   next();
+// });
 // app.use(
 //   session({
 //     secret: 'superSecret',
@@ -57,12 +58,13 @@ app.use(
 // create Session table if it doesn't already exist
 store.sync();
 
-
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use('/hobbies', hobbiesRouter);
-app.use('/api/wheelhouse', apiWheelhouseRouter);
-
+app.use("/hobbies", hobbiesRouter);
+app.use("/api/wheelhouse", apiWheelhouseRouter);
+app.use("/api/users", apiUsersRouter);
+app.use("/api/experiences", apiExperiencesRouter);
+app.use("/api/resources", apiResourcesRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -76,3 +76,12 @@ h1 {
     align-items: flex-start;
     padding: 20px;
 }
+
+.status-button {
+    background-color: rgb(58,106,111);
+    color: white;
+}
+
+.checked::before {
+    content: '✓';
+}
