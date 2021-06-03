@@ -53,7 +53,7 @@ router.get('/all', asyncHandler(async(req, res) => {
 
     res.send(hobbies)
     } catch (e) {
-        res.send(e.msg)
+        res.send(e.message)
     }
 }))
 
@@ -68,7 +68,7 @@ router.get('/wantToLearn', asyncHandler(async(req, res) => {
     })
     res.send(hobbies)
     } catch (e) {
-        res.send(e.msg)
+        res.send(e.message)
     }
 }))
 
@@ -83,7 +83,7 @@ router.get('/currentlyLearning', asyncHandler(async(req, res) => {
     console.log('---------------------',hobbies)
     res.send(hobbies)
     } catch (e) {
-        res.send(e.msg)
+        res.send(e.message)
     }
 }))
 
@@ -97,7 +97,7 @@ router.get('/accomplished', asyncHandler(async(req, res) => {
     })
     res.send(hobbies)
     } catch (e) {
-        res.send(e.msg)
+        res.send(e.message)
     }
 }))
 

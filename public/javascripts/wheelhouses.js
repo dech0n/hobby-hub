@@ -1,6 +1,6 @@
 const wheelhouseBtns = document.querySelectorAll('.wheelhouseLink')
 
-window.onload(() => {
+window.addEventListener('load', async () => {
 
     wheelhouseBtns.forEach(btn => {
         btn.className = 'wheelhouseLink'
@@ -15,16 +15,18 @@ window.onload(() => {
         hobbiesDiv.innerHTML = ''
 
         hobbies.forEach(hobby => {
-            const hobbyDiv = document.createElement('div')
-            hobbyDiv.setAttribute('class', 'hobbies__content');
-            hobbyDiv.setAttribute('href', `/hobbies/${hobby.id}`)
-            hobbiesDiv.appendChild(hobbyDiv);
 
             const link = document.createElement('a')
             link.setAttribute('href', `/hobbies/${hobby.id}`)
             link.setAttribute('class', 'hobby_links')
-            link.innerHTML = `${hobby.title}`
-            hobbyDiv.appendChild(link);
+            // link.innerHTML = `${hobby.title}`
+            hobbiesDiv.appendChild(link);
+
+            const hobbyDiv = document.createElement('div')
+            hobbyDiv.setAttribute('class', 'hobbies__content');
+            hobbyDiv.setAttribute('href', `/hobbies/${hobby.id}`)
+            link.appendChild(hobbyDiv);
+
 
             const img = document.createElement('img')
             img.setAttribute('src', `${hobby.img}`)
@@ -43,7 +45,7 @@ window.onload(() => {
             hobbyDiv.appendChild(description);
         })
     } catch (e) {
-        console.log(e)
+        console.log('Error on load!', e.message)
     }
 
 })
@@ -93,7 +95,7 @@ allBtn.addEventListener('click', async () => {
             hobbyDiv.appendChild(description);
         })
     } catch (e) {
-        console.log(e)
+        console.log('Error -- all btn', e.message)
     }
     
 })
@@ -144,7 +146,7 @@ wantToLearnBtn.addEventListener('click', async () => {
         })
 
     } catch (e) {
-        console.log('whoops')
+        console.log('Error -- want to learn btn', e.message)
     }      
 })
 
@@ -194,7 +196,7 @@ currentlyLearningBtn.addEventListener('click', async () => {
         })
 
     } catch (e) {
-        console.log('whoops')
+        console.log('Error -- currently learning btn', e.message)
     } 
 })
 
@@ -244,7 +246,7 @@ accomplishedBtn.addEventListener('click', async () => {
         })
 
     } catch (e) {
-        console.log('whoops')
+        console.log('Error -- accomplished btn', e.message)
     } 
 })
 
