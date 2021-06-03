@@ -21,21 +21,11 @@ const getAllWheelhouses = async (id) => {
     return wheelhouses
 }
 
-router.get('/all', asyncHandler(async(req, res) => {
-    try {
-    const userId = req.session.auth.userId
-    const wheelhouses = await getAllWheelhouses(userId)
-    
-    res.send(wheelhouses)
-    } catch (e) {
-        res.send(e.msg)
-    }
-}))
-
-const getSingleWheelhouse = async (id) => {
+const getSingleWheelhouse = async (id, status) => {
     const wheelhouse = await db.Wheelhouse.findOne({
         where: {
-            userId: id
+            userId: id,
+            status: status
         },
         include: [{
             model: db.UserHobby,
@@ -47,12 +37,65 @@ const getSingleWheelhouse = async (id) => {
     return wheelhouse;
 }
 
+router.get('/all', asyncHandler(async(req, res) => {
+    try {
+    const userId = req.session.auth.userId
+    const wheelhouses = await getAllWheelhouses(userId)
+    const userHobbies = wheelhouses.map(wheelhouse => {
+        return wheelhouse.UserHobbies
+    })
+    const hobbies = [];
+    userHobbies.forEach(userHobby => {
+        userHobby.forEach(ele => {
+            hobbies.push(ele.Hobby)
+        })
+    })
+
+    res.send(hobbies)
+    } catch (e) {
+        res.send(e.msg)
+    }
+}))
+
+
 router.get('/wantToLearn', asyncHandler(async(req, res) => {
     try {
     const userId = req.session.auth.userId
-    const wheelhouse = await getSingleWheelhouse(userId)
-    
-    res.send(wheelhouse)
+    const status = 'Want to Learn'
+    const wheelhouse = await getSingleWheelhouse(userId, status)
+    const hobbies = wheelhouse.UserHobbies.map(userHobby => {
+        return userHobby.Hobby
+    })
+    res.send(hobbies)
+    } catch (e) {
+        res.send(e.msg)
+    }
+}))
+
+router.get('/currentlyLearning', asyncHandler(async(req, res) => {
+    try {
+    const userId = req.session.auth.userId
+    const status = 'Currently Learning'
+    const wheelhouse = await getSingleWheelhouse(userId, status)
+    const hobbies = wheelhouse.UserHobbies.map(userHobby => {
+        return userHobby.Hobby
+    })
+    console.log('---------------------',hobbies)
+    res.send(hobbies)
+    } catch (e) {
+        res.send(e.msg)
+    }
+}))
+
+router.get('/accomplished', asyncHandler(async(req, res) => {
+    try {
+    const userId = req.session.auth.userId
+    const status = 'Accomplished'
+    const wheelhouse = await getSingleWheelhouse(userId, status)
+    const hobbies = wheelhouse.UserHobbies.map(userHobby => {
+        return userHobby.Hobby
+    })
+    res.send(hobbies)
     } catch (e) {
         res.send(e.msg)
     }
