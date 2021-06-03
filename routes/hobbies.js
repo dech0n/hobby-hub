@@ -39,7 +39,6 @@ router.get(
     res.render("hobby", {
       title: `Hobby: ${hobby.title}`,
       user,
-      // wheelhouses,
       hobby,
       experiences,
     });
