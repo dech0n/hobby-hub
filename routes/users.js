@@ -277,17 +277,18 @@ router.get(
   })
 );
 
-router.get('/:userId/wheelhouse/:status/user-hobby/:userHobbyId', asyncHandler(async (req, res) => {
+router.get('/:userId/wheelhouse/:status/user-hobby/:hobbyId', asyncHandler(async (req, res) => {
   const userId = parseInt(req.params.userId, 10)
+  const hobbyId = parseInt(req.params.hobbyId, 10)
   const wheelhouseStatus = req.params.wheelhouseStatus
   // get user's hobbies
-  const userHobbies = await db.Wheelhouse.findOne({
-    where: {userId, wheelhouseStatus},
-    include: db.UserHobby
-  })
-  console.log(userHobbies);
+  // const userHobbies = await db.Wheelhouse.findOne({
+  //   where: {userId, wheelhouseStatus},
+  //   include: db.UserHobby
+  // })
+  // console.log(userHobbies);
   res.render('user-hobby', {
-    title: `My ${hobby.title}`,
+    title: `My`,
     user,
     req
   })

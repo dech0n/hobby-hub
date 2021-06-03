@@ -1,1 +1,11 @@
-extends layout 
+extends layout
+
+content block
+    div
+        h1.hobbies_header.header= `My ${hobby.title}`
+        div.hobbies.user_hobbies
+            each hobby in hobbies
+                div.hobbies__content
+                    img(src=hobby.img, alt="illustration of the hobby" class='images hobby_image')
+                    p.hobby_title= hobby.title
+                    p.hobby_description= hobby.description
