@@ -1,6 +1,6 @@
 const wheelhouseBtns = document.querySelectorAll('.wheelhouseLink')
 
-window.onload(() => {
+window.addEventListener('load', async () => {
 
     wheelhouseBtns.forEach(btn => {
         btn.className = 'wheelhouseLink'
@@ -93,7 +93,7 @@ allBtn.addEventListener('click', async () => {
             hobbyDiv.appendChild(description);
         })
     } catch (e) {
-        console.log(e)
+        console.log('Error -- all btn', e.message)
     }
     
 })
@@ -144,7 +144,7 @@ wantToLearnBtn.addEventListener('click', async () => {
         })
 
     } catch (e) {
-        console.log('whoops')
+        console.log('Error -- want to learn btn', e.message)
     }      
 })
 
@@ -194,7 +194,7 @@ currentlyLearningBtn.addEventListener('click', async () => {
         })
 
     } catch (e) {
-        console.log('whoops')
+        console.log('Error -- currently learning btn', e.message)
     } 
 })
 
@@ -244,7 +244,7 @@ accomplishedBtn.addEventListener('click', async () => {
         })
 
     } catch (e) {
-        console.log('whoops')
+        console.log('Error -- accomplished btn', e.message)
     } 
 })
 
