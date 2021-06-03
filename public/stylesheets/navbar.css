@@ -26,9 +26,14 @@
 }
 
 .navbar__nav {
-    text-decoration: none;
+    font-size: 30px;
 }
 
 .navbar__button {
     margin: 5px;
+}
+
+.navbar__nav .active {
+    background-color: rgb(113,147,152);
+    text-decoration: underline;
 }
