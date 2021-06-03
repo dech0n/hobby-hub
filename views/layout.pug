@@ -16,13 +16,13 @@ html
       nav(class="navbar__nav")
         img(href="" class="" id="hobby-hub-logo" alt="Hobby Hub logo")
         ul(class="" id="navigation-links")
-          li: a(href="/" class="navbar__nav") Home
+          li: a(href="/" class="navbar__nav" id='homeBtn') Home
           //- My Wheelhouse redirects to /login when user not logged in
           if req.session.auth
-            li: a(href=`/users/${req.session.auth.userId}/wheelhouse` class="navbar__nav") My Wheelhouse
+            li: a(href=`/users/${req.session.auth.userId}/wheelhouse` class="navbar__nav" id='wheelhouseBtn') My Wheelhouse
           else
             li: a(href="/users/login" class="navbar__nav") My Wheelhouse
-          li: a(href="/hobbies" class="navbar__nav") Hobbies
+          li: a(href="/hobbies" class="navbar__nav" id='hobbiesBtn') Hobbies
         div(class="" id="user-buttons")
           //- if the user is logged in
           if req.session.auth

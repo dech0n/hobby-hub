@@ -41,8 +41,19 @@ button.wheelhouseLink {
 }
 
 h1 {
-    background-color: rgb(113,147,152);
+    text-align: center;
+    /* color: white; */
 }
 
+.testing {
+    background-color: rgb(113,147,152);
+    display: flex;
+    flex-direction: row;
+
+}
+
+.testing-div {
+    width: 45%;
+}
 
 
