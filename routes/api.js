@@ -32,6 +32,32 @@ router.get('/all', asyncHandler(async(req, res) => {
     }
 }))
 
+const getSingleWheelhouse = async (id) => {
+    const wheelhouse = await db.Wheelhouse.findOne({
+        where: {
+            userId: id
+        },
+        include: [{
+            model: db.UserHobby,
+            include: [{
+                model: db.Hobby
+            }]
+        }]
+    })
+    return wheelhouse;
+}
+
+router.get('/wantToLearn', asyncHandler(async(req, res) => {
+    try {
+    const userId = req.session.auth.userId
+    const wheelhouse = await getSingleWheelhouse(userId)
+    
+    res.send(wheelhouse)
+    } catch (e) {
+        res.send(e.msg)
+    }
+}))
+
 
 
 module.exports = router
