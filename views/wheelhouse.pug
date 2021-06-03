@@ -9,11 +9,9 @@ append head
 block content
     div(class='wheelhouses')
       div(class='wheelhouse')
-        a(class='wheelhouseLink' title='All') All
+        button(id='all' class='wheelhouseLink') All
       each wheelhouse in wheelhouses
         div(class='wheelhouse')
-          a(class='wheelhouseLink' title=wheelhouse.status)= wheelhouse.status
+          button(id=`${wheelhouse.status}` class='wheelhouseLink') #{wheelhouse.status}
     div(class='hobbies')
-      p hobbies will go here
-    
         
