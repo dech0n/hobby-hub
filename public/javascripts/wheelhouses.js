@@ -1,5 +1,53 @@
 const wheelhouseBtns = document.querySelectorAll('.wheelhouseLink')
 
+window.onload(() => {
+
+    wheelhouseBtns.forEach(btn => {
+        btn.className = 'wheelhouseLink'
+    })
+    allBtn.className = 'wheelhouseLink active'
+
+    try {
+        const res = await fetch('/api/wheelhouse/all');
+        hobbies = await res.json();
+        
+        const hobbiesDiv = document.querySelector('.hobbies')
+        hobbiesDiv.innerHTML = ''
+
+        hobbies.forEach(hobby => {
+            const hobbyDiv = document.createElement('div')
+            hobbyDiv.setAttribute('class', 'hobbies__content');
+            hobbyDiv.setAttribute('href', `/hobbies/${hobby.id}`)
+            hobbiesDiv.appendChild(hobbyDiv);
+
+            const link = document.createElement('a')
+            link.setAttribute('href', `/hobbies/${hobby.id}`)
+            link.setAttribute('class', 'hobby_links')
+            link.innerHTML = `${hobby.title}`
+            hobbyDiv.appendChild(link);
+
+            const img = document.createElement('img')
+            img.setAttribute('src', `${hobby.img}`)
+            img.setAttribute('alt', 'illustration of the hobby')
+            img.setAttribute('class', 'hobby_image');
+            hobbyDiv.appendChild(img);
+
+            const title = document.createElement('p')
+            title.setAttribute('class', 'hobby_title');
+            title.innerHTML = `${hobby.title}`;
+            hobbyDiv.appendChild(title);
+            
+            const description = document.createElement('p')
+            description.setAttribute('class', 'hobby_description');
+            description.innerHTML = `${hobby.description}`;
+            hobbyDiv.appendChild(description);
+        })
+    } catch (e) {
+        console.log(e)
+    }
+
+})
+
 const allBtn = document.getElementById('all');
 
 allBtn.addEventListener('click', async () => {
@@ -10,7 +58,7 @@ allBtn.addEventListener('click', async () => {
     allBtn.className = 'wheelhouseLink active'
 
     try {
-        const res = await fetch('/api/all');
+        const res = await fetch('/api/wheelhouse/all');
         hobbies = await res.json();
         
         const hobbiesDiv = document.querySelector('.hobbies')
@@ -60,7 +108,7 @@ wantToLearnBtn.addEventListener('click', async () => {
     wantToLearnBtn.className = 'wheelhouseLink active'
 
     try {
-        const res = await fetch('/api/wantToLearn');
+        const res = await fetch('/api/wheelhouse/wantToLearn');
         hobbies = await res.json();
         
         const hobbiesDiv = document.querySelector('.hobbies')
@@ -110,7 +158,7 @@ currentlyLearningBtn.addEventListener('click', async () => {
     currentlyLearningBtn.className = 'wheelhouseLink active'
 
     try {
-        const res = await fetch('/api/currentlyLearning');
+        const res = await fetch('/api/wheelhouse/currentlyLearning');
         hobbies = await res.json();
         
         const hobbiesDiv = document.querySelector('.hobbies')
@@ -160,7 +208,7 @@ accomplishedBtn.addEventListener('click', async () => {
     accomplishedBtn.className = 'wheelhouseLink active'
 
     try {
-        const res = await fetch('/api/accomplished');
+        const res = await fetch('/api/wheelhouse/accomplished');
         hobbies = await res.json();
         
         const hobbiesDiv = document.querySelector('.hobbies')
