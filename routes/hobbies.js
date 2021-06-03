@@ -12,6 +12,7 @@ router.get(
     res.render("hobbies", {
       title: "Hobbies",
       hobbies,
+      req,
     });
   })
 );
@@ -19,14 +20,17 @@ router.get(
 router.get(
   "/:hobbyId(\\d+)",
   asyncHandler(async (req, res) => {
-    const user = req.session.auth;
-    // const user = await db.User.findbyPk(userId, {
-    //   include: db.Wheelhouse,
-    // });
-    if (user) {
-      user.wheelhouses = await db.Wheelhouse.findAll({
-        where: { userId: user.userId },
+    let user;
+    if (req.session.auth) {
+      user = await db.User.findByPk(req.session.auth.userId, {
+        include: db.Wheelhouse,
       });
+      if (user) {
+        // !.isEmpty?
+        user.wheelhouses = await db.Wheelhouse.findAll({
+          where: { userId: user.id },
+        });
+      }
     }
 
     const hobbyId = parseInt(req.params.hobbyId, 10);
@@ -41,6 +45,7 @@ router.get(
       user,
       hobby,
       experiences,
+      req,
     });
   })
 );
