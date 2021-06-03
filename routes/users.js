@@ -183,6 +183,7 @@ router.get(
   })
 );
 
+// ! Currently working on this path for the User Hobbies page. Working on querying everything before passing it to res.render
 router.get('/:userId/wheelhouse/:status/user-hobby/:hobbyId', asyncHandler(async (req, res) => {
   const userId = parseInt(req.params.userId, 10)
   const hobbyId = parseInt(req.params.hobbyId, 10)
