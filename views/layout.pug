@@ -6,8 +6,7 @@ html
         link(rel='stylesheet' href='/stylesheets/reset.css')
         link(rel='stylesheet' href='/stylesheets/navbar.css')
         link(rel='stylesheet' href='/stylesheets/hobbies.css')
-
-        script(src="/javascripts/navbar.js" role="module")
+        script(src="/javascripts/navbar.js" defer)
 
   body
     div(class="navbar")
@@ -16,17 +15,20 @@ html
         ul(class="" id="navigation-links")
           li: a(href="/" class="navbar__nav") Home
           //- My Wheelhouse redirects to /login when user not logged in
-          if user
-            li: a(href=`/users/${user.userId}/wheelhouse` class="navbar__nav") My Wheelhouse
+          if req.session.auth
+            li: a(href=`/users/${req.session.auth.userId}/wheelhouse` class="navbar__nav") My Wheelhouse
           else
             li: a(href="/users/login" class="navbar__nav") My Wheelhouse
           li: a(href="/hobbies" class="navbar__nav") Hobbies
         div(class="" id="user-buttons")
           //- if the user is logged in
-          if user
-            button(class="navbar__button") Logout
+          if req.session.auth
+            form(action="/users/logout", method="get")
+              button(class="navbar__button" id="logout-button") Logout
           else
-            button(class="navbar__button") Login
-            button(class="navbar__button") Sign Up
-            button(class="navbar__button") Demo User
+            a(href="/users/login")
+              button(class="navbar__button" id="login-button") Login
+            a(href="/users/register")
+              button(class="navbar__button" id="signup-button") Sign Up
+            button(class="navbar__button" id="demo-user-button") Demo User
     block content

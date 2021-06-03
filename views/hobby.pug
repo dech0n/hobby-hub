@@ -2,9 +2,10 @@ extends layout.pug
 
 append head
   link(rel="stylesheet" href="../stylesheets/hobby.css")
+  script(src="/javascripts/hobby.js" defer)
 block content
   div(id="hobby-page")
-    button(class="button") Back
+    a(href="/hobbies" class="back-link") ← Back to hobbies
     div(class="hobby-header-container")
       img(src=hobby.img alt="illustration of the hobby")
       div(id="title-description")
@@ -12,12 +13,12 @@ block content
         p= hobby.description
     div(class="status-dropdown")
       //- if user is logged in, add wheelhouse status dropdown
-      if user
-        select(name="status" placeholder="Add to wheelhouse")
+      if req.session.auth
+        select(name="status" id="select-status" placeholder="Add to wheelhouse")
           //- option Add to wheelhouse
           each wheelhouse in user.wheelhouses
-            option(value=wheelhouse.status)= wheelhouse.status
-        button(class="button status-button") Add to Wheelhouse
+            option(value=wheelhouse.id)= wheelhouse.status
+        button(class="button status-button" id="add-to-wheelhouse-button") Add to Wheelhouse
     div(id="experiences-container")
       each experience in experiences
         div(class="experiences-container__experience")
@@ -25,3 +26,6 @@ block content
           p(class="experience-user")= experience.User.username
           p(class="experience-title")= experience.title
           p(class="experience-message")= experience.message
+          if req.session.auth
+            button(class="button" id="edit-experience-button") Edit
+            button(class="button" id="delete-experience-button") Delete
