@@ -1,0 +1,26 @@
+.header {
+    text-align: center;
+}
+
+.labelDiv {
+    padding: 5px;
+}
+
+.errorsDiv {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 500px;
+    min-width: 500px;
+    border: solid 1px black;
+    border-radius: 2%;
+    box-sizing: border-box;
+    flex-flow:
+}
+
+ul {
+    margin-left: 2rem;
+}
+.error_message {
+    color: red;
+    align-self: center;
+}
