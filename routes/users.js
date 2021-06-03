@@ -1,9 +1,18 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
-const { loginUser, logoutUser } = require("../auth.js");
+const {
+  loginUser,
+  logoutUser
+} = require("../auth.js");
 const db = require("../db/models");
-const { csrfProtection, asyncHandler } = require("./utils.js");
-const { check, validationResult } = require("express-validator");
+const {
+  csrfProtection,
+  asyncHandler
+} = require("./utils.js");
+const {
+  check,
+  validationResult
+} = require("express-validator");
 
 const router = express.Router();
 
@@ -14,55 +23,87 @@ const router = express.Router();
 
 const registerValidators = [
   check("firstName")
-    .exists({ checkFalsy: true })
-    .withMessage("Please enter your first name")
-    .isLength({ max: 50 })
-    .withMessage("First name cannot be more than 50 characters long."),
+  .exists({
+    checkFalsy: true
+  })
+  .withMessage("Please enter your first name")
+  .isLength({
+    max: 50
+  })
+  .withMessage("First name cannot be more than 50 characters long."),
   check("lastName")
-    .exists({ checkFalsy: true })
-    .withMessage("Please enter your last name")
-    .isLength({ max: 50 })
-    .withMessage("Last name cannot be more than 50 characters long."),
+  .exists({
+    checkFalsy: true
+  })
+  .withMessage("Please enter your last name")
+  .isLength({
+    max: 50
+  })
+  .withMessage("Last name cannot be more than 50 characters long."),
   check("email")
-    .exists({ checkFalsy: true })
-    .withMessage("Please enter your email address.")
-    .isEmail({ checkFalsy: true })
-    .withMessage("Please enter a valid email address.")
-    .isLength({ max: 50 })
-    .withMessage("Email address cannot be more than 50 characters long.")
-    .custom((email) => {
-      return db.User.findOne({ where: { email } }).then((user) => {
-        if (user) return Promise.reject("Email address already in use.");
-      });
-    }),
+  .exists({
+    checkFalsy: true
+  })
+  .withMessage("Please enter your email address.")
+  .isEmail({
+    checkFalsy: true
+  })
+  .withMessage("Please enter a valid email address.")
+  .isLength({
+    max: 50
+  })
+  .withMessage("Email address cannot be more than 50 characters long.")
+  .custom((email) => {
+    return db.User.findOne({
+      where: {
+        email
+      }
+    }).then((user) => {
+      if (user) return Promise.reject("Email address already in use.");
+    });
+  }),
   check("username")
-    .exists({ checkFalsy: true })
-    .withMessage("Please provide a username.")
-    .isLength({ max: 50 })
-    .withMessage("Username cannot be more than 50 characters long.")
-    .custom((username) => {
-      return db.User.findOne({ where: { username } }).then((user) => {
-        if (user)
-          return Promise.reject(
-            "Username unavailable, please try something different."
-          );
-      });
-    }),
+  .exists({
+    checkFalsy: true
+  })
+  .withMessage("Please provide a username.")
+  .isLength({
+    max: 50
+  })
+  .withMessage("Username cannot be more than 50 characters long.")
+  .custom((username) => {
+    return db.User.findOne({
+      where: {
+        username
+      }
+    }).then((user) => {
+      if (user)
+        return Promise.reject(
+          "Username unavailable, please try something different."
+        );
+    });
+  }),
   check("password")
-    .exists({ checkFalsy: true })
-    .withMessage("Please enter a password.")
-    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/, "g")
-    .withMessage(
-      "Password must contain uppercase letter, lowercase letter, a number, and a special character."
-    ),
+  .exists({
+    checkFalsy: true
+  })
+  .withMessage("Please enter a password.")
+  .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/, "g")
+  .withMessage(
+    "Password must contain uppercase letter, lowercase letter, a number, and a special character."
+  ),
   check("confirmPassword")
-    .exists({ checkFalsy: true })
-    .withMessage("Please confirm your password.")
-    .custom((confirmPassword, { req }) => {
-      if (confirmPassword !== req.body.password)
-        throw new Error("Please make sure your passwords match");
-      return true;
-    }),
+  .exists({
+    checkFalsy: true
+  })
+  .withMessage("Please confirm your password.")
+  .custom((confirmPassword, {
+    req
+  }) => {
+    if (confirmPassword !== req.body.password)
+      throw new Error("Please make sure your passwords match");
+    return true;
+  }),
 ];
 
 router.get(
@@ -90,8 +131,19 @@ router.post(
   registerValidators,
   csrfProtection,
   asyncHandler(async (req, res) => {
-    const { firstName, lastName, password, username, email } = req.body;
-    const user = db.User.build({ firstName, lastName, username, email });
+    const {
+      firstName,
+      lastName,
+      password,
+      username,
+      email
+    } = req.body;
+    const user = db.User.build({
+      firstName,
+      lastName,
+      username,
+      email
+    });
     const validatorErrors = validationResult(req);
 
     if (validatorErrors.isEmpty()) {
@@ -99,6 +151,19 @@ router.post(
       user.hashedPassword = hashedPassword;
       await user.save();
       loginUser(req, res, user);
+      const userId = req.session.auth.userId;
+      await db.Wheelhouse.create({
+        status: 'Want to Learn',
+        userId
+      })
+      await db.Wheelhouse.create({
+        status: 'Currently Learning',
+        userId
+      })
+      await db.Wheelhouse.create({
+        status: 'Accomplished',
+        userId
+      })
       res.redirect("/hobbies");
     } else {
       const errors = validatorErrors.array().map((error) => error.msg);
@@ -127,26 +192,36 @@ router.get(
 
 const loginValidators = [
   check("username")
-    .exists({ checkFalsy: true })
-    .withMessage("Please provide your username."),
+  .exists({
+    checkFalsy: true
+  })
+  .withMessage("Please provide your username."),
   check("password")
-    .exists({ checkFalsy: true })
-    .withMessage("Please provide your password."),
+  .exists({
+    checkFalsy: true
+  })
+  .withMessage("Please provide your password."),
 ];
+
 
 router.post(
   "/login",
   csrfProtection,
   loginValidators,
   asyncHandler(async (req, res) => {
-    const { username, password } = req.body;
+    const {
+      username,
+      password
+    } = req.body;
 
     let errors = [];
     const validatorErrors = validationResult(req);
 
     if (validatorErrors.isEmpty()) {
       const user = await db.User.findOne({
-        where: { username },
+        where: {
+          username
+        },
       });
 
       if (user !== null) {
@@ -174,6 +249,15 @@ router.post(
     });
   })
 );
+
+router.post(
+  '/loginDemo',
+  asyncHandler(async (req, res) => {
+    const demo = await db.User.findByPk(1)
+    loginUser(req, res, demo);
+    res.end();
+  })
+)
 
 router.get(
   "/:id/wheelhouse",

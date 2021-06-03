@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
-    background-color: rgb(155, 235, 179);
+    background-color: rgb(176,211,189);
 
 }
 
@@ -17,14 +17,17 @@
 
 .wheelhouseLink {
     text-align: center;
-    background-color: rgb(155,235,179);
+    background-color: rgb(176,211,189);
     text-decoration: none;
     font-size: 25px;
 
 }
 
 .active {
-    background-color: rgb(233, 155, 222);
+    background-color: rgb(113,147,152);
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+
 }
 
 button.wheelhouseLink {
@@ -35,6 +38,10 @@ button.wheelhouseLink {
     width: 75%;
     height: 100%;
     margin: 0;
+}
+
+h1 {
+    background-color: rgb(113,147,152);
 }
 
 
