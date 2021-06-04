@@ -28,13 +28,3 @@ h1 {
   font-size: 2rem;
   font-weight: 800;
 }
-
-button {
-  background-color: #46574D;
-  color: white;
-  font-weight: 800;
-  padding: 5px 0;
-  margin: 2px 0;
-  font-size: 15px;
-  border-radius: 5px;
-}
