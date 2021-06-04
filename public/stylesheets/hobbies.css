@@ -1,12 +1,19 @@
 /* add scroll to description */
 /* media query when width is less than 1305 px (description gets messed up) */
-
+#body-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: auto;
+}
 .hobbies {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;
     row-gap: 10px;
     column-gap: 10px;
+    max-width: 75%;;
 }
 
 .hobby_title, .hobby_description, .hobby_image {
@@ -18,7 +25,7 @@
     display: flex;
     /* flex-wrap: wrap; */
     flex-direction: column;
-    border: solid 2px black;
+    border: inset 2px rgb(43, 43, 43);
     border-radius: 2%;
     box-sizing: border-box;
     margin: 15px 15px;
@@ -52,6 +59,8 @@
     margin-top: 0px;
     text-align: center;
     overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 a.hobbies_links:link {
@@ -62,3 +71,12 @@ a.hobbies_links:link {
     text-align: center;
     padding-top: 15px;
 }
+
+.hobby_links {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+
+}
+
+
