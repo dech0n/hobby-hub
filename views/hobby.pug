@@ -25,8 +25,6 @@ block content
           textarea(id="experience-message-input" class="message-textarea" name="experience-message-input" placeholder="Share your experience!")
           button(class="button" id="add-experience-button") Post
     div(id="experiences-container")
-      if req.session.auth
-        button(class="button" id="add-experience-button") Add Your Experience
       each experience in experiences
         if req.session.auth
           if req.session.auth.userId === experience.userId
