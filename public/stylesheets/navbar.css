@@ -2,14 +2,23 @@
     display: grid;
     grid-template-columns: 1fr, 3fr, 1fr;
     grid-template-rows: auto;
-    padding: 20px;
+    /* padding: 20px; */
     justify-content: space-between;
     background-color: rgba(173,213,189,255);
 }
 
-#hobby-hub-logo {
+a p#hobby-hub-logo {
+    align-self: center;
     grid-column: 1/ span 1;
     grid-row: 1/ span 1;
+}
+
+#hobby-hub-logo {
+    font-family: 'Oleo Script Swash Caps';
+    font-size: 55px;
+    margin: 0 3vw;
+    color: white;
+    width: 256px;
 }
 
 #navigation-links {
@@ -18,22 +27,105 @@
     display: flex;
     list-style-type: none;
     color: white;
+    align-self: center;
 }
 
 #user-buttons {
     grid-column: 3/ span 1;
     grid-row: 1/ span 1;
+    color: white;
+    align-self: center;
+    margin: 25px 3vw 0;
+    width: 256px;
+    text-align: right;
 }
 
-.navbar__nav {
+.navbar__nav-link {
     font-size: 30px;
+    font-weight: 300;
+    padding: 20px;
 }
 
-.navbar__button {
+.active-nav-link {
+    font-weight: 800;
+}
+
+.navbar__link {
     margin: 5px;
+    font-size: 15px;
+    padding: 5px;
+    font-weight: 800;
 }
 
-.navbar__nav .active {
+.navbar__nav-link .active {
     background-color: rgb(113,147,152);
     text-decoration: underline;
+}
+
+.link-button {
+    cursor: pointer;
+}
+
+#logout-button {
+    background-color: rgba(0,0,0,0);
+    border-style: none;
+    color: white;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1490px) {
+    #hobby-hub-logo {
+        font-size: 50px;
+    }
+    .navbar__nav-link {
+        font-size: 25px;
+    }
+    .navbar__link {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 1294px) {
+    #hobby-hub-logo {
+        font-size: 40px;
+    }
+}
+
+@media screen and (max-width: 1186px) {
+    #user-buttons  {
+        margin: 25px 3vw 0;
+        margin-left: 0;
+    }
+    #hobby-hub-logo {
+        margin: 0 0 0 3vw;
+    }
+
+}
+
+@media screen and (max-width: 1119px) {
+    #user-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        width: 100px;
+        margin: 0 10px;
+    }
+    #hobby-hub-logo {
+        font-size: 40px;
+        width: 100px;
+        margin: 0 10px;
+    }
+}
+
+@media screen and (max-width: 789px) {
+    #navigation-links {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 529px) {
+    #navigation-links {
+        margin: 0;
+    }
 }

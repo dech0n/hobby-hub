@@ -1,27 +1,72 @@
-h1 {
+#splash-page-text {
     color: #555555;
-    flex-grow: 1;
-    font-size: 100px;
-    width: 700px;
-    margin: 50px;
-    padding-left: 200px;
+    font-size: 4.25vw;
     overflow-wrap: break-word;
+    font-weight: 900;
+}
+
+#splash-page-text-container {
+    width: 30vw;
 }
 
 #splash-image {
-    height: 650px;
-    width: 900px;
-    background-image: url('../hobby-images/largeHobbiesBackground.jpg');
-    background-position: center;
-    margin: 50px;
-    background-repeat: no-repeat;
-    flex-grow: 1.5;
-    background-size: cover;
+    width: 30vw;
+}
+
+#splash-image-container {
+    flex-grow: 1;
 }
 
 #splash-page-container {
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
+    height: 50%;
+    width: 70vw;
+    margin: 15vh 20vw;
+}
+
+@media screen and (max-width: 1490px) {
+    #splash-page-container {
+        margin: auto;
+        width: 50%;
+        padding-top: 80px;
+    }
+    #splash-page-text-container {
+        flex-grow: 1;
+    }
+    #splash-page-text {
+        font-size: 55px;
+    }
+    #splash-page-text-container,
+    #splash-image-container {
+        width: 100px;
+        padding: 0 20px;
+    }
+}
+
+@media screen and (max-width: 1307px) {
+    #splash-page-container {
+        width: 60%
+    }
+}
+
+@media screen and (max-width: 1119px) {
+    #splash-page-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    #splash-page-text-container {
+        width: 100%;
+    }
+    #splash-image-container {
+        width: 100%;
+    }
+    #splash-image  {
+        margin: auto;
+    }
+    #splash-image {
+        width: 500px;
+        /* center on page */
+    }
 }
