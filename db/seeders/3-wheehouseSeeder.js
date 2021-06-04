@@ -17,9 +17,6 @@ module.exports = {
       {status: 'Want to Learn', userId: 4, createdAt: new Date(), updatedAt: new Date() },
       {status: 'Currently Learning', userId: 4, createdAt: new Date(), updatedAt: new Date() },
       {status: 'Accomplished', userId: 4, createdAt: new Date(), updatedAt: new Date() },
-      {status: 'Want to Learn', userId: 5, createdAt: new Date(), updatedAt: new Date() },
-      {status: 'Currently Learning', userId: 5, createdAt: new Date(), updatedAt: new Date() },
-      {status: 'Accomplished', userId: 5, createdAt: new Date(), updatedAt: new Date() },
       {status: 'Want to Learn', userId: 6, createdAt: new Date(), updatedAt: new Date() },
       {status: 'Currently Learning', userId: 6, createdAt: new Date(), updatedAt: new Date() },
       {status: 'Accomplished', userId: 6, createdAt: new Date(), updatedAt: new Date() },
@@ -80,7 +77,7 @@ module.exports = {
       {status: 'Want to Learn', userId: 25, createdAt: new Date(), updatedAt: new Date() },
       {status: 'Currently Learning', userId: 25, createdAt: new Date(), updatedAt: new Date() },
       {status: 'Accomplished', userId: 25, createdAt: new Date(), updatedAt: new Date() },
-
+      
 
     ])
     /*

@@ -6,7 +6,6 @@ module.exports = {
       {wheelhouseId: 1, hobbyId: 1, createdAt: new Date(), updatedAt: new Date() },
       {wheelhouseId: 2, hobbyId: 2, createdAt: new Date(), updatedAt: new Date() },
       {wheelhouseId: 3, hobbyId: 3, createdAt: new Date(), updatedAt: new Date() },
-      {wheelhouseId: 3, hobbyId: 3, createdAt: new Date(), updatedAt: new Date() },
       {wheelhouseId: 1, hobbyId: 4, createdAt: new Date(), updatedAt: new Date() },
       {wheelhouseId: 2, hobbyId: 5, createdAt: new Date(), updatedAt: new Date() },
       {wheelhouseId: 3, hobbyId: 6, createdAt: new Date(), updatedAt: new Date() },
@@ -29,6 +28,9 @@ module.exports = {
       {wheelhouseId: 2, hobbyId: 23, createdAt: new Date(), updatedAt: new Date() },
       {wheelhouseId: 3, hobbyId: 24, createdAt: new Date(), updatedAt: new Date() },
       {wheelhouseId: 3, hobbyId: 25, createdAt: new Date(), updatedAt: new Date() },
+
+      
+
     ])
     /*
       Add altering commands here.
