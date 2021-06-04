@@ -5,29 +5,31 @@ append head
   script(src="/javascripts/hobby.js" defer)
 block content
   div(id="hobby-page")
-    a(href="/hobbies" class="back-link") ← Back to hobbies
+    a(href="/hobbies" class="back-link") ← Back
     div(class="hobby-header-container")
       img(src=hobby.img alt="illustration of the hobby")
       div(id=hobby.id class="title-description")
         h1= hobby.title
+        div(class="status-dropdown")
+          //- if user is logged in, add wheelhouse status dropdown
+          if req.session.auth
+            select(name="status" id="select-status" placeholder="Add to wheelhouse")
+              //- option Add to wheelhouse
+              each wheelhouse in user.wheelhouses
+                option(value=wheelhouse.id)= wheelhouse.status
+            button(class="button status-button" id="add-to-wheelhouse-button") Add to Wheelhouse
         p= hobby.description
-    div(class="status-dropdown")
-      //- if user is logged in, add wheelhouse status dropdown
-      if req.session.auth
-        select(name="status" id="select-status" placeholder="Add to wheelhouse")
-          //- option Add to wheelhouse
-          each wheelhouse in user.wheelhouses
-            option(value=wheelhouse.id)= wheelhouse.status
-        button(class="button status-button" id="add-to-wheelhouse-button") Add to Wheelhouse
+    if req.session.auth
+      form(id="experience-form")
+        div(id="experience-form-container")
+          textarea(id="experience-message-input" name="experience-message-input" placeholder="Share your experience!")
+          button(class="button" id="add-experience-button") Post
     div(id="experiences-container")
-      if req.session.auth
-        button(class="button" id="add-experience-button") Add Your Experience
       each experience in experiences
         div(class="experiences-container__experience")
           //- div(class="experience-header")
-          p(class="experience-user")= experience.User.username
-          p(class="experience-title")= experience.title
-          p(class="experience-message")= experience.message
+          p(class="experience-user experience-text")= experience.User.username
+          p(class="experience-message experience-text")= experience.message
           if req.session.auth
             if req.session.auth.userId === experience.userId
               button(class="button" id="edit-experience-button") Edit
