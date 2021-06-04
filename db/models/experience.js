@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const Experience = sequelize.define('Experience', {
     hobbyId: DataTypes.INTEGER,
     userId: DataTypes.INTEGER,
+    title: DataTypes.STRING,
     message: DataTypes.TEXT
   }, {});
   Experience.associate = function(models) {
