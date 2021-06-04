@@ -29,7 +29,7 @@ Users:
 
 
 
-Wheelhouses: 
+Wheelhouses:
 
 {status: 'Want to Learn', userId: 1, createdAt: new Date(), updatedAt: new Date() },
 {status: 'Currently Learning', userId: 1, createdAt: new Date(), updatedAt: new Date() },
@@ -53,7 +53,7 @@ UserHobbies:
 {wheelhouseId: 2, hobbyId: 2, createdAt: new Date(), updatedAt: new Date() },
 {wheelhouseId: 3, hobbyId: 3, createdAt: new Date(), updatedAt: new Date() },
 
-Experiences: 
+Experiences:
 
 {hobbyId: 1, userId: 2, title: 'omg, im doing this every weekend', message: 'This was so fun, I had a blast. 10/10 would recommend!', createdAt: new Date(), updatedAt: new Date() },
 {hobbyId: 2, userId: 3, title: 'omg, im doing this every weekend', message: 'This was so fun, I had a blast. 10/10 would recommend!', createdAt: new Date(), updatedAt: new Date() },
@@ -184,6 +184,5 @@ Experiences:
 {hobbyId: 23, userId: 2, title: 'I'm actually a pro now', message: 'I tried this for my first time yesterday and I'm already a pro. I'll be signing autographs!', createdAt: new Date(), updatedAt: new Date() },
 {hobbyId: 24, userId: 3, title: 'I'm actually a pro now', message: 'I tried this for my first time yesterday and I'm already a pro. I'll be signing autographs!', createdAt: new Date(), updatedAt: new Date() },
 {hobbyId: 25, userId: 4, title: 'I'm actually a pro now', message: 'I tried this for my first time yesterday and I'm already a pro. I'll be signing autographs!', createdAt: new Date(), updatedAt: new Date() },
-
 
 
