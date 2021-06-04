@@ -18,10 +18,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: 'Users' }
       },
-      title: {
-        allowNull: false,
-        type: Sequelize.STRING(50)
-      },
       message: {
         allowNull: false,
         type: Sequelize.TEXT
