@@ -44,6 +44,7 @@ a p#hobby-hub-logo {
     width: 256px;
     text-align: right;
     align-items: center;
+    justify-content: center;
 }
 
 #welcome {
