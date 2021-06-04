@@ -68,10 +68,10 @@ a p#hobby-hub-logo {
     font-weight: 800;
 }
 
-.navbar__nav-link .active {
+/* .navbar__nav-link .active {
     background-color: rgb(113,147,152);
     text-decoration: underline;
-}
+} */
 
 .link-button {
     cursor: pointer;
