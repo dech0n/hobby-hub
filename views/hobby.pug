@@ -19,16 +19,27 @@ block content
           each wheelhouse in user.wheelhouses
             option(value=wheelhouse.id)= wheelhouse.status
         button(class="button status-button" id="add-to-wheelhouse-button") Add to Wheelhouse
+    if req.session.auth
+      form(id="experience-form")
+        div(id="experience-form-container")
+          textarea(id="experience-message-input" class="message-textarea" name="experience-message-input" placeholder="Share your experience!")
+          button(class="button" id="add-experience-button") Post
     div(id="experiences-container")
       if req.session.auth
         button(class="button" id="add-experience-button") Add Your Experience
       each experience in experiences
-        div(class="experiences-container__experience")
-          //- div(class="experience-header")
-          p(class="experience-user")= experience.User.username
-          p(class="experience-title")= experience.title
-          p(class="experience-message")= experience.message
-          if req.session.auth
-            if req.session.auth.userId === experience.userId
+        if req.session.auth
+          if req.session.auth.userId === experience.userId
+            div(class="experiences-container__experience" id=experience.id)
+              p(class="experience-user experience-text")= experience.User.username
+              p(class="experience-message experience-text" id="user-experience")= experience.message
               button(class="button" id="edit-experience-button") Edit
               button(class="button" id="delete-experience-button") Delete
+          else
+            div(class="experiences-container__experience" id=experience.id)
+              p(class="experience-user experience-text")= experience.User.username
+              p(class="experience-message experience-text")= experience.message
+        else
+          div(class="experiences-container__experience" id=experience.id)
+              p(class="experience-user experience-text")= experience.User.username
+              p(class="experience-message experience-text")= experience.message

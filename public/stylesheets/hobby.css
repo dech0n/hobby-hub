@@ -85,3 +85,9 @@ h1 {
 .checked::before {
     content: '✓';
 }
+
+.message-textarea {
+    border-radius: 5px;
+    width: 100%;
+    resize: none;
+}
