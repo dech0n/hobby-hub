@@ -7,31 +7,33 @@ html
         link(rel='stylesheet' href='/stylesheets/navbar.css')
         link(rel='stylesheet' href='/stylesheets/hobbies.css')
         link(rel='stylesheet' href='/stylesheets/register-and-login.css')
-        link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat")
+        link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:light,extra-bold,black")
+        link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps")
         script(src="/javascripts/navbar.js" defer)
 
 
   body
     div(class="navbar")
       nav(class="navbar__nav")
-        img(href="" class="" id="hobby-hub-logo" alt="Hobby Hub logo")
+        a(href="/")
+          p(id="hobby-hub-logo") Hobby Hub
         ul(class="" id="navigation-links")
-          li: a(href="/" class="navbar__nav" id='homeBtn') Home
+          li: a(href="/" class="navbar__nav-link" id='homeBtn') Home
           //- My Wheelhouse redirects to /login when user not logged in
           if req.session.auth
-            li: a(href=`/users/${req.session.auth.userId}/wheelhouse` class="navbar__nav" id='wheelhouseBtn') My Wheelhouse
+            li: a(href=`/users/${req.session.auth.userId}/wheelhouse` class="navbar__nav-link" id='wheelhouseBtn') My Wheelhouse
           else
-            li: a(href="/users/login" class="navbar__nav") My Wheelhouse
-          li: a(href="/hobbies" class="navbar__nav" id='hobbiesBtn') Hobbies
-        div(class="" id="user-buttons")
+            li: a(href="/users/login" class="navbar__nav-link") My Wheelhouse
+          li: a(href="/hobbies" class="navbar__nav-link" id='hobbiesBtn') Hobbies
+        div(id="user-buttons")
           //- if the user is logged in
           if req.session.auth
-            form(action="/users/logout", method="get")
-              button(class="navbar__button" id="logout-button") Logout
+            form(action="/users/logout" method="get")
+              button(class="navbar__link link-button" id="logout-button") Logout
           else
-            a(href="/users/login")
-              button(class="navbar__button" id="login-button") Login
-            a(href="/users/register")
-              button(class="navbar__button" id="signup-button") Sign Up
-            button(class="navbar__button" id="demo-user-button") Demo User
+            a(href="/users/login" class="navbar__link" id="login-link") Login
+              //- button(class="navbar__link" id="login-link") Login
+            a(href="/users/register" class="navbar__link" id="signup-link") Sign Up
+              //- button(class="navbar__button" id="signup-button") Sign Up
+            a(class="navbar__link link-button" id="demo-user-button") Demo User
     block content

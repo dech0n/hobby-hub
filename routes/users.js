@@ -161,7 +161,7 @@ router.post(
   asyncHandler(async (req, res) => {
     const demo = await db.User.findByPk(1)
     loginUser(req, res, demo);
-    res.end();
+    res.redirect("/");
   })
 )
 
