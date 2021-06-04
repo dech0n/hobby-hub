@@ -28,6 +28,7 @@ html
         div(id="user-buttons")
           //- if the user is logged in
           if req.session.auth
+            p(id='welcome') Welcome, #{user.username}! 
             form(action="/users/logout" method="get")
               button(class="navbar__link link-button" id="logout-button") Logout
           else
