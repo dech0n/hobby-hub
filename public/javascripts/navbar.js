@@ -14,36 +14,6 @@ demoUser.addEventListener('click', async () => {
 })
 }
 
-<<<<<<< Updated upstream
-// const navButtons = document.querySelectorAll('navbar__nav');
-
-// const homeBtn = document.getElementById('homeBtn');
-
-// homeBtn.addEventListener('click', () => {
-//     navButtons.forEach(btn => {
-//         btn.className = 'navbar__nav'
-//     })
-//     homeBtn.className = 'navbar__nav active'
-// })
-
-// const wheelhouseBtn = document.getElementById('wheelhouseBtn');
-
-// wheelhouseBtn.addEventListener('click', () => {
-//     navButtons.forEach(btn => {
-//         btn.className = 'navbar__nav'
-//     })
-//     wheelhouseBtn.className = 'navbar__nav active'
-// })
-
-// const hobbiesBtn = document.getElementById('hobbiesBtn');
-
-// hobbiesBtn.addEventListener('click', () => {
-//     navButtons.forEach(btn => {
-//         btn.className = 'navbar__nav'
-//     })
-//     hobbiesBtn.className = 'navbar__nav active'
-// })
-=======
 const navButtons = document.querySelectorAll('navbar__nav-link');
 
 const homeBtn = document.getElementById('homeBtn');
@@ -72,4 +42,3 @@ hobbiesBtn.addEventListener('click', () => {
     })
     hobbiesBtn.classList.add('active-nav-link')
 })
->>>>>>> Stashed changes

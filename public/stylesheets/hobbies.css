@@ -1,11 +1,18 @@
 /* add scroll to description */
 /* media query when width is less than 1305 px (description gets messed up) */
+
+/* i added this to try to fix the position issues when the screen is less than 1400 px */
+html {
+    width: 100%;
+}
+
 #body-div {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     width: auto;
+    width: 100%;
 }
 .hobbies {
     display: grid;
@@ -13,7 +20,7 @@
     grid-template-rows: auto;
     row-gap: 10px;
     column-gap: 10px;
-    max-width: 75%;;
+    max-width: 75%;
 }
 
 .hobby_title, .hobby_description, .hobby_image {
