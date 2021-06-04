@@ -183,10 +183,27 @@ router.get(
   })
 );
 
+// ! Currently working on this path for the User Hobbies page. Working on querying everything before passing it to res.render
 router.get('/:userId/wheelhouse/:status/user-hobby/:hobbyId', asyncHandler(async (req, res) => {
   const userId = parseInt(req.params.userId, 10)
   const hobbyId = parseInt(req.params.hobbyId, 10)
   const wheelhouseStatus = req.params.wheelhouseStatus
+
+  const user = await db.User.findByPk(userId);
+
+  const experiences = await db.Experience.findAll({
+    where: {
+      userId: user.id,
+      hobbyId
+    }
+  });
+
+  const resources = db.Resource.findAll({
+    where: {
+      userId: user.id,
+      // needs userHobbyId?
+    }
+  })
   // get user's hobbies
   // const userHobbies = await db.Wheelhouse.findOne({
   //   where: {userId, wheelhouseStatus},
