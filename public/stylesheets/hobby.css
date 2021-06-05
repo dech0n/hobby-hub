@@ -76,6 +76,7 @@ h1 {
     border-radius: 5px;
     width: 100%;
     resize: none;
+    height: 80px;
 }
 
 #experience-form-container {
@@ -85,4 +86,11 @@ h1 {
 
 .select-div {
     margin: 5px 0;
+}
+
+.editable-area {
+    border: 1px solid #46574D;
+    border-radius: 5px;
+    padding: 15px 10px;
+    margin-bottom: 2px;
 }
