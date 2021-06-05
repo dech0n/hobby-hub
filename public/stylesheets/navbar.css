@@ -49,6 +49,7 @@ a p#hobby-hub-logo {
 
 #welcome {
     width: auto;
+    margin: 0 10px;
 }
 
 .navbar__nav-link {
