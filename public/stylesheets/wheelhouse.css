@@ -22,7 +22,7 @@
     text-decoration: none;
     font-size: 25px;
     border: 0;
-    padding: 0;
+    padding: 10px 0 5px 0;
     font-size: 20px;
     font-family: inherit;
     width: 75%;
@@ -32,16 +32,11 @@
 
 .active {
     background-color: white;
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
+    color: #46574D;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    border: 2px inset grey;
+    border: 2px solid rgba(70, 87, 77, .3);
     border-bottom: 0;
 }
-
-
-
-
-
-
