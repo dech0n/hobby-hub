@@ -36,8 +36,9 @@
     border-top-right-radius: 7px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    border: 2px inset grey;
+    border: 1px solid #46574D;
     border-bottom: 0;
+    color: #46574D;
 }
 
 

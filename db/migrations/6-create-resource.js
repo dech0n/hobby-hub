@@ -16,7 +16,12 @@ module.exports = {
         allowNull: false,
         type: Sequelize.TEXT
       },
-      userHobbyId: {
+      userId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: 'Users' }
+      },
+      hobbyId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: { model: 'UserHobbies' }
