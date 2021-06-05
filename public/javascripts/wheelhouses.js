@@ -1,4 +1,10 @@
-const wheelhouseBtns = document.querySelectorAll('.wheelhouseLink')
+// makes My Wheelhouse nav button bold when it is the active page
+const wheelhouseNavBtn = document.querySelector("#wheelhouseBtn");
+wheelhouseNavBtn.classList.add('active-nav-link')
+
+
+
+const wheelhouseBtns = document.querySelectorAll('.wheelhouseLink');
 
 window.addEventListener('load', async () => {
 

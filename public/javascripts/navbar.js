@@ -22,7 +22,6 @@ homeBtn.addEventListener('click', () => {
     navButtons.forEach(btn => {
         btn.classList.remove('active-nav-link')
     })
-    homeBtn.classList.add('active-nav-link')
 })
 
 const wheelhouseBtn = document.getElementById('wheelhouseBtn');
