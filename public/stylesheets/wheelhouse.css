@@ -23,7 +23,7 @@
     text-decoration: none;
     font-size: 25px;
     border: 0;
-    padding: 0;
+    padding: 10px 0 5px 0;
     font-size: 20px;
     font-family: inherit;
     width: 75%;
@@ -35,10 +35,13 @@
 .active {
     color: rgba(173,213,189,1);
     background-color: white;
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
+    color: #46574D;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     border: 2px inset rgba(236, 231, 226, 1);
+
     border-bottom: 0;
+    color: #46574D;
 }

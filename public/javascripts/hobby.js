@@ -102,3 +102,10 @@ if (deleteExperienceButton) {
     }
   });
 }
+
+
+deleteExperienceButton.addEventListener('click', async () => {});
+
+const addResourceButton = document.getElementById('add-resource-button');
+
+

@@ -1,4 +1,29 @@
 .footer {
-    width: 100%;
-    position: static;
-}
+    background-color: rgb(176,211,189);
+    color: #46574D;
+    padding: 20px;
+    bottom:0;
+    left:0;
+    right:0;
+    height:100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .footer-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-weight: bold;
+    margin-left: 2px;
+    margin-right: 2px;
+  }
+  
+  .footer__img {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+  }

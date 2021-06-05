@@ -82,6 +82,7 @@ h1 {
 #experience-form-container {
     display: flex;
     flex-direction: column;
+    margin-top: 10px;
 }
 
 .select-div {
