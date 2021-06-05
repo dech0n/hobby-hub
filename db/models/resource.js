@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Resource.associate = function(models) {
     // associations can be defined here
-    Resource.belongsTo(models.Hobby, { foreignKey: 'userHobbyId' })
+    Resource.belongsTo(models.Hobby, { foreignKey: 'hobbyId' })
     Resource.belongsTo(models.User, {foreignKey: 'userId'})
   };
   return Resource;

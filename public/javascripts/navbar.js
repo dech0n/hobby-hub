@@ -24,14 +24,17 @@ homeBtn.addEventListener('click', () => {
     })
 })
 
+
 const wheelhouseBtn = document.getElementById('wheelhouseBtn');
 
+if (wheelhouseBtn) {
 wheelhouseBtn.addEventListener('click', () => {
     navButtons.forEach(btn => {
         btn.classList.remove('active-nav-link')
     })
     wheelhouseBtn.classList.add('active-nav-link')
 })
+}
 
 const hobbiesBtn = document.getElementById('hobbiesBtn');
 

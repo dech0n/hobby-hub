@@ -2,6 +2,7 @@ const addToWheelhouseBtn = document.getElementById("add-to-wheelhouse-button");
 const selectStatus = document.getElementById("select-status");
 const hobbyId = document.querySelector(".title-description").id;
 
+if (addToWheelhouseBtn) {
 addToWheelhouseBtn.addEventListener("click", async () => {
   const wheelhouseId = selectStatus.value;
 
@@ -14,6 +15,7 @@ addToWheelhouseBtn.addEventListener("click", async () => {
     addToWheelhouseBtn.innerText = "Added!";
   }
 });
+}
 
 const addExperienceButton = document.getElementById("add-experience-button");
 const editExperienceButton = document.getElementById("edit-experience-button");
@@ -104,8 +106,12 @@ if (deleteExperienceButton) {
 }
 
 
-deleteExperienceButton.addEventListener('click', async () => {});
+// deleteExperienceButton.addEventListener('click', async () => {});
 
-const addResourceButton = document.getElementById('add-resource-button');
-
+window.addEventListener('load', async () => {
+  const res = await fetch(`/api/resources/hobbies/${hobbyId}`)
+  console.log('THE RES------ ', res)
+  const resources = await res.json();
+  console.log('frontend resources--------', resources)
+})
 
