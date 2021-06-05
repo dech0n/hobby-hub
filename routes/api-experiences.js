@@ -53,7 +53,14 @@ router.post(
 router.put(
   "/:experienceId",
   asyncHandler(async (req, res) => {
-    const userId = req.session.auth.userId;
+    // const userId = req.session.auth.userId;
+    const id = req.params.experienceId;
+    const message = req.body.message;
+    const post = await db.Experience.findByPk(id);
+    const newPost = await post.update({
+        message
+    })
+    res.json({ newPost });
   })
 );
 

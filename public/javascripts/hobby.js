@@ -21,31 +21,24 @@ const deleteExperienceButton = document.getElementById(
   "delete-experience-button"
 );
 
-const getAllExperiences = async (hobbyId) => {
-  const experiencesContainer = document.getElementById("experiences-container");
-  const res = await fetch(`/api/experiences/hobbies/${hobbyId}`);
-  const data = await res.json();
-  const { allExperiences, userId } = data;
-  if (res.ok) {
-    // is data iterable? iterate through and create experience divs/ps for each experience
-    // experiencesContainer.innerHTML = data;
-    allExperiences.forEach(experience => {
-      //if user id matches, include edit and delete buttons
-    });
-  }
-};
+// To implement in the future
+
+// const getAllExperiences = async (hobbyId) => {
+//   const experiencesContainer = document.getElementById("experiences-container");
+//   const res = await fetch(`/api/experiences/hobbies/${hobbyId}`);
+//   const data = await res.json();
+//   const { allExperiences, userId } = data;
+//   if (res.ok) {
+//     allExperiences.forEach(experience => {
+//       //if user id matches, include edit and delete buttons
+//     });
+//   }
+// };
 
 addExperienceButton.addEventListener("click", async (event) => {
-  // grab textarea value
-  // grab userId and hobbyId
-  // call put fetch request to create new experience with message, userId, and hobbyId
-  // grab #experience-container div and set inner HTML to empty
-  // call get fetch request to get all experiences
-  // set inner HTML of div to result
-  // event.preventDefault();
+
   const message = document.getElementById("experience-message-input").value;
   if (!message) return;
-  // console.log(message);
   try {
     const res = await fetch(`/api/experiences/hobbies/${hobbyId}`, {
       method: "POST",
@@ -53,7 +46,6 @@ addExperienceButton.addEventListener("click", async (event) => {
       body: JSON.stringify({ message }),
     });
     const data = await res.json();
-    // console.log(data);
     if (res.ok) {
       getAllExperiences(hobbyId);
     }
@@ -65,31 +57,31 @@ addExperienceButton.addEventListener("click", async (event) => {
 if (editExperienceButton) {
 
   editExperienceButton.addEventListener("click", async (event) => {
-    // const experienceDiv = ;
-    const experienceId = experienceDiv.id;
-    const resGet = await fetch(`api/experiences/${experienceId}`);
+    const postBody = document.getElementById('user-experience');
+    postBody.setAttribute('contenteditable', 'true');
+    postBody.classList.add('editable-area');
+    const addButton = document.getElementById('edit-experience-button');
+    addButton.innerHTML = 'Save';
+
+    const resGet = await fetch(`/api/experiences/${hobbyId}`);
     const experience = await resGet.json();
-    const message = experience.message;
 
-    if (res.ok) {
-      experienceDiv.innerHTML = "";
-      const editTextarea = document.createElement("textarea");
-      editTextarea.classList.add("message-textarea");
-      editTextarea.value = message;
-      experienceDiv.appendChild(editTextarea);
-      const postBtn = document.createElement("button");
-      postBtn.innerHTML = "Post";
-      // add event listener
-      const deleteBtn = document.createElement("button");
-      // add event listener
-      deleteBtn.innerHTML = "Delete";
-      experienceDiv.appendChild(postBtn);
-      experienceDiv.appendChild(deleteBtn);
-    }
+    if (resGet.ok) {
+      const { id } = experience.experience
+      addButton.addEventListener('click', async () => {
+        const message = postBody.innerText;
+        const resPost = await fetch(`/api/experiences/${id}`, {
+          method: 'PUT',
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message })
+        })
+        const data = await resPost.json();
 
-    const res = await fetch();
-
-    if (res.ok) {
+        if (resPost.ok) {
+          console.log('LOOKS LIKE WE MADE IT!!!')
+          location.reload();
+        }
+      })
     }
   });
 }
@@ -106,7 +98,6 @@ if (deleteExperienceButton) {
 
       if (resDel.ok) {
         location.reload();
-        // const experienceDiv = document.getElementById(id);
       }
     }
   });
