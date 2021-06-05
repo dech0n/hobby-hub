@@ -1,7 +1,8 @@
 # Hobby Hub
-![Splash page]()
 
-(link to Hobby Hub)
+https://hobbyhubapp.herokuapp.com/
+
+![Splash page]()
 
 ## Summary
 
