@@ -5,6 +5,7 @@
     justify-content: space-evenly;
     flex-direction: row;
     background-color: rgb(176,211,189);
+    align-items: flex-end;
 }
 
 .wheelhouse {
@@ -28,16 +29,19 @@
     width: 75%;
     height: 100%;
     margin: 0;
+    bottom: 0;
 }
 
 .active {
+    color: rgba(173,213,189,1);
     background-color: white;
     color: #46574D;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    border: 2px solid rgba(70, 87, 77, .3);
+    border: 2px inset rgba(236, 231, 226, 1);
+
     border-bottom: 0;
     color: #46574D;
 }

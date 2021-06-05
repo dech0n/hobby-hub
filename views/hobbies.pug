@@ -1,6 +1,10 @@
 extends layout
 //- include utils.pug
 
+append head
+    //- makes Hobbies nav button bold when it is the active page
+    script(src="/javascripts/hobbies.js" defer)
+
 block content
     div(id='body-div')
         h1.hobbies-header.header Pick Your Hobbies!
