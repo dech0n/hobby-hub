@@ -84,11 +84,11 @@ a p#hobby-hub-logo {
     cursor: pointer;
 }
 
-.active {
+/* .active {
     background-color: grey;
     border-radius: 7px;
     padding: 5px;
-}
+} */
 
 @media screen and (max-width: 1490px) {
     #hobby-hub-logo {

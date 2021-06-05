@@ -5,7 +5,7 @@ append head
   script(src="/javascripts/hobby.js" defer)
 block content
   div(id="hobby-page")
-    a(href="/hobbies" class="back-link") ← Back
+    a(href="javascript:history.back()" class="back-link") ← Back
     div(class="hobby-header-container")
       img(src=hobby.img alt="illustration of the hobby")
       div(id=hobby.id class="title-description")

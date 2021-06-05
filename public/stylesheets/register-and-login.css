@@ -8,16 +8,33 @@
 }
 
 input {
-    width: 500px;
+    width: 300px;
+    border: none;
+    border-bottom: 1px solid #46574D;
+}
+
+.form__button {
+    width: 300px;
 }
 
 .formDiv, .main_errorDiv, .buttonDiv, .redirect_link {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.formDiv {
+    border-radius: 5px;
+    width: 25%;
+    margin: 20px auto;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    box-shadow: 0.0625rem 0.0625rem 0.625rem -2px #46574D;
 }
 
 .redirect_link {
-    padding-top: 20px;
+    padding-top: 40px;
 }
 
 .errorsDiv {
