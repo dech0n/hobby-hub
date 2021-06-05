@@ -6,8 +6,7 @@ https://hobbyhubapp.herokuapp.com/
 
 ## Summary
 
-First group project, cloning Good Reads but as a hobby tracking/discovery website
-Hobby Hub is a web application inspired by GoodReads built using Express and JavaScript. 
+Hobby Hub is a web application where users can discover new hobbies, store their learning resources, and share their experiences. It was inspired by GoodReads and built using Express and JavaScript. 
 
 - Create an account
 - Log in and Log out
