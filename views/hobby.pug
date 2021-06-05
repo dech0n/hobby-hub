@@ -17,9 +17,8 @@ block content
               each wheelhouse in user.wheelhouses
                 option(value=wheelhouse.id)= wheelhouse.status
             button(class="button status-button" id="add-to-wheelhouse-button") Add to Wheelhouse
-        p= hobby.description
-    div(class="status-dropdown")
-      //- if user is logged in, add wheelhouse status dropdown
+        p= hobby.description                 
+      //- if user is logged in, show the add experience form
     if req.session.auth
       form(id="experience-form")
         div(id="experience-form-container")
