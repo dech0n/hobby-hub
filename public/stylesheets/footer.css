@@ -10,8 +10,9 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    position: absolute;
   }
-  
+
   .footer-div {
     display: flex;
     flex-direction: column;
@@ -20,7 +21,7 @@
     margin-left: 2px;
     margin-right: 2px;
   }
-  
+
   .footer__img {
     align-items: flex-start;
     display: flex;
