@@ -5,6 +5,7 @@ html
         title= title
         link(rel='stylesheet' href='/stylesheets/reset.css')
         link(rel='stylesheet' href='/stylesheets/navbar.css')
+        link(rel='stylesheet' href='/stylesheets/footer.css')
         link(rel='stylesheet' href='/stylesheets/hobbies.css')
         link(rel='stylesheet' href='/stylesheets/register-and-login.css')
         link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:light,extra-bold,black")
@@ -41,4 +42,29 @@ html
     block content
     block footer
       div(class='footer')
-        p Hello i'm working!
+        div(class='footer-div' id='p')
+          p The amazing developers who made this site possible: 
+          //- img(src='/footer-images/hobbyHubLogo.png' style='width:350px; height:100px;')
+        div(class='footer-div' id='irena')
+          p Irina Amzashvili
+          div(class='footer__img')
+            a(href="https://www.linkedin.com/in/irina-amzashvili-683136211/" class="navbar__link footer__link" id="irina-linkedIn") 
+              img(src='/footer-images/linkedinIcon.png' alt='Irena LinkedIn' style='width:25px; height:25px;')
+            a(href="https://github.com/IrinaAmzashvili" class="navbar__link footer__link" id="irina-github") 
+              img(src='/footer-images/githubIcon.png' alt='Irena GitHub' style='width:25px; height:25px;')
+        div(class='footer-div' id='dechon')
+          p Dechon Ryan
+          div(class='footer__img')
+            a(href="https://www.linkedin.com/in/dechon-r-1230097b" class="navbar__link footer__link" id="dechon-linkedIn") 
+              img(src='/footer-images/linkedinIcon.png' alt='Dechon LinkedIn' style='width:25px; height:25px;')
+            a(href="https://github.com/dech0n" class="navbar__link footer__link" id="dechon-github") 
+              img(src='/footer-images/githubIcon.png' alt='Dechon GitHub' style='width:25px; height:25px;')
+        div(class='footer-div' id='jordyn')
+          p Jordyn Sechrist
+          div(class='footer__img')
+            a(href="https://www.linkedin.com/in/jordyn-sechrist-87710b207/" class="navbar__link footer__link" id="jordyn-linkedIn")
+              img(src='/footer-images/linkedinIcon.png' alt='Jordyn LinkedIn' style='width:25px; height:25px;')
+            a(href="https://github.com/J0914" class="navbar__link footer__link" id="jordyn-github") 
+              img(src='/footer-images/githubIcon.png' alt='Jordyn GitHub' style='width:25px; height:25px;')
+
+

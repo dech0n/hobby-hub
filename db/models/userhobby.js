@@ -6,7 +6,6 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   UserHobby.associate = function(models) {
     // associations can be defined here
-    UserHobby.hasMany(models.Resource, { foreignKey: 'userHobbyId' })
     UserHobby.belongsTo(models.Wheelhouse, { foreignKey: 'wheelhouseId' })
     UserHobby.belongsTo(models.Hobby, { foreignKey: 'hobbyId' })
 
