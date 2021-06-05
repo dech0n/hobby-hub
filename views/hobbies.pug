@@ -8,6 +8,8 @@ block content
             each hobby in hobbies
                 a(href=`/hobbies/${hobby.id}` class="links hobby_links")
                     div.hobbies__content
-                        img(src=hobby.img, alt="illustration of the hobby" class='images hobby_image')
-                        p.hobby_title= hobby.title
-                        p.hobby_description= hobby.description
+                        .top_half
+                            img(src=hobby.img, alt="illustration of the hobby" class='images hobby_image')
+                            p.hobby_title= hobby.title
+                        .bottom_half
+                            p.hobby_description= hobby.description

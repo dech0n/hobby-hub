@@ -19,7 +19,7 @@ html
         a(href="/")
           p(id="hobby-hub-logo") Hobby Hub
         ul(class="" id="navigation-links")
-          li: a(href="/" class="navbar__nav-link" id='homeBtn') Home
+          li: a(href="/" class="navbar__nav-link .active-nav-link" id='homeBtn') Home
           //- My Wheelhouse redirects to /login when user not logged in
           if req.session.auth
             li: a(href=`/users/${req.session.auth.userId}/wheelhouse` class="navbar__nav-link" id='wheelhouseBtn') My Wheelhouse

@@ -2,10 +2,9 @@ extends layout.pug
 include utils.pug
 
 block content
-    h1.login_header.header= title
-    +validationErrorSummary(errors)
-
     .formDiv
+        h1.login_header.header= title
+        +validationErrorSummary(errors)
         form(action="/users/login" method="post" class="login_form")
             input(type="hidden", name="_csrf", value=csrfToken)
             +field('Username', 'username', username)
