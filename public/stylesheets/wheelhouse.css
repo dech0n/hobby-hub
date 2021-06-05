@@ -40,7 +40,7 @@
     border-top-right-radius: 15px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    border: 2px inset rgba(236, 231, 226, 1);
+    border: 2px solid rgba(70, 87, 77, .3);
     border-bottom: 0;
     color: #46574D;
 }
