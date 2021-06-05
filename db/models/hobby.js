@@ -16,6 +16,8 @@ module.exports = (sequelize, DataTypes) => {
     // Hobby.belongsToMany(models.Wheelhouse, columnMapping)
     Hobby.hasMany(models.UserHobby, { foreignKey: 'wheelhouseId' });
     Hobby.hasMany(models.Experience, { foreignKey: 'hobbyId' });
+    Hobby.hasMany(models.Resource, { foreignKey: 'hobbyId' })
+
   };
   return Hobby;
 };
