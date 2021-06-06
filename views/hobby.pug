@@ -17,15 +17,19 @@ block content
               each wheelhouse in user.wheelhouses
                 option(value=wheelhouse.id)= wheelhouse.status
             button(class="button status-button" id="add-to-wheelhouse-button") Add to Wheelhouse
-        p= hobby.description         
+        p= hobby.description
     if req.session.auth
       h2 Resources
       div(id='resources-form-container')
         form(id="resource-form")
           div(id="resource-form-container")
             input(type="hidden", name="_csrf", value=csrfToken)
-            input(id="resource-title-input" class="resource-input" name="resource-title-input" placeholder="Enter name of Resource.")
-            input(id="resource-link-input" class="resource-input" name="resource-link-input" placeholder="Enter link for Resource.")
+            div.resource_title
+              label(for="resource-title-input") Title
+              input(id="resource-title-input" class="resource-input" name="resource-title-input" placeholder="Enter name of Resource.")
+            div.resource_link
+              label(for="resource-title-input" class='link-input-label') Link
+              input(id="resource-link-input" class="resource-input" name="resource-link-input" placeholder="Enter link to Resource.")
         button(class="button" id="add-resource-button") Add
       div(id='resources-container')
         ol(id='resources-list')

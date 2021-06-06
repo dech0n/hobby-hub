@@ -101,7 +101,7 @@ h1 {
     flex-direction: column;
     margin-top: 15px;
     margin-bottom: 15px;
-    
+
 }
 
 #resources-container {
@@ -126,16 +126,24 @@ h1 {
     width: 100%;
     resize: none;
     height: 25px;
-    margin: .5px;
+    margin: auto;
     border-left: 1px solid #46574D;
     border-right: 1px solid #46574D;
 }
 
-#resource-title-input {
+#resource-title-input, #resource-link-input {
     border-top: 1px solid #46574D;
     border-radius: 5px;
 
 }
+
+.resource_title {
+    padding-bottom: 5px;
+}
+
+/* .link-input-label {
+    padding-bottom: 5px;
+} */
 
 .resource-label {
     border-bottom: 1px solid #46574D;
