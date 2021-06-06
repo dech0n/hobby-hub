@@ -7,9 +7,9 @@ h1 {
     /* text-align: left; */
 }
 
-/* .hobby-h1 {
-    padding-bottom: 10px;
-} */
+.hobby-h1 {
+    margin-bottom: 10px;
+}
 
 #hobby-page {
     margin: auto;
