@@ -1,0 +1,24 @@
+#favicon {
+    font-family: 'Oleo Script Swash Caps';
+    text-align: center;
+    background-color: rgba(173,213,189,255);
+    color: white;
+    font-size: 65px;
+    border: solid 1px rgba(0,0,0,.1);
+    border-radius: 50%;
+    width: 152px;
+    height: 152px;
+    display: flex;
+    justify-content: center;
+    margin: 100px;
+}
+
+#fav {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+}
+
+body {
+    justify-content: center;
+}
