@@ -1,6 +1,6 @@
-.experience-title::before {
-    /* content: url('../hobby-images/anon-user-image.png'); */
-}
+/* .experience-title::before {
+    content: url('../hobby-images/anon-user-image.png');
+} */
 
 h1 {
     flex-grow: 2;
