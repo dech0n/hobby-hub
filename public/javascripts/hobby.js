@@ -92,7 +92,7 @@ if (editExperienceButton) {
         const data = await resPost.json();
 
         if (resPost.ok) {
-          console.log('LOOKS LIKE WE MADE IT!!!')
+          // console.log('LOOKS LIKE WE MADE IT!!!') //! for testing only
           location.reload();
         }
       })
@@ -101,7 +101,7 @@ if (editExperienceButton) {
 }
 
 if (deleteExperienceButton) {
-  
+
   deleteExperienceButton.addEventListener("click", async () => {
     const res = await fetch(`/api/experiences/${hobbyId}`);
     const experience = await res.json();
@@ -137,6 +137,10 @@ window.addEventListener('load', async () => {
       li.innerHTML = `<a href=${resource.link}>${resource.title}</a>`
       li.className = 'resource-link'
       list.appendChild(li);
+      const removeBtn = document.createElement('button');
+      removeBtn.innerHTML = 'delete';
+      removeBtn.className = `remove-resource ${resource.id}`
+      li.appendChild(removeBtn);
     })
   }
 })
@@ -163,13 +167,17 @@ addResourceButton.addEventListener('click', async () => {
 
     const list = document.getElementById('resources-list');
 
-    if (resources) {
+    if (resources.resources) {
       list.innerHTML = '';
       resources.resources.forEach(resource => {
         const li = document.createElement('li');
         li.innerHTML = `<a href=${resource.link}>${resource.title}</a>`
         li.className = 'resource-link'
         list.appendChild(li);
+        const removeBtn = document.createElement('button');
+      removeBtn.innerHTML = 'delete';
+      removeBtn.className = `remove-resource ${resource.id}`
+      li.appendChild(removeBtn);
       })
     }
 
@@ -177,7 +185,15 @@ addResourceButton.addEventListener('click', async () => {
     document.getElementById('resource-link-input').value = '';
 
   } catch (e) {
-    console.log(e)
+    console.log(e.message)
   }
 
 })
+
+// if(document.querySelectorAll('remove-resource')){
+//   const removeBtn = document.querySelectorAll('remove-resource')
+
+//   removeBtn.addEventListener('click', async(target) => {
+//     const res = await fetch(`/api/resources/)
+//   })
+// }

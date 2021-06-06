@@ -40,15 +40,6 @@ h1 {
   justify-content: flex-start;
 }
 
-h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-top: 30px;
-  margin-bottom: 40px;
-  border-bottom: 2px solid #46574D;
-  display: flex;
-  justify-content: center;
-}
 
 button {
   background-color: #46574D;
