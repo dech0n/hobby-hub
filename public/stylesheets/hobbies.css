@@ -12,7 +12,6 @@ html {
     align-items: center;
     flex-direction: column;
     width: auto;
-    width: 100%;
 }
 .hobbies {
     display: grid;
