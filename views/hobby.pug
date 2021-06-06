@@ -19,7 +19,7 @@ block content
             button(class="button status-button" id="add-to-wheelhouse-button") Add to Wheelhouse
         p= hobby.description
     if req.session.auth
-      h2 Resources
+      h2(class='hobby-h2') Resources
       div(id='resources-form-container')
         form(id="resource-form")
           div(id="resource-form-container")
@@ -35,8 +35,8 @@ block content
         ol(id='resources-list')
           label(class='resource-label') Your Resources:
       //- if user is logged in, show the add experience form
-    if req.session.auth
-      h2 Experiences
+    h2(class='hobby-h2') Experiences
+    if req.session.auth && !user.experience
       form(id="experience-form")
         div(id="experience-form-container")
           input(type="hidden", name="_csrf", value=csrfToken)

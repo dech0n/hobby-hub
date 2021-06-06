@@ -21,17 +21,6 @@ router.get(
   "/:hobbyId(\\d+)",
   asyncHandler(async (req, res) => {
     let user;
-    if (req.session.auth) {
-      user = await db.User.findByPk(req.session.auth.userId, {
-        include: db.Wheelhouse,
-      });
-      if (user) {
-        // !.isEmpty?
-        user.wheelhouses = await db.Wheelhouse.findAll({
-          where: { userId: user.id },
-        });
-      }
-    }
 
     const hobbyId = parseInt(req.params.hobbyId, 10);
     const hobby = await db.Hobby.findByPk(hobbyId, { include: db.Experience });
@@ -39,6 +28,35 @@ router.get(
       where: { hobbyId: hobby.id },
       include: db.User,
     });
+
+    if (req.session.auth) {
+      user = await db.User.findByPk(req.session.auth.userId, {
+        include: db.Wheelhouse,
+      });
+      if (user) {
+        user.wheelhouses = await db.Wheelhouse.findAll({
+          where: { userId: user.id },
+        });
+        const wheelhouseIds = user.wheelhouses.map(wh => wh.id)
+        const userHobby = await db.UserHobby.findOne({
+          where: {
+            hobbyId,
+            wheelhouseId: wheelhouseIds
+          }
+        });
+        if (userHobby) {
+          user.userHobby = true;
+        }
+
+        const experience = await db.Experience.findOne({
+          where: { hobbyId, userId: user.id }
+        });
+
+        if (experience) {
+          user.experience = true;
+        }
+      }
+    }
 
     res.render("hobby", {
       title: `Hobby: ${hobby.title}`,

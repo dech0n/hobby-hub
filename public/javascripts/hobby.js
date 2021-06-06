@@ -23,7 +23,7 @@ const deleteExperienceButton = document.getElementById(
   "delete-experience-button"
 );
 
-// To implement in the future
+// To implement in the future: AJAX
 
 // const getAllExperiences = async (hobbyId) => {
 //   const experiencesContainer = document.getElementById("experiences-container");
@@ -37,11 +37,12 @@ const deleteExperienceButton = document.getElementById(
 //   }
 // };
 
-addExperienceButton.addEventListener("click", async (event) => {
+if (addExperienceButton) {
 
-  const message = document.getElementById("experience-message-input").value;
-  if (!message) return;
-  try {
+  addExperienceButton.addEventListener("click", async (event) => {
+    const message = document.getElementById("experience-message-input").value;
+    if (!message) return;
+    try {
     const res = await fetch(`/api/experiences/hobbies/${hobbyId}`, {
       method: "POST",
       headers: {
@@ -55,10 +56,11 @@ addExperienceButton.addEventListener("click", async (event) => {
     if (res.ok) {
       getAllExperiences(hobbyId);
     }
-  } catch (e) {
-    console.error(e.message);
-  }
+    } catch (e) {
+      console.error(e.message);
+    }
 });
+}
 
 if (editExperienceButton) {
 
@@ -99,6 +101,7 @@ if (editExperienceButton) {
 }
 
 if (deleteExperienceButton) {
+  
   deleteExperienceButton.addEventListener("click", async () => {
     const res = await fetch(`/api/experiences/${hobbyId}`);
     const experience = await res.json();
