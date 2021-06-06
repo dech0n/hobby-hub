@@ -40,11 +40,10 @@ input {
 .errorsDiv {
     display: flex;
     flex-wrap: wrap;
-    width: 500px;
-    border: solid 1px black;
-    border-radius: 2%;
+    width: 350px;
     box-sizing: border-box;
     justify-content: center;
+    padding-bottom: 30px;
 }
 
 ul {

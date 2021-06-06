@@ -12,6 +12,7 @@ html {
     align-items: center;
     flex-direction: column;
     width: auto;
+    margin-top: 30px;
 }
 .hobbies {
     display: grid;
@@ -90,7 +91,7 @@ html {
 .hobby_title {
     margin-top: 0px;
     margin-bottom: 15px;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .hobby_description {
