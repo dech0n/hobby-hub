@@ -33,7 +33,7 @@ router.get(
 );
 
 // post a new experience
-router.post(
+router.post( 
   "/hobbies/:hobbyId",
   asyncHandler(async (req, res) => {
     const userId = req.session.auth.userId;
