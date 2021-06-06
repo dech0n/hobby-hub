@@ -285,6 +285,7 @@ h1 {
     overflow-x: hidden;
     overflow-y: auto;
     height: 130px;
+    padding: 3px;
 }
 
 .resource-link {
@@ -346,3 +347,5 @@ h2 {
     display: flex;
     justify-content: flex-start;
   }
+
+
