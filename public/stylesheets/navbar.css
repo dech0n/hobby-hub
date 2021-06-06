@@ -109,7 +109,7 @@ a p#hobby-hub-logo {
     }
 }
 
-@media screen and (max-width: 1186px) {
+@media screen and (max-width: 1208px) {
     #user-buttons  {
         margin: 25px 3vw 0;
         margin-left: 0;
@@ -120,7 +120,7 @@ a p#hobby-hub-logo {
 
 }
 
-@media screen and (max-width: 1119px) {
+@media screen and (max-width: 1131px) {
     #user-buttons {
         display: flex;
         flex-direction: column;

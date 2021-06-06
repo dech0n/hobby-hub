@@ -5,6 +5,11 @@
 h1 {
     flex-grow: 2;
     /* text-align: left; */
+    font-weight: 600;
+}
+
+.hobby-h2 {
+    margin-top: 60px;
 }
 
 .hobby-h1 {
@@ -13,7 +18,7 @@ h1 {
 
 #hobby-page {
     margin: auto;
-    width: 35%;
+    width: 530px;
     padding: 10px;
 }
 
@@ -32,10 +37,9 @@ h1 {
 
 .experience-user {
     text-align: left;
-    padding-bottom: 10px;
     margin: 0;
-    padding: 15px 0;
-    font-weight: 800;
+    padding: 0 0 15px 0;
+    font-weight: 600;
 }
 
 .experience-message {
@@ -98,6 +102,10 @@ h1 {
     margin: 5px 0;
 }
 
+#select-status {
+    height: 30px;
+}
+
 .editable-area {
     border: 1px solid #46574D;
     border-radius: 5px;
@@ -143,7 +151,6 @@ h1 {
 #resource-title-input, #resource-link-input {
     border-top: 1px solid #46574D;
     border-radius: 5px;
-
 }
 
 .resource_title {
