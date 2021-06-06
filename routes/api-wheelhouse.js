@@ -49,7 +49,7 @@ router.get('/currentlyLearning', asyncHandler(async(req, res) => {
     const hobbies = wheelhouse.UserHobbies.map(userHobby => {
         return userHobby.Hobby
     })
-    console.log('---------------------',hobbies)
+    // console.log('---------------------',hobbies) //! for testing purposes only
     res.send(hobbies)
     } catch (e) {
         res.send(e.message)
