@@ -29,9 +29,15 @@ h1 {
   font-weight: 800;
   margin-top: 30px;
   margin-bottom: 40px;
-  border-bottom: 2px solid #46574D;
   display: flex;
   justify-content: center;
+}
+
+.hobby-h1 {
+  border-bottom: 2px solid #46574D;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
 }
 
 h2 {
