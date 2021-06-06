@@ -137,6 +137,10 @@ window.addEventListener('load', async () => {
       li.innerHTML = `<a href=${resource.link}>${resource.title}</a>`
       li.className = 'resource-link'
       list.appendChild(li);
+      const removeBtn = document.createElement('button');
+      removeBtn.innerHTML = 'delete';
+      removeBtn.className = `remove-resource ${resource.id}`
+      li.appendChild(removeBtn);
     })
   }
 })
@@ -163,13 +167,17 @@ addResourceButton.addEventListener('click', async () => {
 
     const list = document.getElementById('resources-list');
 
-    if (resources) {
+    if (resources.resources) {
       list.innerHTML = '';
       resources.resources.forEach(resource => {
         const li = document.createElement('li');
         li.innerHTML = `<a href=${resource.link}>${resource.title}</a>`
         li.className = 'resource-link'
         list.appendChild(li);
+        const removeBtn = document.createElement('button');
+      removeBtn.innerHTML = 'delete';
+      removeBtn.className = `remove-resource ${resource.id}`
+      li.appendChild(removeBtn);
       })
     }
 
@@ -177,7 +185,18 @@ addResourceButton.addEventListener('click', async () => {
     document.getElementById('resource-link-input').value = '';
 
   } catch (e) {
-    console.log(e)
+    console.log(e.message)
   }
 
 })
+<<<<<<< Updated upstream
+=======
+
+// if(document.querySelectorAll('remove-resource')){
+//   const removeBtn = document.querySelectorAll('remove-resource')
+
+//   removeBtn.addEventListener('click', async(target) => {
+//     const res = await fetch(`/api/resources/)
+//   })
+// }
+>>>>>>> Stashed changes

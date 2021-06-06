@@ -56,7 +56,7 @@ html {
 /* keeps scrolling functionality but hides the scrollbar */
 .bottom_half::-webkit-scrollbar {
     display: none;
-  }
+}
 
 .top_half, .bottom_half {
     display: flex;
