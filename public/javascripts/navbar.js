@@ -8,7 +8,7 @@ demoUser.addEventListener('click', async () => {
         window.location.reload();
         }
     } catch (e) {
-        console.log('Error with demo User', e.message)
+        console.error('Error with demo User', e.message)
     }
 
     })

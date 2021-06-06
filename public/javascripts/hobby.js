@@ -90,7 +90,7 @@ if (editExperienceButton) {
         const data = await resPost.json();
 
         if (resPost.ok) {
-          console.log('LOOKS LIKE WE MADE IT!!!')
+          // console.log('LOOKS LIKE WE MADE IT!!!') //! for testing only
           location.reload();
         }
       })
@@ -143,7 +143,7 @@ const addResourceButton = document.getElementById('add-resource-button');
 addResourceButton.addEventListener('click', async () => {
   const title = document.getElementById("resource-title-input").value;
   const link = document.getElementById('resource-link-input').value;
-  
+
   try {
     const res = await fetch(`/api/resources/hobbies/${hobbyId}`, {
       method: "POST",
@@ -151,7 +151,7 @@ addResourceButton.addEventListener('click', async () => {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        title, 
+        title,
         link
       }),
     });

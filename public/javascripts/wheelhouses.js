@@ -61,7 +61,7 @@ window.addEventListener('load', async () => {
             bottomOfHobbyDiv.appendChild(description);
         })
     } catch (e) {
-        console.log('Error on load!', e.message)
+        console.error('Error on load!', e.message)
     }
 
 })
@@ -123,7 +123,7 @@ allBtn.addEventListener('click', async () => {
             bottomOfHobbyDiv.appendChild(description);
         })
     } catch (e) {
-        console.log('Error -- all btn', e.message)
+        console.error('Error -- all btn', e.message)
     }
 
 })
@@ -186,7 +186,7 @@ wantToLearnBtn.addEventListener('click', async () => {
         })
 
     } catch (e) {
-        console.log('Error -- want to learn btn', e.message)
+        console.error('Error -- want to learn btn', e.message)
     }
 })
 
@@ -248,7 +248,7 @@ currentlyLearningBtn.addEventListener('click', async () => {
         })
 
     } catch (e) {
-        console.log('Error -- currently learning btn', e.message)
+        console.error('Error -- currently learning btn', e.message)
     }
 })
 
@@ -310,6 +310,6 @@ accomplishedBtn.addEventListener('click', async () => {
         })
 
     } catch (e) {
-        console.log('Error -- accomplished btn', e.message)
+        console.error('Error -- accomplished btn', e.message)
     }
 })
