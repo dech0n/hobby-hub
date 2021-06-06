@@ -11,7 +11,7 @@ router.get(
         const userId = req.session.auth.userId;
         const hobbyId = req.params.hobbyId;
         const resources = await db.Resource.findAll({
-            where: [{hobbyId},{userId}] 
+            where: [{hobbyId},{userId}]
         })
       res.json({ resources });
     })
@@ -30,9 +30,9 @@ router.post(
           title,
           link
       });
-      console.log('Got Here ------------------------------')
+      // console.log('Got Here ------------------------------') //! for testing only
       const resources = await db.Resource.findAll({
-        where: [{hobbyId},{userId}] 
+        where: [{hobbyId},{userId}]
     })
       res.json({ resources });
     })
