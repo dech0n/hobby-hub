@@ -64,7 +64,7 @@ html {
 }
 
 .top_half {
-    background-color: rgba(173,213,189,0.4);
+    background-color: rgba(173,213,189,0.1);
     border-top-left-radius: 2%;
     border-top-right-radius: 2%;
     /* padding-bottom: 3px; */

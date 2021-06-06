@@ -92,7 +92,7 @@ if (editExperienceButton) {
         const data = await resPost.json();
 
         if (resPost.ok) {
-          console.log('LOOKS LIKE WE MADE IT!!!')
+          // console.log('LOOKS LIKE WE MADE IT!!!') //! for testing only
           location.reload();
         }
       })
