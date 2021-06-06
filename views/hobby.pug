@@ -9,7 +9,7 @@ block content
     div(class="hobby-header-container")
       img(src=hobby.img alt="illustration of the hobby")
       div(id=hobby.id class="title-description")
-        h1= hobby.title
+        h1(class='hobby-h1')= hobby.title
         div(class="select-div")
           if req.session.auth
             select(name="status" id="select-status" placeholder="Add to wheelhouse")
