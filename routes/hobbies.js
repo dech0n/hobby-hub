@@ -42,10 +42,11 @@ router.get(
           where: {
             hobbyId,
             wheelhouseId: wheelhouseIds
-          }
+          },
+          include: db.Wheelhouse
         });
         if (userHobby) {
-          user.userHobby = true;
+          user.userHobbyWheelhouse = userHobby.Wheelhouse.status;
         }
 
         const experience = await db.Experience.findOne({

@@ -6,6 +6,7 @@ h1 {
     flex-grow: 2;
     /* text-align: left; */
     font-weight: 600;
+    margin-bottom: 30px;
 }
 
 .hobby-h2 {
@@ -34,7 +35,6 @@ h1 {
 .experience-user {
     text-align: left;
     margin: 0;
-    padding: 0 0 15px 0;
     font-weight: 600;
 }
 
@@ -154,4 +154,9 @@ ol {
     display: flex;
     flex-direction: column;
     border-bottom: 1px solid #46574D;
+}
+
+.delete-from-wheelhouse {
+    background-color: #ed5e68;
+    border: none;
 }
