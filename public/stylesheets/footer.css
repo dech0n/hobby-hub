@@ -16,8 +16,9 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    position: static;
-  }
+    position: absolute;
+}
+
 
   .footer-div {
     display: flex;
