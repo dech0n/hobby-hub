@@ -39,7 +39,7 @@ router.post(
     const userId = req.session.auth.userId;
     const hobbyId = req.params.hobbyId;
     const message = req.body.message;
-    console.log(message);
+    // console.log(message); //! for testing only
     const experience = await db.Experience.create({
         hobbyId,
         userId,
