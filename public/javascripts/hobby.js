@@ -3,18 +3,18 @@ const selectStatus = document.getElementById("select-status");
 const hobbyId = document.querySelector(".title-description").id;
 
 if (addToWheelhouseBtn) {
-addToWheelhouseBtn.addEventListener("click", async () => {
-  const wheelhouseId = selectStatus.value;
+  addToWheelhouseBtn.addEventListener("click", async () => {
+    const wheelhouseId = selectStatus.value;
 
-  const res = await fetch(`/api/wheelhouse/${wheelhouseId}/hobby/${hobbyId}`, {
-    method: "POST",
+    const res = await fetch(`/api/wheelhouse/${wheelhouseId}/hobby/${hobbyId}`, {
+      method: "POST",
+    });
+
+    if (res.ok) {
+      addToWheelhouseBtn.classList.add("checked");
+      addToWheelhouseBtn.innerText = "Added!";
+    }
   });
-
-  if (res.ok) {
-    addToWheelhouseBtn.classList.add("checked");
-    addToWheelhouseBtn.innerText = "Added!";
-  }
-});
 }
 
 const addExperienceButton = document.getElementById("add-experience-button");
@@ -44,8 +44,12 @@ addExperienceButton.addEventListener("click", async (event) => {
   try {
     const res = await fetch(`/api/experiences/hobbies/${hobbyId}`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message }),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message
+      }),
     });
     const data = await res.json();
     if (res.ok) {
@@ -69,13 +73,19 @@ if (editExperienceButton) {
     const experience = await resGet.json();
 
     if (resGet.ok) {
-      const { id } = experience.experience
+      const {
+        id
+      } = experience.experience
       addButton.addEventListener('click', async () => {
         const message = postBody.innerText;
         const resPost = await fetch(`/api/experiences/${id}`, {
           method: 'PUT',
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message })
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            message
+          })
         })
         const data = await resPost.json();
 
@@ -94,8 +104,12 @@ if (deleteExperienceButton) {
     const experience = await res.json();
 
     if (res.ok) {
-      const { id } = experience.experience;
-      const resDel = await fetch(`/api/experiences/${id}`, { method: 'DELETE' });
+      const {
+        id
+      } = experience.experience;
+      const resDel = await fetch(`/api/experiences/${id}`, {
+        method: 'DELETE'
+      });
       await resDel.json()
 
       if (resDel.ok) {
@@ -110,8 +124,57 @@ if (deleteExperienceButton) {
 
 window.addEventListener('load', async () => {
   const res = await fetch(`/api/resources/hobbies/${hobbyId}`)
-  console.log('THE RES------ ', res)
   const resources = await res.json();
-  console.log('frontend resources--------', resources)
+
+  const list = document.getElementById('resources-list');
+
+  if (resources) {
+    resources.resources.forEach(resource => {
+      const li = document.createElement('li');
+      li.innerHTML = `<a href=${resource.link}>${resource.title}</a>`
+      li.className = 'resource-link'
+      list.appendChild(li);
+    })
+  }
 })
 
+const addResourceButton = document.getElementById('add-resource-button');
+
+addResourceButton.addEventListener('click', async () => {
+  const title = document.getElementById("resource-title-input").value;
+  const link = document.getElementById('resource-link-input').value;
+  
+  try {
+    const res = await fetch(`/api/resources/hobbies/${hobbyId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        title, 
+        link
+      }),
+    });
+
+    const resources = await res.json();
+
+    const list = document.getElementById('resources-list');
+
+    if (resources) {
+      list.innerHTML = '';
+      resources.resources.forEach(resource => {
+        const li = document.createElement('li');
+        li.innerHTML = `<a href=${resource.link}>${resource.title}</a>`
+        li.className = 'resource-link'
+        list.appendChild(li);
+      })
+    }
+
+    document.getElementById('resource-title-input').value = '';
+    document.getElementById('resource-link-input').value = '';
+
+  } catch (e) {
+    console.log(e)
+  }
+
+})
