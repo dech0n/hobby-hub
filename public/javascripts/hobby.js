@@ -189,8 +189,6 @@ addResourceButton.addEventListener('click', async () => {
   }
 
 })
-<<<<<<< Updated upstream
-=======
 
 // if(document.querySelectorAll('remove-resource')){
 //   const removeBtn = document.querySelectorAll('remove-resource')
@@ -199,4 +197,3 @@ addResourceButton.addEventListener('click', async () => {
 //     const res = await fetch(`/api/resources/)
 //   })
 // }
->>>>>>> Stashed changes
