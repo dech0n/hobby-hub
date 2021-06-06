@@ -15,6 +15,9 @@ const getAllWheelhouses = async (id) => {
         where: {
             userId: id
         },
+        order: [
+          ['id', 'DESC'],
+        ],
         include: [{
             model: db.UserHobby,
             include: [{

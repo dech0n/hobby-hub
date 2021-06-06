@@ -40,6 +40,7 @@ h1 {
   justify-content: flex-start;
 }
 
+<<<<<<< Updated upstream
 h2 {
   font-size: 1.5rem;
   font-weight: 600;
@@ -49,6 +50,8 @@ h2 {
   display: flex;
   justify-content: center;
 }
+=======
+>>>>>>> Stashed changes
 
 button {
   background-color: #46574D;
