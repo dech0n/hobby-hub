@@ -189,11 +189,3 @@ addResourceButton.addEventListener('click', async () => {
   }
 
 })
-
-// if(document.querySelectorAll('remove-resource')){
-//   const removeBtn = document.querySelectorAll('remove-resource')
-
-//   removeBtn.addEventListener('click', async(target) => {
-//     const res = await fetch(`/api/resources/)
-//   })
-// }
