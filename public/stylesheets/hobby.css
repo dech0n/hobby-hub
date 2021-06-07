@@ -105,7 +105,7 @@
 }
 
 #select-status {
-    height: 30px;
+    height: 26px;
     margin-right: 3px;
 }
 
@@ -181,6 +181,7 @@ ol {
 .delete-from-wheelhouse {
     background-color: #ed5e68;
     border: none;
+    margin-left: 2px;
 }
 
 .remove-resource {
