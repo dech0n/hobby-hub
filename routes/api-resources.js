@@ -10,7 +10,7 @@ router.get(
     asyncHandler(async (req, res) => {
       if (req.session.auth) {
         const userId = req.session.auth.userId;
-        console.log("--------------->")
+        // console.log("--------------->") // for testing only
         const hobbyId = req.params.hobbyId;
         const resources = await db.Resource.findAll({
             where: [{hobbyId},{userId}]

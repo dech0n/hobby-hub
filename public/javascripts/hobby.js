@@ -1,8 +1,66 @@
-const addToWheelhouseBtn = document.getElementById("add-to-wheelhouse-button");
-const deleteFromWheelhouseBtn = document.getElementById("delete-from-wheelhouse");
-const selectStatus = document.getElementById("select-status");
-// const userHobbyId = document.querySelector(".change-remove-div").id;
 const hobbyId = document.querySelector(".title-description").id;
+let userHobby;
+// Select dropdown
+window.addEventListener('load', async () => {
+  // on load, populate selectContainer with dropdown if user is logged in
+  const selectContainer = document.querySelector(".select-container");
+  const res = await fetch(`/api/userHobbies/${hobbyId}`)
+  const data = await res.json();
+
+  if (res.ok) {
+    const user = data.user;
+    userHobby = data.userHobby;
+
+    if (user) {
+      const selectDiv = document.createElement('div');
+      selectDiv.classList.add('select-div');
+      selectContainer.appendChild(selectDiv);
+      if (userHobby) {
+        const text = document.querySelector('.text');
+        text.innerHTML = `${userHobby.Wheelhouse.status}`
+        // selectContainer.prepend(text);
+
+        const wheelhouse = user.Wheelhouses.filter(wh => {
+          return wh.id !== userHobby.wheelhouseId;
+        });
+
+        createDropdown(wheelhouse, 'Update Status');
+        // Delete from Wheelhouse button
+        // const removeButton = document.createElement('button');
+        // removeButton.setAttribute('id', 'delete-from-wheelhouse');
+        // removeButton.innerHTML = 'Remove from Wheelhouse';
+        // selectDiv.appendChild(removeButton);
+      } else {
+        createDropdown(user.Wheelhouses, 'Add to Wheelhouse');
+      }
+    }
+  }
+
+  function createDropdown(wheelhouses, buttonText) {
+    const selectDiv = document.querySelector('.select-div');
+    const selectDropdown = document.createElement('select');
+    selectDropdown.setAttribute('name', 'status');
+    selectDropdown.setAttribute('id', 'select-status');
+    selectDiv.appendChild(selectDropdown);
+
+    wheelhouses.forEach(status => {
+      const option = document.createElement('option');
+      option.setAttribute('value', status.id);
+      option.innerHTML = status.status;
+      selectDropdown.appendChild(option);
+    });
+
+    const statusButton = document.createElement('button');
+    statusButton.innerText = buttonText;
+    statusButton.classList.add('status-button');
+    statusButton.setAttribute('id', 'add-to-wheelhouse-button');
+    selectDiv.appendChild(statusButton);
+  }
+
+
+  const addToWheelhouseBtn = document.getElementById("add-to-wheelhouse-button");
+  const deleteFromWheelhouseBtn = document.getElementById("delete-from-wheelhouse");
+  const selectStatus = document.getElementById("select-status");
 
 if (addToWheelhouseBtn) {
   addToWheelhouseBtn.addEventListener("click", async () => {
@@ -11,39 +69,31 @@ if (addToWheelhouseBtn) {
     const res = await fetch(`/api/wheelhouse/${wheelhouseId}/hobby/${hobbyId}`, {
       method: "POST",
     });
+    const userHobby = await res.json();
 
-    if (res.ok) {
+    if (res.ok && userHobby.userHobby) {
+      const text = document.querySelector('.text');
+      text.innerHTML = userHobby.userHobby.Wheelhouse.status
       addToWheelhouseBtn.classList.add("checked");
       addToWheelhouseBtn.innerText = "Added!";
     }
   });
 }
 
-if (deleteFromWheelhouseBtn) {
-  deleteFromWheelhouseBtn.addEventListener('click', async () => {
-    console.log(userHobbyId)
-    const res = await fetch(`/api/userHobbies/${userHobbyId}`)
-    const data = await res.json();
-    if (res.ok) {
-      console.log(data)
-    }
-  });
-}
-
-// Select dropdown
-window.addEventListener('load', async () => {
-  const selectContainer = document.getElementById("select-container");
-  const res = await fetch(`/api/userHobbies/${hobbyId}`)
-  const data = await res.json();
-
-  if (res.ok) {
+// Delete from Wheelhouse
+// if (deleteFromWheelhouseBtn) {
+//   deleteFromWheelhouseBtn.addEventListener('click', async () => {
+//     const res = await fetch(`/api/userHobbies/${userHobby.id}`, {
+//       method: 'DELETE'
+//     });
+    // const data = await res.json();
     // console.log(data)
-    // const { user, userHobby } = data;
-
-    // if (user) {
-
+    // if (res.ok) {
     // }
-  }
+  // });
+// }
+
+
 });
 
 
@@ -54,7 +104,7 @@ const deleteExperienceButton = document.getElementById(
 );
 
 
-// To implement in the future: AJAX
+// To implement in the future: AJAX for Experiences
 
 // const getAllExperiences = async (hobbyId) => {
 //   const experiencesContainer = document.getElementById("experiences-container");
@@ -165,10 +215,10 @@ window.addEventListener('load', async () => {
       li.innerHTML = `<a href=${resource.link}>${resource.title}</a>`
       li.className = 'resource-link'
       list.appendChild(li);
-      const removeBtn = document.createElement('button');
-      removeBtn.innerHTML = 'delete';
-      removeBtn.className = `remove-resource ${resource.id}`
-      li.appendChild(removeBtn);
+      // const removeBtn = document.createElement('button');
+      // removeBtn.innerHTML = 'delete';
+      // removeBtn.className = `remove-resource ${resource.id}`
+      // li.appendChild(removeBtn);
     })
   }
 })
@@ -204,10 +254,10 @@ if (addResourceButton) {
         li.innerHTML = `<a href=${resource.link}>${resource.title}</a>`
         li.className = 'resource-link'
         list.appendChild(li);
-        const removeBtn = document.createElement('button');
-        removeBtn.innerHTML = 'Delete';
-        removeBtn.className = `remove-resource ${resource.id}`
-        li.appendChild(removeBtn);
+        // const removeBtn = document.createElement('button');
+        // removeBtn.innerHTML = 'Delete';
+        // removeBtn.className = `remove-resource ${resource.id}`
+        // li.appendChild(removeBtn);
       })
     }
 
