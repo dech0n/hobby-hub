@@ -2,26 +2,19 @@
     content: url('../hobby-images/anon-user-image.png');
 } */
 
-h1 {
-    flex-grow: 2;
-    /* text-align: left; */
-    font-weight: 600;
-    margin-bottom: 30px;
-}
-
 .hobby-h1 {
+    flex-grow: 2;
     margin-bottom: 10px;
     border-bottom: 2px solid #46574D;
     width: 100%;
     display: flex;
     justify-content: flex-start;
-  }
+}
 
 .hobby-h2 {
     margin-top: 60px;
     font-size: 1.5rem;
     font-weight: 800;
-    margin-top: 30px;
     margin-bottom: 40px;
     /* border-bottom: 2px solid #46574D; */
     display: flex;
@@ -32,6 +25,8 @@ h1 {
     margin: auto;
     width: 530px;
     padding: 10px;
+    max-width: 550px;
+    min-width: 400px;
 }
 
 #experiences-container {
@@ -51,166 +46,13 @@ h1 {
     text-align: left;
     margin: 0;
     font-weight: 600;
+    padding: 15px 0 10px 0;
 }
 
-    .experience-title::before {
-        /* content: url('../hobby-images/anon-user-image.png'); */
-    }
-
-    h1 {
-        flex-grow: 2;
-        /* text-align: left; */
-    }
-
-    #hobby-page {
-        margin: auto;
-        width: 35%;
-        padding: 10px;
-        max-width: 550px;
-        min-width: 400px;
-    }
-
-    #experiences-container {
-        /* border: 1px solid black; */
-        text-align: center;
-    }
-
-    .experiences-container__experience {
-        display: flex;
-        flex-direction: column;
-        margin: 30px 0;
-        border-bottom: 1px solid #b8b8b8;
-        padding-bottom: 30px;
-    }
-
-    .experience-user {
-        text-align: left;
-        padding-bottom: 10px;
-        margin: 0;
-        padding: 15px 0;
-        font-weight: 800;
-    }
-
-    .experience-message {
-        text-align: left;
-        margin: 0;
-        padding: 15px 0;
-    }
-
-    .experience-header {
-        display: flex;
-        border-bottom: 1px solid grey;
-        justify-content: flex-start;
-    }
-
-    .hobby-header-container {
-        display: flex;
-        /* flex-direction: column; */
-        justify-content: space-between;
-        align-items: center;
-        /* padding: 30px 30px 30px 0; */
-    }
-
-    .status-dropdown {
-        flex-grow: 1;
-        display: flex;
-        padding-bottom: 50px;
-        padding-left: 30px;
-    }
-
-    .title-description {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 20px;
-    }
-
-    .checked::before {
-        content: '✓';
-    }
-
-    .message-textarea {
-        border-radius: 5px;
-        width: 100%;
-        resize: none;
-        height: 80px;
-    }
-
-    #experience-form-container {
-        display: flex;
-        flex-direction: column;
-        margin-top: 10px;
-    }
-
-    .select-div {
-        margin: 5px 0;
-    }
-
-    .editable-area {
-        border: 1px solid #46574D;
-        border-radius: 5px;
-        padding: 15px 10px;
-        margin-bottom: 2px;
-    }
-
-    #resources-form-container {
-        display: flex;
-        flex-direction: column;
-        margin-top: 15px;
-        margin-bottom: 15px;
-
-    }
-
-    #resources-container {
-        display: flex;
-        flex-direction: column;
-        margin-top: 15px;
-        margin-bottom: 15px;
-        /* border: 1px solid #46574D; */
-        border-radius: 5px;
-        overflow-x: hidden;
-        overflow-y: auto;
-        height: 130px
-    }
-
-    .resource-link {
-        /* text-decoration: underline; */
-        color:darkcyan;
-    }
-
-    .resource-input {
-        border-radius: 5px;
-        width: 100%;
-        resize: none;
-        height: 25px;
-        margin: .5px;
-        border-left: 1px solid #46574D;
-        border-right: 1px solid #46574D;
-    }
-
-    #resource-title-input {
-        border-top: 1px solid #46574D;
-        border-radius: 5px;
-
-    }
-
-    .resource-label {
-        border-bottom: 1px solid #46574D;
-        width: 100%;
-        font-weight: bold;
-    }
-
-    ol {
-        display: flex;
-        flex-direction: column;
-        border-bottom: 1px solid #46574D;
-    }
-
-
-@media (max-width: 500px) {
-    #hobby-page {
-        width: 75%;
-    }
+.experience-message {
+    text-align: left;
+    margin: 0;
+    padding: 15px 0;
 }
 
 .experience-header {
@@ -225,11 +67,6 @@ h1 {
     justify-content: space-between;
     align-items: center;
     /* padding: 30px 30px 30px 0; */
-}
-
-#select-status {
-    height: 30px;
-    margin-right: 3px;
 }
 
 .status-dropdown {
@@ -269,6 +106,7 @@ h1 {
 
 #select-status {
     height: 30px;
+    margin-right: 3px;
 }
 
 .editable-area {
@@ -321,15 +159,12 @@ h1 {
 #resource-title-input, #resource-link-input {
     border-top: 1px solid #46574D;
     border-radius: 5px;
+
 }
 
 .resource_title {
     padding-bottom: 5px;
 }
-
-/* .link-input-label {
-    padding-bottom: 5px;
-} */
 
 .resource-label {
     border-bottom: 1px solid #46574D;
@@ -347,18 +182,19 @@ ol {
     background-color: #ed5e68;
     border: none;
 }
+
 .remove-resource {
     height: 20px;
     display: flex;
     align-items: center;
 }
 
-h2 {
-    font-size: 1.5rem;
-    font-weight: 800;
-    margin-top: 30px;
-    margin-bottom: 40px;
-    /* border-bottom: 2px solid #46574D; */
-    display: flex;
-    justify-content: flex-start;
-  }
+/* .link-input-label {
+padding-bottom: 5px;
+} */
+
+@media (max-width: 543px) {
+    #hobby-page {
+        width: 75%;
+    }
+}
