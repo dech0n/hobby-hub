@@ -101,7 +101,7 @@ if (editExperienceButton) {
 }
 
 if (deleteExperienceButton) {
-  
+
   deleteExperienceButton.addEventListener("click", async () => {
     const res = await fetch(`/api/experiences/${hobbyId}`);
     const experience = await res.json();
@@ -189,6 +189,3 @@ addResourceButton.addEventListener('click', async () => {
   }
 
 })
-
-  
-

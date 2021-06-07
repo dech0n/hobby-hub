@@ -10,13 +10,24 @@ block content
       img(src=hobby.img alt="illustration of the hobby")
       div(id=hobby.id class="title-description")
         h1(class='hobby-h1')= hobby.title
-        div(class="select-div")
-          if req.session.auth
-            select(name="status" id="select-status" placeholder="Add to wheelhouse")
-              //- option Add to wheelhouse
-              each wheelhouse in user.wheelhouses
-                option(value=wheelhouse.id)= wheelhouse.status
-            button(class="button status-button" id="add-to-wheelhouse-button") Add to Wheelhouse
+        if req.session.auth
+          if !user.userHobbyWheelhouse
+            div(class="select-div")
+              select(name="status" id="select-status" placeholder="Add to wheelhouse")
+                //- option Add to wheelhouse
+                each wheelhouse in user.wheelhouses
+                  option(value=wheelhouse.id)= wheelhouse.status
+              button(class="button status-button" id="add-to-wheelhouse-button") Add to Wheelhouse
+          else
+            div(class="change-remove-div")
+              p Added to #{user.userHobbyWheelhouse}
+              div(class="select-div")
+              select(name="status" id="select-status" placeholder="Add to wheelhouse")
+                //- option Add to wheelhouse
+                each wheelhouse in user.wheelhouses
+                  option(value=wheelhouse.id)= wheelhouse.status
+              button(class="button status-button" id="add-to-wheelhouse-button") Change Status
+              button(class="delete-from-wheelhouse") Remove from Wheelhouse
         p= hobby.description
     if req.session.auth
       h2(class='hobby-h2') Resources
@@ -35,8 +46,8 @@ block content
         ol(id='resources-list')
           label(class='resource-label') Your Resources:
       //- if user is logged in, show the add experience form
-    h2 Experiences
-    if req.session.auth
+    h2(class='hobby-h2') Experiences
+    if req.session.auth && !user.experience
       form(id="experience-form")
         div(id="experience-form-container")
           input(type="hidden", name="_csrf", value=csrfToken)
