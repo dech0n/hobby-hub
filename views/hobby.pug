@@ -35,13 +35,8 @@ block content
         ol(id='resources-list')
           label(class='resource-label') Your Resources:
       //- if user is logged in, show the add experience form
-<<<<<<< Updated upstream
-    h2(class='hobby-h2') Experiences
-    if req.session.auth && !user.experience
-=======
     h2 Experiences
     if req.session.auth
->>>>>>> Stashed changes
       form(id="experience-form")
         div(id="experience-form-container")
           input(type="hidden", name="_csrf", value=csrfToken)

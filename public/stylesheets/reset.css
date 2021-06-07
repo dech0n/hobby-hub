@@ -40,18 +40,6 @@ h1 {
   justify-content: flex-start;
 }
 
-<<<<<<< Updated upstream
-h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-top: 30px;
-  margin-bottom: 40px;
-  border-bottom: 2px solid #46574D;
-  display: flex;
-  justify-content: center;
-}
-=======
->>>>>>> Stashed changes
 
 button {
   background-color: #46574D;
@@ -65,4 +53,18 @@ button {
 .page-container {
   position: relative;
   min-height: 100vh;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
