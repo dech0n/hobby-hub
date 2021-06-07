@@ -9,6 +9,14 @@ h1 {
     margin-bottom: 30px;
 }
 
+.hobby-h1 {
+    margin-bottom: 10px;
+    border-bottom: 2px solid #46574D;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+  }
+
 .hobby-h2 {
     margin-top: 60px;
     font-size: 1.5rem;
@@ -18,10 +26,6 @@ h1 {
     /* border-bottom: 2px solid #46574D; */
     display: flex;
     justify-content: flex-start;
-}
-
-.hobby-h1 {
-    margin-bottom: 10px;
 }
 
 #hobby-page {
