@@ -15,7 +15,7 @@
     margin-top: 60px;
     font-size: 1.5rem;
     font-weight: 800;
-    margin-bottom: 40px;
+    margin-bottom: 25px;
     /* border-bottom: 2px solid #46574D; */
     display: flex;
     justify-content: flex-start;
@@ -178,7 +178,7 @@ ol {
     border-bottom: 1px solid #46574D;
 }
 
-.delete-from-wheelhouse {
+#delete-from-wheelhouse {
     background-color: #ed5e68;
     border: none;
 }

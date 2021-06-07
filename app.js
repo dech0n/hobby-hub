@@ -13,6 +13,7 @@ const apiWheelhouseRouter = require("./routes/api-wheelhouse");
 const apiUsersRouter = require("./routes/api-users");
 const apiExperiencesRouter = require("./routes/api-experiences");
 const apiResourcesRouter = require("./routes/api-resources");
+const apiUserHobbiesRouter = require("./routes/api-user-hobbies");
 const { restoreUser } = require("./auth.js");
 
 // import created session secret from index.js config file
@@ -65,6 +66,7 @@ app.use("/api/wheelhouse", apiWheelhouseRouter);
 app.use("/api/users", apiUsersRouter);
 app.use("/api/experiences", apiExperiencesRouter);
 app.use("/api/resources", apiResourcesRouter);
+app.use("/api/userHobbies", apiUserHobbiesRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -8,12 +8,17 @@ const router = express.Router();
 router.get(
     "/hobbies/:hobbyId",
     asyncHandler(async (req, res) => {
+      if (req.session.auth) {
         const userId = req.session.auth.userId;
+        console.log("--------------->")
         const hobbyId = req.params.hobbyId;
         const resources = await db.Resource.findAll({
             where: [{hobbyId},{userId}]
         })
-      res.json({ resources });
+        res.json({ resources });
+      } else {
+        res.json({});
+      }
     })
 );
 

@@ -1,5 +1,7 @@
 const addToWheelhouseBtn = document.getElementById("add-to-wheelhouse-button");
+const deleteFromWheelhouseBtn = document.getElementById("delete-from-wheelhouse");
 const selectStatus = document.getElementById("select-status");
+// const userHobbyId = document.querySelector(".change-remove-div").id;
 const hobbyId = document.querySelector(".title-description").id;
 
 if (addToWheelhouseBtn) {
@@ -17,11 +19,40 @@ if (addToWheelhouseBtn) {
   });
 }
 
+if (deleteFromWheelhouseBtn) {
+  deleteFromWheelhouseBtn.addEventListener('click', async () => {
+    console.log(userHobbyId)
+    const res = await fetch(`/api/userHobbies/${userHobbyId}`)
+    const data = await res.json();
+    if (res.ok) {
+      console.log(data)
+    }
+  });
+}
+
+// Select dropdown
+window.addEventListener('load', async () => {
+  const selectContainer = document.getElementById("select-container");
+  const res = await fetch(`/api/userHobbies/${hobbyId}`)
+  const data = await res.json();
+
+  if (res.ok) {
+    // console.log(data)
+    // const { user, userHobby } = data;
+
+    // if (user) {
+
+    // }
+  }
+});
+
+
 const addExperienceButton = document.getElementById("add-experience-button");
 const editExperienceButton = document.getElementById("edit-experience-button");
 const deleteExperienceButton = document.getElementById(
   "delete-experience-button"
 );
+
 
 // To implement in the future: AJAX
 
@@ -122,17 +153,14 @@ if (deleteExperienceButton) {
   });
 }
 
-
-// deleteExperienceButton.addEventListener('click', async () => {});
-
 window.addEventListener('load', async () => {
   const res = await fetch(`/api/resources/hobbies/${hobbyId}`)
-  const resources = await res.json();
 
   const list = document.getElementById('resources-list');
+  const resources = await res.json();
 
-  if (resources) {
-    resources.resources.forEach(resource => {
+  if (res.ok && resources.resources) {
+      resources.resources.forEach(resource => {
       const li = document.createElement('li');
       li.innerHTML = `<a href=${resource.link}>${resource.title}</a>`
       li.className = 'resource-link'
@@ -147,14 +175,16 @@ window.addEventListener('load', async () => {
 
 const addResourceButton = document.getElementById('add-resource-button');
 
-addResourceButton.addEventListener('click', async () => {
-  const title = document.getElementById("resource-title-input").value;
-  const link = document.getElementById('resource-link-input').value;
+if (addResourceButton) {
 
-  try {
-    const res = await fetch(`/api/resources/hobbies/${hobbyId}`, {
-      method: "POST",
-      headers: {
+  addResourceButton.addEventListener('click', async () => {
+    const title = document.getElementById("resource-title-input").value;
+    const link = document.getElementById('resource-link-input').value;
+
+    try {
+      const res = await fetch(`/api/resources/hobbies/${hobbyId}`, {
+        method: "POST",
+        headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
@@ -175,17 +205,18 @@ addResourceButton.addEventListener('click', async () => {
         li.className = 'resource-link'
         list.appendChild(li);
         const removeBtn = document.createElement('button');
-      removeBtn.innerHTML = 'delete';
-      removeBtn.className = `remove-resource ${resource.id}`
-      li.appendChild(removeBtn);
+        removeBtn.innerHTML = 'Delete';
+        removeBtn.className = `remove-resource ${resource.id}`
+        li.appendChild(removeBtn);
       })
     }
 
     document.getElementById('resource-title-input').value = '';
     document.getElementById('resource-link-input').value = '';
 
-  } catch (e) {
-    console.log(e.message)
-  }
+    } catch (e) {
+      console.log(e.message)
+    }
 
-})
+  })
+}
