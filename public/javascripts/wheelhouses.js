@@ -2,21 +2,29 @@
 const wheelhouseNavBtn = document.querySelector("#wheelhouseBtn");
 wheelhouseNavBtn.classList.add('active-nav-link')
 
-
+///////////////
 
 const wheelhouseBtns = document.querySelectorAll('.wheelhouseLink');
 
+// fetch hobbies from API route
 const getHobbies = async (url) => {
     const res = await fetch(url);
     return await res.json();
 }
 
+// remove all hobbies from page
 const removeHobbies = (allHobbiesContainer) => {
     allHobbiesContainer.innerHTML = '';
 }
 
+// create a container to hold a single hobby
+const createContainer = (tag) => {
+    return document.createElement(tag);
+}
+
+// create an a-tag and append the hobby container as a child element, creating a hyperlink to an individual page for that hobby
 const makeHobbyContainerIntoLink = (hobby, allHobbiesContainer, singleHobbyContainer) => {
-    const link = document.createElement('a');
+    const link = createContainer('a');
     link.setAttribute('href', `/hobbies/${hobby.id}`);
     link.setAttribute('class', 'hobby_links');
     allHobbiesContainer.appendChild(link);
@@ -26,36 +34,40 @@ const makeHobbyContainerIntoLink = (hobby, allHobbiesContainer, singleHobbyConta
     link.appendChild(singleHobbyContainer);
 }
 
-const createHobbyCard = (singleHobbyContainer,  cardNumber) => {
+// create the hobby card, including the containers for the top half and bottom half of the card
+const createHobbyCard = (singleHobbyContainer, cardNumber) => {
     // create & append the div for the top half of the hobby card
-    const topOfHobbyDiv = document.createElement('div');
+    const topOfHobbyDiv = createContainer('div');
     topOfHobbyDiv.setAttribute('class', `top_half card-${cardNumber}__top_half`);
     singleHobbyContainer.classList.add(`card-${cardNumber}`);
     singleHobbyContainer.appendChild(topOfHobbyDiv);
 
     // create & append the div for the bottom half of the hobby card
-    const bottomOfHobbyDiv = document.createElement('div');
+    const bottomOfHobbyDiv = createContainer('div');
     bottomOfHobbyDiv.setAttribute('class', `bottom_half card-${cardNumber}__bottom_half`);
     singleHobbyContainer.appendChild(bottomOfHobbyDiv);
 }
 
+// set the associated hobby image on the hobby card
 const setHobbyImage = (hobby, topHalfOfCard) => {
-    const img = document.createElement('img');
+    const img = createContainer('img');
     img.setAttribute('src', `${hobby.img}`);
     img.setAttribute('alt', 'illustration of the hobby');
     img.setAttribute('class', 'hobby_image');
     topHalfOfCard.appendChild(img);
 }
 
+// set the associated hobby title on the hobby card
 const setHobbyTitle = (hobby, topHalfOfCard) => {
-    const title = document.createElement('p');
+    const title = createContainer('p');
     title.setAttribute('class', 'hobby_title');
     title.innerHTML = `${hobby.title}`;
     topHalfOfCard.appendChild(title);
 }
 
+// set the associated hobby description on the hobby card
 const setHobbyDescription = (hobby, bottomHalfOfCard) => {
-    const description = document.createElement('p');
+    const description = createContainer('p');
     description.setAttribute('class', 'hobby_description');
     description.innerHTML = `${hobby.description}`;
     bottomHalfOfCard.appendChild(description);
@@ -69,14 +81,19 @@ window.addEventListener('load', async () => {
     allBtn.className = 'wheelhouseLink active';
 
     try {
+        // used to create a unique class for each hobby card
         let cardNumber = 0;
+
         const hobbiesDiv = document.querySelector('.hobbies');
+        // clear previous hobbies from page
         removeHobbies(hobbiesDiv);
+
+        // get all hobbies for this wheelhouse status status
         const hobbies = await getHobbies('/api/wheelhouse/all');
 
         hobbies.forEach(hobby => {
             // create a container for the hobby
-            const hobbyDiv = document.createElement('div');
+            const hobbyDiv = createContainer('div')
 
             makeHobbyContainerIntoLink(hobby, hobbiesDiv, hobbyDiv);
 
@@ -115,7 +132,7 @@ allBtn.addEventListener('click', async () => {
 
         hobbies.forEach(hobby => {
             // create a container for the hobby
-            const hobbyDiv = document.createElement('div');
+            const hobbyDiv = createContainer('div')
 
             makeHobbyContainerIntoLink(hobby, hobbiesDiv, hobbyDiv);
 
@@ -153,7 +170,7 @@ wantToLearnBtn.addEventListener('click', async () => {
 
         hobbies.forEach(hobby => {
             // create a container for the hobby
-            const hobbyDiv = document.createElement('div');
+            const hobbyDiv = createContainer('div')
 
             makeHobbyContainerIntoLink(hobby, hobbiesDiv, hobbyDiv);
 
@@ -191,7 +208,7 @@ currentlyLearningBtn.addEventListener('click', async () => {
 
         hobbies.forEach(hobby => {
             // create a container for the hobby
-            const hobbyDiv = document.createElement('div');
+            const hobbyDiv = createContainer('div')
 
             makeHobbyContainerIntoLink(hobby, hobbiesDiv, hobbyDiv);
 
@@ -230,7 +247,7 @@ accomplishedBtn.addEventListener('click', async () => {
 
         hobbies.forEach(hobby => {
             // create a container for the hobby
-            const hobbyDiv = document.createElement('div');
+            const hobbyDiv = createContainer('div')
 
             makeHobbyContainerIntoLink(hobby, hobbiesDiv, hobbyDiv);
 
