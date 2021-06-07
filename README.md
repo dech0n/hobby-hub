@@ -1,6 +1,7 @@
 # Hobby Hub
 
-https://hobbyhubapp.herokuapp.com/
+[Hobby Hub Website](https://hobbyhubapp.herokuapp.com/)
+[Wiki Pages](https://github.com/dech0n/hobby-hub/wiki)
 
 ![Splash page](images/splash-page.png)
 
