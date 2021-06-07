@@ -47,6 +47,7 @@ router.get(
         });
         if (userHobby) {
           user.userHobbyWheelhouse = userHobby.Wheelhouse.status;
+          user.userHobbyId = userHobby.id;
         }
 
         const experience = await db.Experience.findOne({
