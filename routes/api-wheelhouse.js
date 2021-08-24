@@ -94,29 +94,18 @@ router.post('/:wheelhouseId/hobby/:hobbyId', asyncHandler(async (req, res) => {
         include: db.Wheelhouse
     });
 
-    // if exists, update wheelhouse Id to whichever wheelhouse user wants to put it in
+    // if exists, update wheelhouse Id to whichever status user chooses
     if (userHobby) {
-        const res = await userHobby.update({ wheelhouseId });
-        console.log('===========> if', userHobby.dataValues.wheelhouseId);
-        console.log('===> BEFORE RES.JSON')
+        await userHobby.update({ wheelhouseId });
         res.json({ userHobby });
-        console.log('===> AFTER RES.JSON')
     } else {
         // else create new userhobby
         const newHobby = await db.UserHobby.create({
             wheelhouseId,
             hobbyId,
         });
-        console.log('===========> else', newHobby.dataValues);
         res.json({ newHobby });
     }
-    // else {
-    //     const results = user.Wheelhouses.filter(wh => {
-    //         return userHobby.wheelhouseId === wh.id;
-    //     })
-    //     userHobby.dataValues.wheelhouseId = results[0].dataValues.id
-    //     res.json({ userHobby });
-    // }
     res.end();
 }));
 
