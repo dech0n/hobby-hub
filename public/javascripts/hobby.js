@@ -87,7 +87,6 @@ if (addToWheelhouseBtn) {
 //       method: 'DELETE'
 //     });
     // const data = await res.json();
-    // console.log(data)
     // if (res.ok) {
     // }
   // });
@@ -173,7 +172,6 @@ if (editExperienceButton) {
         const data = await resPost.json();
 
         if (resPost.ok) {
-          // console.log('LOOKS LIKE WE MADE IT!!!') //! for testing only
           location.reload();
         }
       })
@@ -295,7 +293,6 @@ if (addResourceButton) {
 
   document.addEventListener('click', async (e) => {
     if(e.target && e.target.className == 'remove-resource'){
-      console.log('got in')
       const res = await fetch(`/api/resources/${e.target.id}`, {
         method: 'DELETE'
       });
@@ -346,6 +343,7 @@ if (addResourceButton) {
       input.className = 'resource-title-input';
       input.id = `${e.target.id}`
       input.value = title;
+      // input.autofocus = true;
       form.appendChild(input);
       const btnDiv = document.createElement('div')
       btnDiv.className = 'btn-div'
@@ -355,7 +353,6 @@ if (addResourceButton) {
       submitBtn.id = `${e.target.id}`
       submitBtn.className = `submit-edit`
       submitBtn.type = 'submit'
-      submitBtn.value = input.value;
       btnDiv.appendChild(submitBtn);
       const cancelBtn = document.createElement('button');
       cancelBtn.innerHTML = 'cancel';
@@ -364,27 +361,57 @@ if (addResourceButton) {
     }
   })
 
-  
+  let inputValue = '';
+
+  document.addEventListener('input', async (e) => {
+    if(e.target && e.target.className == 'resource-title-input'){
+      inputValue = e.target.value;
+    }
+  })
 
   document.addEventListener('click', async (e) => {
     if(e.target && e.target.className == 'submit-edit'){
-      console.log(e.target.value);
-      // const res = await fetch(`/api/resources/${e.target.id}`, {
-      //   method: 'PATCH',
-      //   headers: {
-      //     "Content-Type": "application/json"
-      //   },
-      //   body: JSON.stringify({
-      //     title: e.target.form.value
-      //   })
-      // });
-      // const resource = await res.json();
-      // if (resource.ok) {
-      //   console.log(resource);
-      //   // const list = document.getElementById('resources-list');
-      //   // const link = document.getElementById(`${e.target.id}`);
-      //   // link.innerHTML = `<a href=${resources.resources[0].link}>${resources.resources[0].title}</a>`
-      // }
+      e.preventDefault();
+      const res = await fetch(`/api/resources/${e.target.id}`, {
+        method: 'PATCH',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          title: inputValue
+        })
+      });
+      const isOk = await res.json();
+      if (isOk.ok) {
+        const res = await fetch(`/api/resources/hobbies/${hobbyId}`)
+
+        const list = document.getElementById('resources-list');
+        list.innerHTML = '';
+        const resources = await res.json();
+
+        if (res.ok && resources.resources) {
+          resources.resources.forEach(resource => {
+            const li = document.createElement('li');
+            li.innerHTML = `<a href=${resource.link}>${resource.title}</a>`
+            li.className = 'resource-link'
+            li.id = `${resource.id}`
+            list.appendChild(li);
+            const btnDiv = document.createElement('div')
+            btnDiv.className = 'btn-div'
+            li.appendChild(btnDiv);
+            const editBtn = document.createElement('button');
+            editBtn.innerHTML = 'edit';
+            editBtn.id = `${resource.id}`
+            editBtn.className = `edit-resource`
+            btnDiv.appendChild(editBtn);
+            const removeBtn = document.createElement('button');
+            removeBtn.innerHTML = 'delete';
+            removeBtn.id = `${resource.id}`
+            removeBtn.className = `remove-resource`
+            btnDiv.appendChild(removeBtn);
+          })
+        }
+      }
     }
   })
 

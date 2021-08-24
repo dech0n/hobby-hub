@@ -49,11 +49,11 @@ router.patch(
     asyncHandler(async (req, res) => {
       const resourceId = req.params.resourceId;
       const {title} = req.body;
-      await db.Resource.update({
-          title
-      });
-      const resource = await db.Resource.findOne(resourceId);
-      res.json({ resource, ok: true });
+      const resource = await db.Resource.findByPk(resourceId);
+      const newResource = await resource.update({
+        title
+      })
+      res.json({ ok: true });
     })
 );
 
