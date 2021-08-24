@@ -195,7 +195,7 @@ ol {
     background-color: #ed5e68;
 }
 
-.edit-resource {
+.edit-resource, .submit-edit, .cancel-edit {
     height: 20px;
     display: flex;
     align-items: center;

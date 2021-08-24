@@ -201,6 +201,8 @@ if (deleteExperienceButton) {
   });
 }
 
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<RESOURCES>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 window.addEventListener('load', async () => {
   const res = await fetch(`/api/resources/hobbies/${hobbyId}`)
 
@@ -257,6 +259,10 @@ if (addResourceButton) {
 
     if (resources.resources) {
       list.innerHTML = '';
+      const label = document.createElement('label');
+      label.innerHTML = 'Your Resources:'
+      label.className='resource-label'
+      list.appendChild(label);
       resources.resources.forEach(resource => {
         const li = document.createElement('li');
         li.innerHTML = `<a href=${resource.link}>${resource.title}</a>`
@@ -289,42 +295,47 @@ if (addResourceButton) {
   })
 }
 
-// const removeBtn = document.querySelector('.remove-resource')
-
   document.addEventListener('click', async (e) => {
     if(e.target && e.target.className == 'remove-resource'){
-      const res = await fetch(`/api/resources/${e.target.id}`, {
-        method: 'DELETE'
-      });
-      const resources = await res.json();
-      if (resources.ok) {
-        const res = await fetch(`/api/resources/hobbies/${hobbyId}`)
-
-        const list = document.getElementById('resources-list');
-        list.innerHTML = '';
+      const answer = window.confirm('Do you want to delete this resource?')
+      if(answer){
+        const res = await fetch(`/api/resources/${e.target.id}`, {
+          method: 'DELETE'
+        });
         const resources = await res.json();
+        if (resources.ok) {
+          const res = await fetch(`/api/resources/hobbies/${hobbyId}`)
 
-        if (res.ok && resources.resources) {
-            resources.resources.forEach(resource => {
-              const li = document.createElement('li');
-              li.innerHTML = `<a href=${resource.link}>${resource.title}</a>`
-              li.className = 'resource-link'
-              li.id = `${resource.id}`
-              list.appendChild(li);
-              const btnDiv = document.createElement('div')
-              btnDiv.className = 'btn-div'
-              li.appendChild(btnDiv);
-              const editBtn = document.createElement('button');
-              editBtn.innerHTML = 'edit';
-              editBtn.id = `${resource.id}`
-              editBtn.className = `edit-resource`
-              btnDiv.appendChild(editBtn);
-              const removeBtn = document.createElement('button');
-              removeBtn.innerHTML = 'delete';
-              removeBtn.id = `${resource.id}`
-              removeBtn.className = `remove-resource`
-              btnDiv.appendChild(removeBtn);
-          })
+          const list = document.getElementById('resources-list');
+          list.innerHTML = '';
+          const label = document.createElement('label');
+          label.innerHTML = 'Your Resources:'
+          label.className='resource-label'
+          list.appendChild(label);
+          const resources = await res.json();
+
+          if (res.ok && resources.resources) {
+              resources.resources.forEach(resource => {
+                const li = document.createElement('li');
+                li.innerHTML = `<a href=${resource.link}>${resource.title}</a>`
+                li.className = 'resource-link'
+                li.id = `${resource.id}`
+                list.appendChild(li);
+                const btnDiv = document.createElement('div')
+                btnDiv.className = 'btn-div'
+                li.appendChild(btnDiv);
+                const editBtn = document.createElement('button');
+                editBtn.innerHTML = 'edit';
+                editBtn.id = `${resource.id}`
+                editBtn.className = `edit-resource`
+                btnDiv.appendChild(editBtn);
+                const removeBtn = document.createElement('button');
+                removeBtn.innerHTML = 'delete';
+                removeBtn.id = `${resource.id}`
+                removeBtn.className = `remove-resource`
+                btnDiv.appendChild(removeBtn);
+            })
+          }
         }
       }
     }
@@ -387,6 +398,10 @@ if (addResourceButton) {
 
         const list = document.getElementById('resources-list');
         list.innerHTML = '';
+        const label = document.createElement('label');
+        label.innerHTML = 'Your Resources:'
+        label.className='resource-label'
+        list.appendChild(label);
         const resources = await res.json();
 
         if (res.ok && resources.resources) {
@@ -421,6 +436,10 @@ if (addResourceButton) {
 
       const list = document.getElementById('resources-list');
       list.innerHTML = '';
+      const label = document.createElement('label');
+      label.innerHTML = 'Your Resources:'
+      label.className='resource-label'
+      list.appendChild(label);
       const resources = await res.json();
 
       if (res.ok && resources.resources) {
