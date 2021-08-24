@@ -21,14 +21,14 @@ html
         ul(class="" id="navigation-links")
           li: a(href="/" class="navbar__nav-link .active-nav-link" id='homeBtn') Home
           //- My Wheelhouse redirects to /login when user not logged in
-          if req.session.auth
+          if req && req.session.auth
             li: a(href=`/users/${req.session.auth.userId}/wheelhouse` class="navbar__nav-link" id='wheelhouseBtn') My Wheelhouse
           else
             li: a(href="/users/login" class="navbar__nav-link") My Wheelhouse
           li: a(href="/hobbies" class="navbar__nav-link" id='hobbiesBtn') Hobbies
         div(id="user-buttons")
           //- if the user is logged in
-          if req.session.auth
+          if req && req.session.auth
             p(id='welcome') Welcome, #{user.username}!
             form(action="/users/logout" method="get")
               button(class="navbar__link link-button" id="logout-button") Logout

@@ -87,7 +87,6 @@ if (addToWheelhouseBtn) {
 //       method: 'DELETE'
 //     });
     // const data = await res.json();
-    // console.log(data)
     // if (res.ok) {
     // }
   // });
@@ -173,7 +172,6 @@ if (editExperienceButton) {
         const data = await resPost.json();
 
         if (resPost.ok) {
-          // console.log('LOOKS LIKE WE MADE IT!!!') //! for testing only
           location.reload();
         }
       })
@@ -203,6 +201,8 @@ if (deleteExperienceButton) {
   });
 }
 
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<RESOURCES>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 window.addEventListener('load', async () => {
   const res = await fetch(`/api/resources/hobbies/${hobbyId}`)
 
@@ -214,11 +214,21 @@ window.addEventListener('load', async () => {
       const li = document.createElement('li');
       li.innerHTML = `<a href=${resource.link}>${resource.title}</a>`
       li.className = 'resource-link'
+      li.id = `${resource.id}`
       list.appendChild(li);
-      // const removeBtn = document.createElement('button');
-      // removeBtn.innerHTML = 'delete';
-      // removeBtn.className = `remove-resource ${resource.id}`
-      // li.appendChild(removeBtn);
+      const btnDiv = document.createElement('div')
+      btnDiv.className = 'btn-div'
+      li.appendChild(btnDiv);
+      const editBtn = document.createElement('button');
+      editBtn.innerHTML = 'edit';
+      editBtn.id = `${resource.id}`
+      editBtn.className = `edit-resource`
+      btnDiv.appendChild(editBtn);
+      const removeBtn = document.createElement('button');
+      removeBtn.innerHTML = 'delete';
+      removeBtn.id = `${resource.id}`
+      removeBtn.className = `remove-resource`
+      btnDiv.appendChild(removeBtn);
     })
   }
 })
@@ -249,15 +259,29 @@ if (addResourceButton) {
 
     if (resources.resources) {
       list.innerHTML = '';
+      const label = document.createElement('label');
+      label.innerHTML = 'Your Resources:'
+      label.className='resource-label'
+      list.appendChild(label);
       resources.resources.forEach(resource => {
         const li = document.createElement('li');
         li.innerHTML = `<a href=${resource.link}>${resource.title}</a>`
         li.className = 'resource-link'
+        li.id = `${resource.id}`
         list.appendChild(li);
-        // const removeBtn = document.createElement('button');
-        // removeBtn.innerHTML = 'Delete';
-        // removeBtn.className = `remove-resource ${resource.id}`
-        // li.appendChild(removeBtn);
+        const btnDiv = document.createElement('div')
+        btnDiv.className = 'btn-div'
+        li.appendChild(btnDiv);
+        const editBtn = document.createElement('button');
+        editBtn.innerHTML = 'edit';
+        editBtn.id = `${resource.id}`
+        editBtn.className = `edit-resource`
+        btnDiv.appendChild(editBtn);
+        const removeBtn = document.createElement('button');
+        removeBtn.innerHTML = 'delete';
+        removeBtn.id = `${resource.id}`
+        removeBtn.className = `remove-resource`
+        btnDiv.appendChild(removeBtn);
       })
     }
 
@@ -270,3 +294,175 @@ if (addResourceButton) {
 
   })
 }
+
+  document.addEventListener('click', async (e) => {
+    if(e.target && e.target.className == 'remove-resource'){
+      const answer = window.confirm('Do you want to delete this resource?')
+      if(answer){
+        const res = await fetch(`/api/resources/${e.target.id}`, {
+          method: 'DELETE'
+        });
+        const resources = await res.json();
+        if (resources.ok) {
+          const res = await fetch(`/api/resources/hobbies/${hobbyId}`)
+
+          const list = document.getElementById('resources-list');
+          list.innerHTML = '';
+          const label = document.createElement('label');
+          label.innerHTML = 'Your Resources:'
+          label.className='resource-label'
+          list.appendChild(label);
+          const resources = await res.json();
+
+          if (res.ok && resources.resources) {
+              resources.resources.forEach(resource => {
+                const li = document.createElement('li');
+                li.innerHTML = `<a href=${resource.link}>${resource.title}</a>`
+                li.className = 'resource-link'
+                li.id = `${resource.id}`
+                list.appendChild(li);
+                const btnDiv = document.createElement('div')
+                btnDiv.className = 'btn-div'
+                li.appendChild(btnDiv);
+                const editBtn = document.createElement('button');
+                editBtn.innerHTML = 'edit';
+                editBtn.id = `${resource.id}`
+                editBtn.className = `edit-resource`
+                btnDiv.appendChild(editBtn);
+                const removeBtn = document.createElement('button');
+                removeBtn.innerHTML = 'delete';
+                removeBtn.id = `${resource.id}`
+                removeBtn.className = `remove-resource`
+                btnDiv.appendChild(removeBtn);
+            })
+          }
+        }
+      }
+    }
+  })
+
+  document.addEventListener('click', async (e) => {
+    if(e.target && e.target.className == 'edit-resource'){
+      let link = document.getElementById(`${e.target.id}`)
+      const title = link.innerHTML.split('<a href=')[1].split('>')[1].split('<')[0];
+      link.innerHTML = '';
+      const form = document.createElement('form');
+      form.id = `edit-resource__form`
+      link.appendChild(form);
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.className = 'resource-title-input';
+      input.id = `${e.target.id}`
+      input.value = title;
+      // input.autofocus = true;
+      form.appendChild(input);
+      const btnDiv = document.createElement('div')
+      btnDiv.className = 'btn-div'
+      link.appendChild(btnDiv);
+      const submitBtn = document.createElement('button');
+      submitBtn.innerHTML = 'edit';
+      submitBtn.id = `${e.target.id}`
+      submitBtn.className = `submit-edit`
+      submitBtn.type = 'submit'
+      btnDiv.appendChild(submitBtn);
+      const cancelBtn = document.createElement('button');
+      cancelBtn.innerHTML = 'cancel';
+      cancelBtn.className = `cancel-edit`
+      btnDiv.appendChild(cancelBtn);
+    }
+  })
+
+  let inputValue = '';
+
+  document.addEventListener('input', async (e) => {
+    if(e.target && e.target.className == 'resource-title-input'){
+      inputValue = e.target.value;
+    }
+  })
+
+  document.addEventListener('click', async (e) => {
+    if(e.target && e.target.className == 'submit-edit'){
+      e.preventDefault();
+      const res = await fetch(`/api/resources/${e.target.id}`, {
+        method: 'PATCH',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          title: inputValue
+        })
+      });
+      const isOk = await res.json();
+      if (isOk.ok) {
+        const res = await fetch(`/api/resources/hobbies/${hobbyId}`)
+
+        const list = document.getElementById('resources-list');
+        list.innerHTML = '';
+        const label = document.createElement('label');
+        label.innerHTML = 'Your Resources:'
+        label.className='resource-label'
+        list.appendChild(label);
+        const resources = await res.json();
+
+        if (res.ok && resources.resources) {
+          resources.resources.forEach(resource => {
+            const li = document.createElement('li');
+            li.innerHTML = `<a href=${resource.link}>${resource.title}</a>`
+            li.className = 'resource-link'
+            li.id = `${resource.id}`
+            list.appendChild(li);
+            const btnDiv = document.createElement('div')
+            btnDiv.className = 'btn-div'
+            li.appendChild(btnDiv);
+            const editBtn = document.createElement('button');
+            editBtn.innerHTML = 'edit';
+            editBtn.id = `${resource.id}`
+            editBtn.className = `edit-resource`
+            btnDiv.appendChild(editBtn);
+            const removeBtn = document.createElement('button');
+            removeBtn.innerHTML = 'delete';
+            removeBtn.id = `${resource.id}`
+            removeBtn.className = `remove-resource`
+            btnDiv.appendChild(removeBtn);
+          })
+        }
+      }
+    }
+  })
+
+  document.addEventListener('click', async (e) => {
+    if(e.target && e.target.className == 'cancel-edit'){
+      const res = await fetch(`/api/resources/hobbies/${hobbyId}`)
+
+      const list = document.getElementById('resources-list');
+      list.innerHTML = '';
+      const label = document.createElement('label');
+      label.innerHTML = 'Your Resources:'
+      label.className='resource-label'
+      list.appendChild(label);
+      const resources = await res.json();
+
+      if (res.ok && resources.resources) {
+          resources.resources.forEach(resource => {
+          const li = document.createElement('li');
+          li.innerHTML = `<a href=${resource.link}>${resource.title}</a>`
+          li.className = 'resource-link'
+          li.id = `${resource.id}`
+          list.appendChild(li);
+          const btnDiv = document.createElement('div')
+          btnDiv.className = 'btn-div'
+          li.appendChild(btnDiv);
+          const editBtn = document.createElement('button');
+          editBtn.innerHTML = 'edit';
+          editBtn.id = `${resource.id}`
+          editBtn.className = `edit-resource`
+          btnDiv.appendChild(editBtn);
+          const removeBtn = document.createElement('button');
+          removeBtn.innerHTML = 'delete';
+          removeBtn.id = `${resource.id}`
+          removeBtn.className = `remove-resource`
+          btnDiv.appendChild(removeBtn);
+        })
+      }
+    }
+  })

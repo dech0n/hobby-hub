@@ -2,6 +2,10 @@
     content: url('../hobby-images/anon-user-image.png');
 } */
 
+.btn-div{
+    display: flex;
+}
+
 .hobby-h1 {
     flex-grow: 2;
     margin-bottom: 10px;
@@ -189,6 +193,14 @@ ol {
     display: flex;
     align-items: center;
     background-color: #ed5e68;
+}
+
+.edit-resource, .submit-edit, .cancel-edit {
+    height: 20px;
+    display: flex;
+    align-items: center;
+    margin-right: 2px;
+    /* background-color: #ed5e68; */
 }
 
 /* .link-input-label {
