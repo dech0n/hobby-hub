@@ -27,7 +27,7 @@ router.delete('/:userHobbyId', asyncHandler(async (req, res) => {
   const id = parseInt(req.params.userHobbyId, 10);
   const userHobby = await db.UserHobby.findByPk(id);
   await userHobby.destroy();
-  console.log('-------------------->MADE IT<------------', userHobby)
+  // console.log('-------------------->MADE IT<------------', userHobby)
   // res.json({ id: "Made it" });
 }));
 

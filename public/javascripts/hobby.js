@@ -16,10 +16,12 @@ window.addEventListener('load', async () => {
       selectDiv.classList.add('select-div');
       selectContainer.appendChild(selectDiv);
       if (userHobby) {
+        // if userHobby exists, display correct wheelhouse status
         const text = document.querySelector('.text');
         text.innerHTML = `${userHobby.Wheelhouse.status}`
         // selectContainer.prepend(text);
 
+        // find wheelhouses that userHobby is not attached to
         const wheelhouse = user.Wheelhouses.filter(wh => {
           return wh.id !== userHobby.wheelhouseId;
         });
@@ -69,7 +71,9 @@ if (addToWheelhouseBtn) {
     const res = await fetch(`/api/wheelhouse/${wheelhouseId}/hobby/${hobbyId}`, {
       method: "POST",
     });
+    console.log('AFTER POST', res.ok)
     const userHobby = await res.json();
+    console.log('======> userHobby frontend', userHobby)
 
     if (res.ok && userHobby.userHobby) {
       const text = document.querySelector('.text');

@@ -70,48 +70,54 @@ router.get('/accomplished', asyncHandler(async(req, res) => {
     }
 }))
 
+// create user hobby
 router.post('/:wheelhouseId/hobby/:hobbyId', asyncHandler(async (req, res) => {
-    // create user hobby
     const userId = req.session.auth.userId;
-    const wheelhouseId = req.params.wheelhouseId;
-    const hobbyId = req.params.hobbyId;
+    const wheelhouseId = +req.params.wheelhouseId;
+    const hobbyId = +req.params.hobbyId;
 
-    const user = await db.User.findByPk(userId, { include: db.Wheelhouse });
+    // query for wheelhouses that matches user id
+    const userWheelhouses = await db.Wheelhouse.findAll({
+        where: { userId }
+    });
+    // create array of wheelhouse ids
+    const userWheelhouseIds = userWheelhouses.map(wh => {
+        return wh.dataValues.id;
+    });
+
+    // find userHobby in wheelhouses
     const userHobby = await db.UserHobby.findOne({
         where: {
-            wheelhouseId,
+            wheelhouseId: userWheelhouseIds,
             hobbyId
         },
         include: db.Wheelhouse
     });
 
-    console.log(userHobby)
-    // console.log('------------------>', userHobby)
-    if (!userHobby) {
+    // if exists, update wheelhouse Id to whichever wheelhouse user wants to put it in
+    if (userHobby) {
+        const res = await userHobby.update({ wheelhouseId });
+        console.log('===========> if', userHobby.dataValues.wheelhouseId);
+        console.log('===> BEFORE RES.JSON')
+        res.json({ userHobby });
+        console.log('===> AFTER RES.JSON')
+    } else {
+        // else create new userhobby
         const newHobby = await db.UserHobby.create({
             wheelhouseId,
             hobbyId,
         });
+        console.log('===========> else', newHobby.dataValues);
         res.json({ newHobby });
-    } else {
-        const results = user.Wheelhouses.filter(wh => {
-            return userHobby.wheelhouseId === wh.id;
-        })
-        userHobby.dataValues.wheelhouseId = results[0].dataValues.id
-        res.json({ userHobby });
     }
+    // else {
+    //     const results = user.Wheelhouses.filter(wh => {
+    //         return userHobby.wheelhouseId === wh.id;
+    //     })
+    //     userHobby.dataValues.wheelhouseId = results[0].dataValues.id
+    //     res.json({ userHobby });
+    // }
     res.end();
 }));
 
 module.exports = router
-
-// Plan
-    // find userHobby
-    // find user, include wheelhouses
-    // iterate through wheelhouses
-        // check if user hobby WH id matches the user WH id
-        // filter out ones that don't match
-    // if userHobby doesn't exist in any of the user wheelhouses
-        // create new user hobby
-    // else
-        // change wheelhouse id to new wheelhouse id

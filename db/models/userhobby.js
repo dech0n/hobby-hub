@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     UserHobby.belongsTo(models.Wheelhouse, { foreignKey: 'wheelhouseId' })
     UserHobby.belongsTo(models.Hobby, { foreignKey: 'hobbyId' })
 
-  
+
   };
   return UserHobby;
 };
