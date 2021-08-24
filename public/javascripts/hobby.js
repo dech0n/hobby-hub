@@ -214,11 +214,21 @@ window.addEventListener('load', async () => {
       const li = document.createElement('li');
       li.innerHTML = `<a href=${resource.link}>${resource.title}</a>`
       li.className = 'resource-link'
+      li.id = `${resource.id}`
       list.appendChild(li);
-      // const removeBtn = document.createElement('button');
-      // removeBtn.innerHTML = 'delete';
-      // removeBtn.className = `remove-resource ${resource.id}`
-      // li.appendChild(removeBtn);
+      const btnDiv = document.createElement('div')
+      btnDiv.className = 'btn-div'
+      li.appendChild(btnDiv);
+      const editBtn = document.createElement('button');
+      editBtn.innerHTML = 'edit';
+      editBtn.id = `${resource.id}`
+      editBtn.className = `edit-resource`
+      btnDiv.appendChild(editBtn);
+      const removeBtn = document.createElement('button');
+      removeBtn.innerHTML = 'delete';
+      removeBtn.id = `${resource.id}`
+      removeBtn.className = `remove-resource`
+      btnDiv.appendChild(removeBtn);
     })
   }
 })
@@ -253,11 +263,21 @@ if (addResourceButton) {
         const li = document.createElement('li');
         li.innerHTML = `<a href=${resource.link}>${resource.title}</a>`
         li.className = 'resource-link'
+        li.id = `${resource.id}`
         list.appendChild(li);
-        // const removeBtn = document.createElement('button');
-        // removeBtn.innerHTML = 'Delete';
-        // removeBtn.className = `remove-resource ${resource.id}`
-        // li.appendChild(removeBtn);
+        const btnDiv = document.createElement('div')
+        btnDiv.className = 'btn-div'
+        li.appendChild(btnDiv);
+        const editBtn = document.createElement('button');
+        editBtn.innerHTML = 'edit';
+        editBtn.id = `${resource.id}`
+        editBtn.className = `edit-resource`
+        btnDiv.appendChild(editBtn);
+        const removeBtn = document.createElement('button');
+        removeBtn.innerHTML = 'delete';
+        removeBtn.id = `${resource.id}`
+        removeBtn.className = `remove-resource`
+        btnDiv.appendChild(removeBtn);
       })
     }
 
@@ -270,3 +290,133 @@ if (addResourceButton) {
 
   })
 }
+
+// const removeBtn = document.querySelector('.remove-resource')
+
+  document.addEventListener('click', async (e) => {
+    if(e.target && e.target.className == 'remove-resource'){
+      console.log('got in')
+      const res = await fetch(`/api/resources/${e.target.id}`, {
+        method: 'DELETE'
+      });
+      const resources = await res.json();
+      if (resources.ok) {
+        const res = await fetch(`/api/resources/hobbies/${hobbyId}`)
+
+        const list = document.getElementById('resources-list');
+        list.innerHTML = '';
+        const resources = await res.json();
+
+        if (res.ok && resources.resources) {
+            resources.resources.forEach(resource => {
+              const li = document.createElement('li');
+              li.innerHTML = `<a href=${resource.link}>${resource.title}</a>`
+              li.className = 'resource-link'
+              li.id = `${resource.id}`
+              list.appendChild(li);
+              const btnDiv = document.createElement('div')
+              btnDiv.className = 'btn-div'
+              li.appendChild(btnDiv);
+              const editBtn = document.createElement('button');
+              editBtn.innerHTML = 'edit';
+              editBtn.id = `${resource.id}`
+              editBtn.className = `edit-resource`
+              btnDiv.appendChild(editBtn);
+              const removeBtn = document.createElement('button');
+              removeBtn.innerHTML = 'delete';
+              removeBtn.id = `${resource.id}`
+              removeBtn.className = `remove-resource`
+              btnDiv.appendChild(removeBtn);
+          })
+        }
+      }
+    }
+  })
+
+  document.addEventListener('click', async (e) => {
+    if(e.target && e.target.className == 'edit-resource'){
+      let link = document.getElementById(`${e.target.id}`)
+      const title = link.innerHTML.split('<a href=')[1].split('>')[1].split('<')[0];
+      link.innerHTML = '';
+      const form = document.createElement('form');
+      form.id = `edit-resource__form`
+      link.appendChild(form);
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.className = 'resource-title-input';
+      input.id = `${e.target.id}`
+      input.value = title;
+      form.appendChild(input);
+      const btnDiv = document.createElement('div')
+      btnDiv.className = 'btn-div'
+      link.appendChild(btnDiv);
+      const submitBtn = document.createElement('button');
+      submitBtn.innerHTML = 'edit';
+      submitBtn.id = `${e.target.id}`
+      submitBtn.className = `submit-edit`
+      submitBtn.type = 'submit'
+      submitBtn.value = input.value;
+      btnDiv.appendChild(submitBtn);
+      const cancelBtn = document.createElement('button');
+      cancelBtn.innerHTML = 'cancel';
+      cancelBtn.className = `cancel-edit`
+      btnDiv.appendChild(cancelBtn);
+    }
+  })
+
+  
+
+  document.addEventListener('click', async (e) => {
+    if(e.target && e.target.className == 'submit-edit'){
+      console.log(e.target.value);
+      // const res = await fetch(`/api/resources/${e.target.id}`, {
+      //   method: 'PATCH',
+      //   headers: {
+      //     "Content-Type": "application/json"
+      //   },
+      //   body: JSON.stringify({
+      //     title: e.target.form.value
+      //   })
+      // });
+      // const resource = await res.json();
+      // if (resource.ok) {
+      //   console.log(resource);
+      //   // const list = document.getElementById('resources-list');
+      //   // const link = document.getElementById(`${e.target.id}`);
+      //   // link.innerHTML = `<a href=${resources.resources[0].link}>${resources.resources[0].title}</a>`
+      // }
+    }
+  })
+
+  document.addEventListener('click', async (e) => {
+    if(e.target && e.target.className == 'cancel-edit'){
+      const res = await fetch(`/api/resources/hobbies/${hobbyId}`)
+
+      const list = document.getElementById('resources-list');
+      list.innerHTML = '';
+      const resources = await res.json();
+
+      if (res.ok && resources.resources) {
+          resources.resources.forEach(resource => {
+          const li = document.createElement('li');
+          li.innerHTML = `<a href=${resource.link}>${resource.title}</a>`
+          li.className = 'resource-link'
+          li.id = `${resource.id}`
+          list.appendChild(li);
+          const btnDiv = document.createElement('div')
+          btnDiv.className = 'btn-div'
+          li.appendChild(btnDiv);
+          const editBtn = document.createElement('button');
+          editBtn.innerHTML = 'edit';
+          editBtn.id = `${resource.id}`
+          editBtn.className = `edit-resource`
+          btnDiv.appendChild(editBtn);
+          const removeBtn = document.createElement('button');
+          removeBtn.innerHTML = 'delete';
+          removeBtn.id = `${resource.id}`
+          removeBtn.className = `remove-resource`
+          btnDiv.appendChild(removeBtn);
+        })
+      }
+    }
+  })

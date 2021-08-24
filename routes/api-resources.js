@@ -43,14 +43,28 @@ router.post(
     })
 );
 
-//   // delete a given resource
-// router.delete(
-//     "/:resourceId",
-//     asyncHandler(async (req, res) => {
-//       const id = req.params.resourceId
-//       await db.Resource.destroy({ where: { id }});
-//       res.json({ id: 'hello' });
-//     })
-// );
+// patch a resource
+router.patch(
+    "/:resourceId",
+    asyncHandler(async (req, res) => {
+      const resourceId = req.params.resourceId;
+      const {title} = req.body;
+      await db.Resource.update({
+          title
+      });
+      const resource = await db.Resource.findOne(resourceId);
+      res.json({ resource, ok: true });
+    })
+);
+
+  // delete a given resource
+router.delete(
+    "/:resourceId",
+    asyncHandler(async (req, res) => {
+      const id = req.params.resourceId
+      await db.Resource.destroy({ where: { id }});
+      res.json({ ok: true });
+    })
+);
 
 module.exports = router;
