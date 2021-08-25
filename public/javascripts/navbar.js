@@ -5,7 +5,7 @@ demoUser.addEventListener('click', async () => {
     const res = await fetch('/users/loginDemo', { method: 'POST' });
     try {
         if (res.status === 200) {
-        window.location.reload();
+        window.location.assign(`/hobbies`);
         }
     } catch (e) {
         console.error('Error with demo User', e.message)
