@@ -49,7 +49,6 @@ router.get('/currentlyLearning', asyncHandler(async(req, res) => {
     const hobbies = wheelhouse.UserHobbies.map(userHobby => {
         return userHobby.Hobby
     })
-    // console.log('---------------------',hobbies) //! for testing purposes only
     res.send(hobbies)
     } catch (e) {
         res.send(e.message)
@@ -86,7 +85,7 @@ router.post('/:wheelhouseId/hobby/:hobbyId', asyncHandler(async (req, res) => {
     });
 
     // find userHobby in wheelhouses
-    const userHobby = await db.UserHobby.findOne({
+    let userHobby = await db.UserHobby.findOne({
         where: {
             wheelhouseId: userWheelhouseIds,
             hobbyId
@@ -97,14 +96,20 @@ router.post('/:wheelhouseId/hobby/:hobbyId', asyncHandler(async (req, res) => {
     // if exists, update wheelhouse Id to whichever status user chooses
     if (userHobby) {
         await userHobby.update({ wheelhouseId });
+        userHobby = await db.UserHobby.findOne({
+            where: {
+                id: userHobby.dataValues.id
+            },
+            include: db.Wheelhouse
+        });
         res.json({ userHobby });
     } else {
         // else create new userhobby
-        const newHobby = await db.UserHobby.create({
+        userHobby = await db.UserHobby.create({
             wheelhouseId,
             hobbyId,
         });
-        res.json({ newHobby });
+        res.json({ userHobby });
     }
     res.end();
 }));

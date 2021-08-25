@@ -4,6 +4,7 @@ let userHobby;
 window.addEventListener('load', async () => {
   // on load, populate selectContainer with dropdown if user is logged in
   const selectContainer = document.querySelector(".select-container");
+  const text = document.querySelector('.text');
   const res = await fetch(`/api/userHobbies/${hobbyId}`)
   const data = await res.json();
 
@@ -17,16 +18,16 @@ window.addEventListener('load', async () => {
       selectContainer.appendChild(selectDiv);
       if (userHobby) {
         // if userHobby exists, display correct wheelhouse status
-        const text = document.querySelector('.text');
         text.innerHTML = `${userHobby.Wheelhouse.status}`
         // selectContainer.prepend(text);
 
         // find wheelhouses that userHobby is not attached to
-        const wheelhouse = user.Wheelhouses.filter(wh => {
-          return wh.id !== userHobby.wheelhouseId;
-        });
+        // const wheelhouse = user.Wheelhouses.filter(wh => {
+        //   return wh.id !== userHobby.wheelhouseId;
+        // });
 
-        createDropdown(wheelhouse, 'Update Status');
+        // createDropdown(wheelhouse, 'Update Status');
+        createDropdown(user.Wheelhouses, 'Update Status');
         // Delete from Wheelhouse button
         // const removeButton = document.createElement('button');
         // removeButton.setAttribute('id', 'delete-from-wheelhouse');
@@ -64,25 +65,25 @@ window.addEventListener('load', async () => {
   const deleteFromWheelhouseBtn = document.getElementById("delete-from-wheelhouse");
   const selectStatus = document.getElementById("select-status");
 
-if (addToWheelhouseBtn) {
-  addToWheelhouseBtn.addEventListener("click", async () => {
-    const wheelhouseId = selectStatus.value;
 
-    const res = await fetch(`/api/wheelhouse/${wheelhouseId}/hobby/${hobbyId}`, {
-      method: "POST",
+  if (addToWheelhouseBtn) {
+    addToWheelhouseBtn.addEventListener("click", async () => {
+      const wheelhouseId = selectStatus.value;
+
+      const res = await fetch(`/api/wheelhouse/${wheelhouseId}/hobby/${hobbyId}`, {
+        method: "POST",
+      });
+      const userHobby = await res.json();
+
+      if (res.ok && userHobby.userHobby) {
+        const text = document.querySelector('.text');
+        text.innerHTML = userHobby.userHobby.Wheelhouse.status
+        addToWheelhouseBtn.classList.add("checked");
+        addToWheelhouseBtn.innerText = "Added!";
+        text.innerHTML = `${userHobby.userHobby.Wheelhouse.status}`
+      }
     });
-    console.log('AFTER POST', res.ok)
-    const userHobby = await res.json();
-    console.log('======> userHobby frontend', userHobby)
-
-    if (res.ok && userHobby.userHobby) {
-      const text = document.querySelector('.text');
-      text.innerHTML = userHobby.userHobby.Wheelhouse.status
-      addToWheelhouseBtn.classList.add("checked");
-      addToWheelhouseBtn.innerText = "Added!";
-    }
-  });
-}
+  }
 
 // Delete from Wheelhouse
 // if (deleteFromWheelhouseBtn) {
@@ -95,17 +96,15 @@ if (addToWheelhouseBtn) {
     // }
   // });
 // }
-
-
 });
 
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<EXPERIENCES>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 const addExperienceButton = document.getElementById("add-experience-button");
 const editExperienceButton = document.getElementById("edit-experience-button");
 const deleteExperienceButton = document.getElementById(
   "delete-experience-button"
 );
-
 
 // To implement in the future: AJAX for Experiences
 
