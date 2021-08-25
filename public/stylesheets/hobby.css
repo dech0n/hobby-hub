@@ -33,6 +33,20 @@
     min-width: 400px;
 }
 
+.confirm-text-div {
+    height: 20px;
+}
+
+.confirm-text {
+    margin: 0;
+    font-size: 12px;
+    transition: opacity 500ms;
+}
+
+.confirm-text.confirm-hidden {
+    opacity: 0;
+}
+
 #experiences-container {
     /* border: 1px solid black; */
     text-align: center;
