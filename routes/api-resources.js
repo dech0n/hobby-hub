@@ -32,10 +32,10 @@ router.post(
       console.log('======>', userId, hobbyId, title, link)
 
       const newResource = await db.Resource.create({
-        hobbyId: 2,
-        userId: 1,
-        title: 'Hi',
-        link: 'asdf'
+        hobbyId,
+        userId,
+        title,
+        link
       });
       console.log('Got Here ------------------------------', newResource) //! for testing only
       const resources = await db.Resource.findAll({
