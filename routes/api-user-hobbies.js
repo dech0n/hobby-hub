@@ -24,11 +24,14 @@ router.get('/:hobbyId', asyncHandler(async (req, res) => {
 }));
 
 router.delete('/:userHobbyId', asyncHandler(async (req, res) => {
-  const id = parseInt(req.params.userHobbyId, 10);
+  // const id = parseInt(req.params.userHobbyId, 10);
+  const id = +req.params.userHobbyId;
   const userHobby = await db.UserHobby.findByPk(id);
+  console.log('==============>BACKEND 1', userHobby.dataValues)
   await userHobby.destroy();
+  console.log('==============>BACKEND 2')
   // console.log('-------------------->MADE IT<------------', userHobby)
-  // res.json({ id: "Made it" });
+  res.json({ id: "Made it" });
 }));
 
 module.exports = router;

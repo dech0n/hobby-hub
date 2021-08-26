@@ -19,12 +19,14 @@ module.exports = {
       hobbyId: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: { model: 'UserHobbies' }
+        references: { model: 'UserHobbies' },
+        onDelete: 'CASCADE',
       },
       userId: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: { model: 'Users' }
+        references: { model: 'Users' },
+        onDelete: 'CASCADE',
       },
       createdAt: {
         allowNull: false,

@@ -16,6 +16,7 @@ window.addEventListener("load", async () => {
       const selectDiv = document.createElement("div");
       selectDiv.classList.add("select-div");
       selectContainer.appendChild(selectDiv);
+
       if (userHobby) {
         // if userHobby exists, display correct wheelhouse status
         text.innerHTML = `Status: ${userHobby.Wheelhouse.status}`;
@@ -24,10 +25,6 @@ window.addEventListener("load", async () => {
         // createDropdown(wheelhouse, 'Update Status');
         createDropdown(user.Wheelhouses, "Update Status");
         // Delete from Wheelhouse button
-        // const removeButton = document.createElement('button');
-        // removeButton.setAttribute('id', 'delete-from-wheelhouse');
-        // removeButton.innerHTML = 'Remove from Wheelhouse';
-        // selectDiv.appendChild(removeButton);
       } else {
         createDropdown(user.Wheelhouses, "Add to Wheelhouse");
       }
@@ -52,11 +49,18 @@ window.addEventListener("load", async () => {
       selectDropdown.appendChild(option);
     });
 
+    // create update status button
     const statusButton = document.createElement("button");
     statusButton.innerText = buttonText;
     statusButton.classList.add("status-button");
     statusButton.setAttribute("id", "add-to-wheelhouse-button");
     selectDiv.appendChild(statusButton);
+
+    // create remove button
+    const removeButton = document.createElement('button');
+    removeButton.setAttribute('id', 'delete-from-wheelhouse');
+    removeButton.innerHTML = 'Remove from Wheelhouse';
+    selectDiv.appendChild(removeButton);
   }
 
   const addToWheelhouseBtn = document.getElementById(
@@ -105,16 +109,21 @@ window.addEventListener("load", async () => {
   }
 
   // Delete from Wheelhouse
-  // if (deleteFromWheelhouseBtn) {
-  //   deleteFromWheelhouseBtn.addEventListener('click', async () => {
-  //     const res = await fetch(`/api/userHobbies/${userHobby.id}`, {
-  //       method: 'DELETE'
-  //     });
-  // const data = await res.json();
-  // if (res.ok) {
-  // }
-  // });
-  // }
+  if (deleteFromWheelhouseBtn) {
+    deleteFromWheelhouseBtn.addEventListener('click', async () => {
+      const answer = window.confirm("Are you sure? You will lose all resources associated with this hobby.");
+
+      if (answer) {
+        const res = await fetch(`/api/userHobbies/${userHobby.id}`, {
+          method: 'DELETE'
+        });
+        const data = await res.json();
+        if (res.ok) {
+          console.log('data -->', data)
+        }
+      }
+    });
+  }
 });
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<EXPERIENCES>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

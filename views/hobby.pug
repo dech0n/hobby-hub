@@ -10,10 +10,10 @@ block content
       img(src=hobby.img alt="illustration of the hobby")
       div(id=hobby.id class="title-description")
         h1(class='hobby-h1')= hobby.title
+        p= hobby.description
         if user
           div(class="select-container" id=user.userHobbyId)
             p(class="text")
-        p= hobby.description
     if req.session.auth
       h2(class='hobby-h2') Resources
       div(id='resources-form-container')
