@@ -14,7 +14,7 @@ block content
         if user
           div(class="select-container" id=user.userHobbyId)
             p(class="text")
-    if req.session.auth
+    if req.session.auth && userHobby
       h2(class='hobby-h2') Resources
       div(id='resources-form-container')
         form(id="resource-form")

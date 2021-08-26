@@ -21,6 +21,7 @@ router.get(
   "/:hobbyId(\\d+)",
   asyncHandler(async (req, res) => {
     let user;
+    let userHobby;
 
     const hobbyId = parseInt(req.params.hobbyId, 10);
     const hobby = await db.Hobby.findByPk(hobbyId, { include: db.Experience });
@@ -38,7 +39,7 @@ router.get(
           where: { userId: user.id },
         });
         const wheelhouseIds = user.wheelhouses.map(wh => wh.id)
-        const userHobby = await db.UserHobby.findOne({
+        userHobby = await db.UserHobby.findOne({
           where: {
             hobbyId,
             wheelhouseId: wheelhouseIds
@@ -48,6 +49,7 @@ router.get(
         if (userHobby) {
           user.userHobbyWheelhouse = userHobby.Wheelhouse.status;
           user.userHobbyId = userHobby.id;
+          userHobby = userHobby.dataValues;
         }
 
         const experience = await db.Experience.findOne({
@@ -66,6 +68,7 @@ router.get(
       hobby,
       experiences,
       req,
+      userHobby
     });
   })
 );
