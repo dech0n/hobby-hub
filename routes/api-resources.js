@@ -27,15 +27,17 @@ router.post(
     "/hobbies/:hobbyId",
     asyncHandler(async (req, res) => {
       const userId = req.session.auth.userId;
-      const hobbyId = req.params.hobbyId;
+      const hobbyId = +req.params.hobbyId;
       const {title, link} = req.body;
-      await db.Resource.create({
-          hobbyId,
-          userId,
-          title,
-          link
+      console.log('======>', userId, hobbyId, title, link)
+
+      const newResource = await db.Resource.create({
+        hobbyId: 2,
+        userId: 1,
+        title: 'Hi',
+        link: 'asdf'
       });
-      // console.log('Got Here ------------------------------') //! for testing only
+      console.log('Got Here ------------------------------', newResource) //! for testing only
       const resources = await db.Resource.findAll({
         where: [{hobbyId},{userId}]
     })

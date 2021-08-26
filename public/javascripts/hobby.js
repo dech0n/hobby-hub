@@ -23,7 +23,7 @@ window.addEventListener("load", async () => {
         // selectContainer.prepend(text);
 
         // createDropdown(wheelhouse, 'Update Status');
-        createDropdown(user.Wheelhouses, "Update Status");
+        createDropdown(user.Wheelhouses, "Update Status", userHobby);
         // Delete from Wheelhouse button
       } else {
         createDropdown(user.Wheelhouses, "Add to Wheelhouse");
@@ -31,7 +31,7 @@ window.addEventListener("load", async () => {
     }
   }
 
-  function createDropdown(wheelhouses, buttonText) {
+  function createDropdown(wheelhouses, buttonText, userHobby = null) {
     const selectDiv = document.querySelector(".select-div");
     const selectDropdown = document.createElement("select");
     selectDropdown.setAttribute("name", "status");
@@ -56,11 +56,13 @@ window.addEventListener("load", async () => {
     statusButton.setAttribute("id", "add-to-wheelhouse-button");
     selectDiv.appendChild(statusButton);
 
-    // create remove button
-    const removeButton = document.createElement('button');
-    removeButton.setAttribute('id', 'delete-from-wheelhouse');
-    removeButton.innerHTML = 'Remove from Wheelhouse';
-    selectDiv.appendChild(removeButton);
+    // create remove button if userHobby exists
+    if (userHobby) {
+      const removeButton = document.createElement('button');
+      removeButton.setAttribute('id', 'delete-from-wheelhouse');
+      removeButton.innerHTML = 'Remove from Wheelhouse';
+      selectDiv.appendChild(removeButton);
+    }
   }
 
   const addToWheelhouseBtn = document.getElementById(
@@ -71,6 +73,7 @@ window.addEventListener("load", async () => {
   );
   const selectStatus = document.getElementById("select-status");
 
+  // Add to wheelhouse
   if (addToWheelhouseBtn) {
     addToWheelhouseBtn.addEventListener("click", async () => {
       const wheelhouseId = selectStatus.value;
@@ -83,7 +86,12 @@ window.addEventListener("load", async () => {
       );
       const userHobby = await res.json();
 
-      if (res.ok && userHobby.userHobby) {
+      // if user hobby doesn't exist, reload
+      const removeButton = document.getElementById('delete-from-wheelhouse');
+      if (!removeButton) {
+        location.reload();
+      } else if (res.ok && userHobby.userHobby) {
+        // else display confirmation and update status
         const text = document.querySelector(".text");
         text.innerHTML = `Status: ${userHobby.userHobby.Wheelhouse.status}`;
 
@@ -117,9 +125,8 @@ window.addEventListener("load", async () => {
         const res = await fetch(`/api/userHobbies/${userHobby.id}`, {
           method: 'DELETE'
         });
-        const data = await res.json();
         if (res.ok) {
-          console.log('data -->', data)
+          location.reload();
         }
       }
     });

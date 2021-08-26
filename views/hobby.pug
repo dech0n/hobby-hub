@@ -17,7 +17,7 @@ block content
     if req.session.auth && userHobby
       h2(class='hobby-h2') Resources
       div(id='resources-form-container')
-        form(id="resource-form")
+        form(action=`/api/resources/hobbies/${hobby.id}` method="post" id="resource-form")
           div(id="resource-form-container")
             input(type="hidden", name="_csrf", value=csrfToken)
             div.resource_title
