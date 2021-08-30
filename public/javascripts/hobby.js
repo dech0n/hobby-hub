@@ -354,7 +354,7 @@ if (addResourceButton) {
       input.className = 'resource-title-input';
       input.id = `${e.target.id}`
       input.value = title;
-      // input.autofocus = true;
+      input.autofocus = true;
       form.appendChild(input);
       const btnDiv = document.createElement('div')
       btnDiv.className = 'btn-div'

@@ -4,6 +4,7 @@ const loginUser = (req, res, user) => {
     req.session.auth = {
         userId: user.id
     }
+    res.redirect(`/hobbies`);
 }
 
 const restoreUser = async (req, res, next) => {
