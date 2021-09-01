@@ -276,7 +276,7 @@ if (addResourceButton) {
   addResourceButton.addEventListener("click", async () => {
     const title = document.getElementById("resource-title-input").value;
     const link = document.getElementById("resource-link-input").value;
-
+    if (!title || !link) return;
     try {
       const res = await fetch(`/api/resources/hobbies/${hobbyId}`, {
         method: "POST",
@@ -324,7 +324,7 @@ if (addResourceButton) {
       document.getElementById("resource-title-input").value = "";
       document.getElementById("resource-link-input").value = "";
     } catch (e) {
-      console.log(e.message);
+      console.error(e.message);
     }
   });
 }

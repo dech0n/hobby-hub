@@ -32,17 +32,18 @@ router.post(
       console.log('=====================>', userId, hobbyId, title, link)
       console.log('!!!!!!!!!!!!!!!!!!!!', title, link)
 
-      const newResource = await db.Resource.create({
-        hobbyId,
-        userId,
-        title,
-        link
-      });
-      console.log('Got Here ------------------------------', newResource) //! for testing only
-      const resources = await db.Resource.findAll({
-        where: [{hobbyId},{userId}]
-    })
-      res.json({ resources });
+      if (title && link) {
+        await db.Resource.create({
+          hobbyId,
+          userId,
+          title,
+          link
+        });
+        const resources = await db.Resource.findAll({
+          where: [{hobbyId},{userId}]
+        })
+        res.json({ resources });
+      } 
     })
 );
 
