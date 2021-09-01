@@ -29,7 +29,8 @@ router.post(
       const userId = req.session.auth.userId;
       const hobbyId = +req.params.hobbyId;
       const {title, link} = req.body;
-      console.log('======>', userId, hobbyId, title, link)
+      console.log('=====================>', userId, hobbyId, title, link)
+      console.log('!!!!!!!!!!!!!!!!!!!!', title, link)
 
       const newResource = await db.Resource.create({
         hobbyId,

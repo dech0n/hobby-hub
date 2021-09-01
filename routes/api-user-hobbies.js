@@ -23,11 +23,33 @@ router.get('/:hobbyId', asyncHandler(async (req, res) => {
   }
 }));
 
-router.delete('/:userHobbyId', asyncHandler(async (req, res) => {
-  const id = +req.params.userHobbyId;
+router.delete('/:userId/:userHobbyId', asyncHandler(async (req, res) => {
+  const id = req.params.userHobbyId;
+  const userId = req.params.userId;
+  console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', userId)
   const userHobby = await db.UserHobby.findByPk(id);
-  await userHobby.destroy();
-  res.json({ id: "Made it" });
+  try {
+    await db.Resource.destroy({
+      where: {
+        hobbyId: userHobby.hobbyId,
+        userId
+      }
+    });
+    await db.UserHobby.destroy({
+      where: {
+        id
+      }
+    });
+    res.json({ ok: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+
+  // const id = req.params.resourceId
+  // await db.Resource.destroy({ where: { id }});
+  // res.json({ ok: true });
+
+
 }));
 
 module.exports = router;

@@ -1,5 +1,6 @@
 const hobbyId = document.querySelector(".title-description").id;
 let userHobby;
+let user;
 // Select dropdown
 window.addEventListener("load", async () => {
   // on load, populate selectContainer with dropdown if user is logged in
@@ -9,7 +10,7 @@ window.addEventListener("load", async () => {
   const data = await res.json();
 
   if (res.ok) {
-    const user = data.user;
+    user = data.user;
     userHobby = data.userHobby;
 
     if (user) {
@@ -60,6 +61,7 @@ window.addEventListener("load", async () => {
     if (userHobby) {
       const removeButton = document.createElement('button');
       removeButton.setAttribute('id', 'delete-from-wheelhouse');
+      removeButton.setAttribute('class', `${user.id}`)
       removeButton.innerHTML = 'Remove from Wheelhouse';
       selectDiv.appendChild(removeButton);
     }
@@ -122,11 +124,15 @@ window.addEventListener("load", async () => {
       const answer = window.confirm("Are you sure? You will lose all resources associated with this hobby.");
 
       if (answer) {
-        const res = await fetch(`/api/userHobbies/${userHobby.id}`, {
-          method: 'DELETE'
+      
+        const res = await fetch(`/api/userHobbies/${user.id}/${userHobby.id}`, {
+          method: 'DELETE',
         });
         if (res.ok) {
           location.reload();
+        } else {
+          const result = await res.json();
+          console.log(result);
         }
       }
     });
