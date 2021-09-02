@@ -30,7 +30,6 @@ router.post(
       const hobbyId = +req.params.hobbyId;
       const {title, link} = req.body;
       console.log('=====================>', userId, hobbyId, title, link)
-      console.log('!!!!!!!!!!!!!!!!!!!!', title, link)
 
       if (title && link) {
         await db.Resource.create({

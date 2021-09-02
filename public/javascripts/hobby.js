@@ -276,7 +276,18 @@ if (addResourceButton) {
   addResourceButton.addEventListener("click", async () => {
     const title = document.getElementById("resource-title-input").value;
     const link = document.getElementById("resource-link-input").value;
-    if (!title || !link) return;
+    if (!title) {
+      titleInput = document.getElementById("resource-title-input")
+      titleInput.classList.add("error");
+      titleInput.placeholder = 'Please Include A Title!!'
+      return;
+    } else if (!link) {
+      linkInput = document.getElementById("resource-link-input")
+      linkInput.classList.add("error");
+      linkInput.placeholder = 'Please Include A Link!!'
+      return;
+    }
+
     try {
       const res = await fetch(`/api/resources/hobbies/${hobbyId}`, {
         method: "POST",
@@ -319,10 +330,15 @@ if (addResourceButton) {
           removeBtn.className = `remove-resource`;
           btnDiv.appendChild(removeBtn);
         });
-      }
+      } 
 
       document.getElementById("resource-title-input").value = "";
       document.getElementById("resource-link-input").value = "";
+      document.getElementById("resource-title-input").placeholder = 'Enter name of Resource';
+      document.getElementById("resource-link-input").placeholder = 'Enter link of Resource';
+      document.getElementById("resource-title-input").classList.remove("error");
+      document.getElementById("resource-link-input").classList.remove("error");
+
     } catch (e) {
       console.error(e.message);
     }
