@@ -332,7 +332,7 @@ if (addResourceButton) {
           removeBtn.className = `remove-resource`;
           btnDiv.appendChild(removeBtn);
         });
-      } 
+      }
 
       document.getElementById("resource-title-input").value = "";
       document.getElementById("resource-link-input").value = "";
