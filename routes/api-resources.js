@@ -30,14 +30,14 @@ router.post(
       const hobbyId = +req.params.hobbyId;
       const {title, link} = req.body;
       console.log('=====================>', userId, hobbyId, title, link)
-      console.log('!!!!!!!!!!!!!!!!!!!!', title, link)
-
+debugger
       const newResource = await db.Resource.create({
         hobbyId,
         userId,
         title,
         link
       });
+      debugger
       console.log('Got Here ------------------------------', newResource) //! for testing only
       const resources = await db.Resource.findAll({
         where: [{hobbyId},{userId}]

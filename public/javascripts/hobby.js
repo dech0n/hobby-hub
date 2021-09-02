@@ -124,7 +124,7 @@ window.addEventListener("load", async () => {
       const answer = window.confirm("Are you sure? You will lose all resources associated with this hobby.");
 
       if (answer) {
-      
+
         const res = await fetch(`/api/userHobbies/${user.id}/${userHobby.id}`, {
           method: 'DELETE',
         });
@@ -278,6 +278,7 @@ if (addResourceButton) {
     const link = document.getElementById("resource-link-input").value;
 
     try {
+      console.log('-----> before fetch')
       const res = await fetch(`/api/resources/hobbies/${hobbyId}`, {
         method: "POST",
         headers: {
@@ -288,6 +289,7 @@ if (addResourceButton) {
           link,
         }),
       });
+      console.log('-----> after fetch')
 
       const resources = await res.json();
 
